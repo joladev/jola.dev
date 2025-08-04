@@ -1,0 +1,76 @@
+<%!-- <.hero
+  title="Johanna Larsson"
+  subtitle="Director of Engineering"
+  description="Building teams and software that makes a difference"
+  badge={random_status()}
+  primary_action={%{label: "About Me", href: "/about"}}
+  secondary_action={%{label: "Read My Blog", href: "/posts"}}
+/> --%>
+
+<section class="py-16 bg-surface/30">
+  <div class="max-w-content mx-auto px-6 md:px-8">
+    <header class="mb-12 text-center">
+      <.heading level={2}>Highlighted Projects</.heading>
+      <.text variant={:lead} class="mt-4">
+        Featured open source contributions and tools
+      </.text>
+    </header>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <.project_card
+        title="darkdown.app"
+        description="Gorgeous notes, nothing else. An online markdown editor with dark mode, easy sharing, and AI integration."
+        tags={["React", "AI", "Markdown"]}
+        link="https://darkdown.app"
+        external
+      />
+
+      <.project_card
+        title="devstats.io"
+        description="Github App integration that pulls down repo contribution statistics and visualizes it, to help teams improve."
+        tags={["Elixir", "Phoenix", "Github"]}
+        link="https://devstats.io"
+        external
+      />
+
+      <.project_card
+        title="DispatchKit"
+        description="Effortless Event Routing for Modern Engineering Teams.  Send events with a single HTTP POST. Route them anywhere."
+        tags={["Elixir", "Phoenix", "Events"]}
+        link="https://dispatchkit.app/"
+        external
+      />
+    </div>
+
+    <div class="text-center mt-8">
+      <.link href="/projects">
+        <.button variant={:secondary}>
+          View All Projects <.icon name="hero-arrow-right" class="w-4 h-4 ml-2" />
+        </.button>
+      </.link>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-background">
+  <div class="max-w-content mx-auto px-6 md:px-8">
+    <header class="mb-12 text-center">
+      <.heading level={2}>Recent Posts</.heading>
+      <.text variant={:lead} class="mt-4">
+        Thoughts on software engineering and technology
+      </.text>
+    </header>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <.blog_card :for={post <- @recent_posts} post={post} />
+    </div>
+
+    <div class="text-center mt-8">
+      <.link href="/posts">
+        <.button variant={:secondary}>
+          View All Posts <.icon name="hero-arrow-right" class="w-4 h-4 ml-2" />
+        </.button>
+      </.link>
+    </div>
+  </div>
+</section>

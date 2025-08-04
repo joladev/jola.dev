@@ -1,0 +1,126 @@
+<article class="py-16">
+  <div class="max-w-prose mx-auto px-6 md:px-8">
+    <header class="mb-12">
+      <.heading level={1} class="mb-4">{@post.title}</.heading>
+
+      <div class="flex items-center gap-6 text-sm text-muted-foreground">
+        <div class="flex items-center gap-1.5">
+          <.icon name="hero-calendar" class="w-4 h-4" />
+          <time>{Calendar.strftime(@post.date, "%B %-d, %Y")}</time>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <.icon name="hero-clock" class="w-4 h-4" />
+          <span>{JolaDevWeb.BlogHelpers.estimate_reading_time(@post.body)} min read</span>
+        </div>
+      </div>
+
+      <div :if={@post.tags != []} class="flex flex-wrap gap-2 mt-4">
+        <.badge :for={tag <- @post.tags} variant={:muted}>
+          {tag}
+        </.badge>
+      </div>
+    </header>
+
+    <div class="prose prose-lg max-w-none">
+      <style>
+        /* Monochrome syntax highlighting */
+        .makeup {
+          @apply bg-surface rounded-lg p-4 overflow-x-auto my-6;
+        }
+        .makeup .unselectable {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* Comments and documentation */
+        .makeup .c, .makeup .c1, .makeup .ch, .makeup .cm, .makeup .cs, .makeup .sd {
+          @apply text-muted-foreground italic;
+        }
+
+        /* Keywords and operators */
+        .makeup .k, .makeup .kc, .makeup .kd, .makeup .kn, .makeup .kp, .makeup .kr, .makeup .kt, .makeup .ow {
+          @apply text-foreground font-medium;
+        }
+
+        /* Strings */
+        .makeup .s, .makeup .s1, .makeup .s2, .makeup .sa, .makeup .sb, .makeup .sc, .makeup .se, .makeup .sh, .makeup .si, .makeup .sx, .makeup .sr, .makeup .ss {
+          @apply text-muted;
+        }
+
+        /* Numbers */
+        .makeup .m, .makeup .mb, .makeup .mf, .makeup .mh, .makeup .mi, .makeup .mo, .makeup .il {
+          @apply text-muted;
+        }
+
+        /* Names and functions */
+        .makeup .na, .makeup .nb, .makeup .nc, .makeup .nd, .makeup .nf, .makeup .ni, .makeup .nn, .makeup .no, .makeup .nt, .makeup .nv, .makeup .vc, .makeup .vg, .makeup .vi, .makeup .vm {
+          @apply text-foreground;
+        }
+
+        /* Errors */
+        .makeup .err {
+          @apply text-red-600 bg-red-50;
+        }
+
+        /* Special highlighting */
+        .makeup .bp, .makeup .fm {
+          @apply text-accent;
+        }
+
+        /* Generic styles */
+        .makeup .gd { @apply text-red-600; }
+        .makeup .gi { @apply text-green-600; }
+        .makeup .gh { @apply text-foreground font-semibold; }
+        .makeup .gs { @apply font-semibold; }
+        .makeup .ge { @apply italic; }
+
+        /* Prose overrides for dark mode */
+        .prose {
+          @apply text-foreground;
+        }
+        .prose h1, .prose h2, .prose h3, .prose h4 {
+          @apply text-foreground font-semibold;
+        }
+        .prose p {
+          @apply text-foreground;
+        }
+        .prose strong {
+          @apply text-foreground font-semibold;
+        }
+        .prose a {
+          @apply text-accent hover:opacity-80 transition-opacity;
+        }
+        .prose code {
+          @apply bg-surface px-1.5 py-0.5 rounded text-sm;
+        }
+        .prose pre {
+          @apply bg-transparent p-0;
+        }
+        .prose blockquote {
+          @apply border-l-4 border-border pl-4 italic text-muted-foreground;
+        }
+        .prose ul, .prose ol {
+          @apply text-foreground;
+        }
+        .prose hr {
+          @apply border-border;
+        }
+      </style>
+
+      {raw(@post.body)}
+    </div>
+
+    <footer class="mt-16 pt-8 border-t border-border">
+      <.link
+        href="/posts"
+        class="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <.icon name="hero-arrow-left" class="w-4 h-4 mr-2" /> Back to all posts
+      </.link>
+    </footer>
+  </div>
+</article>

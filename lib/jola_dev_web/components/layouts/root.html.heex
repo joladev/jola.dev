@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable] antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title>
+      {@conn.assigns[:page_title]}
+    </.live_title>
+    <meta
+      name="description"
+      content="The personal website of Johanna Larsson, software engineer, manager, writer, speaker."
+    />
+    <meta property="og:title" name="og:title" content={JolaDevWeb.page_title(@conn.assigns)} />
+    <meta property="og:url" name="og:url" content={Phoenix.Controller.current_url(@conn)} />
+    <meta
+      property="og:description"
+      name="og:description"
+      content="Johanna Larsson is a software engineer, manager, writer, speaker. With over 14 years of experience in software development and management, she has worked with clients from various industries, including finance, healthcare, and education. She is passionate about creating innovative solutions that solve real-world problems. She is also an advocate for diversity and inclusion in the tech industry. She believes that technology can be a force for good and strives to make a positive impact in the world. She is committed to using her skills and expertise to create a better future for all."
+    />
+    <meta property="og:type" name="og:type" content="website" />
+    <meta property="og:image" name="og:image" content={~p"/images/og-image.png"} />
+    <link rel="canonical" href={JolaDevWeb.Helpers.CanonicalUrl.canonical_url(@conn)} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="jola.dev RSS Feed"
+      href={~p"/rss.xml"}
+    />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+    <script
+      defer
+      src="https://umami.devstats.io/script.js"
+      data-website-id="ee45eb1e-80d4-41dd-9ee1-8cb7739a9086"
+    >
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body class="min-h-screen antialiased flex flex-col">
+    {@inner_content}
+  </body>
+</html>

@@ -1,0 +1,130 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Theme Variables */
+@layer base {
+  :root {
+    /* Dark Theme (Default) */
+    --background: 10 10 10;         /* #0a0a0a */
+    --foreground: 250 250 250;      /* #fafafa */
+    --muted: 115 115 115;           /* #737373 */
+    --muted-foreground: 163 163 163; /* #a3a3a3 */
+    --border: 38 38 38;             /* #262626 */
+    --surface: 23 23 23;            /* #171717 */
+    --accent: 251 146 60;           /* #fb923c */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Code blocks */
+  pre {
+    @apply bg-surface border border-border rounded-lg p-4 overflow-x-auto;
+  }
+
+  code {
+    @apply bg-surface px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Links */
+  a {
+    @apply text-foreground underline-offset-4 hover:opacity-80 transition-opacity;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-foreground/10;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Remove spinner from number inputs */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Mobile menu styles */
+@layer components {
+  .mobile-menu {
+    @apply fixed left-0 right-0 top-16 z-40 bg-background border-b border-border shadow-lg;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu {
+      display: none !important;
+    }
+  }
+
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Responsive video container */
+  .aspect-video {
+    @apply relative w-full;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+
+  .aspect-video > * {
+    @apply absolute inset-0 w-full h-full;
+  }
+
+  /* Line clamp utility */
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Legacy font - will be removed */
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

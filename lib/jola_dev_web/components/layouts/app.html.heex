@@ -1,0 +1,18 @@
+<div class="min-h-screen flex flex-col">
+  <header class="border-b border-border">
+    <.navigation social_links>
+      <:link href="/" active={@conn.request_path == "/"}>Home</:link>
+      <:link href="/about" active={@conn.request_path == "/about"}>About</:link>
+      <:link href="/posts" active={String.starts_with?(@conn.request_path, "/posts")}>Blog</:link>
+      <:link href="/projects" active={@conn.request_path == "/projects"}>Projects</:link>
+      <:link href="/talks" active={@conn.request_path == "/talks"}>Talks</:link>
+    </.navigation>
+  </header>
+
+  <main class="flex-grow">
+    <.flash_group flash={@flash} />
+    {@inner_content}
+  </main>
+
+  <.footer tagline="Building software with care" />
+</div>

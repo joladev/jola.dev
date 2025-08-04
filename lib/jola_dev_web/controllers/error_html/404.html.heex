@@ -1,0 +1,45 @@
+<section class="py-16 min-h-[60vh] flex items-center justify-center">
+  <div class="max-w-prose mx-auto px-6 md:px-8 text-center">
+    <div class="mb-8">
+      <.icon
+        name="hero-exclamation-triangle"
+        class="w-24 h-24 mx-auto text-muted-foreground opacity-50"
+      />
+    </div>
+
+    <.heading level={1} class="mb-4">Page Not Found</.heading>
+
+    <.text variant={:lead} class="mb-8">
+      Oops! The page you're looking for doesn't exist.
+    </.text>
+
+    <.text variant={:muted} class="mb-12">
+      It might have been moved, deleted, or you may have typed the URL incorrectly.
+    </.text>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <.link
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        <.icon name="hero-home" class="w-5 h-5" /> Go to Homepage
+      </.link>
+
+      <.link
+        href="/posts"
+        class="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-accent transition-colors"
+      >
+        <.icon name="hero-document-text" class="w-5 h-5" /> View Blog Posts
+      </.link>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-border">
+      <.text variant={:muted}>
+        You can also try navigating using the menu above, or <.link
+          href="/about"
+          class="text-accent hover:underline"
+        >learn more about me</.link>.
+      </.text>
+    </div>
+  </div>
+</section>

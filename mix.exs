@@ -67,7 +67,7 @@ defmodule JolaDev.MixProject do
       {:sentry, "~> 11.0.1"},
       {:hackney, "~> 1.8"},
       {:tidewave, "~> 0.2", only: :dev},
-      {:credo, "~> 1.7"}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 

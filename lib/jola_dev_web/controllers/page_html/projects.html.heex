@@ -9,10 +9,26 @@
 
     <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
       <.project_card
+        title="ElixirEvents"
+        description="The Elixir Event calendar, find conferences and meetups!"
+        tags={["Elixir", "Community", "Events"]}
+        link="https://elixirevents.net/"
+        github_link="https://github.com/joladev/elixir_events"
+        external
+      />
+
+      <.project_card
         title="jola.dev"
         description="This website, built with Phoenix, NimblePublisher, and Tailwind CSS."
         tags={["Elixir", "Phoenix", "Tailwind CSS", "Open Source"]}
-        link="https://github.com/joladev/jola.dev"
+        github_link="https://github.com/joladev/jola.dev"
+      />
+
+      <.project_card
+        title="darkdown.app"
+        description="Gorgeous notes, nothing else. An online markdown editor with dark mode, easy sharing, and AI integration."
+        tags={["React", "AI", "Markdown"]}
+        link="https://darkdown.app"
         external
       />
 
@@ -33,34 +49,11 @@
       />
 
       <.project_card
-        title="darkdown.app"
-        description="Gorgeous notes, nothing else. An online markdown editor with dark mode, easy sharing, and AI integration."
-        tags={["React", "AI", "Markdown"]}
-        link="https://darkdown.app"
-        external
-      />
-
-      <.project_card
         title="HexDiff"
         description="Generate diffs of packages hosted on hex.pm and visualize and share. Unlike other diffs, these show what code was actually uploaded on hex.pm."
         tags={["Elixir", "Phoenix", "Open Source"]}
         link="https://diff.hex.pm/"
-        external
-      />
-
-      <.project_card
-        title="HexDiff Source"
-        description="The open source repository for HexDiff. Contributions welcome!"
-        tags={["Elixir", "GitHub"]}
-        link="https://github.com/hexpm/diff/"
-        external
-      />
-
-      <.project_card
-        title="ElixirEvents"
-        description="The Elixir Event calendar, find conferences and meetups!"
-        tags={["Elixir", "Community", "Events"]}
-        link="https://elixirevents.net/"
+        github_link="https://github.com/hexpm/diff/"
         external
       />
     </div>

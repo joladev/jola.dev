@@ -1222,27 +1222,44 @@ defmodule JolaDevWeb.CoreComponents do
   attr :title, :string, required: true
   attr :description, :string, default: nil
   attr :tags, :list, default: []
-  attr :link, :string, required: true
+  attr :link, :string, default: nil
+  attr :github_link, :string, default: nil
   attr :external, :boolean, default: true
   attr :class, :string, default: nil
 
   def project_card(assigns) do
     ~H"""
-    <a
-      href={@link}
-      target={if @external, do: "_blank"}
-      rel={if @external, do: "noopener"}
-      class={["block group", @class]}
-    >
-      <.card variant={:interactive} hover class="h-full">
+    <div class={[@class]}>
+      <.card variant={:bordered} class="h-full">
         <div class="flex items-start justify-between mb-3">
-          <h3 class="text-xl font-semibold text-foreground group-hover:text-foreground/80 transition-colors">
+          <h3 class="text-xl font-semibold text-foreground">
             {@title}
           </h3>
-          <.icon
-            name={if @external, do: "hero-arrow-top-right-on-square", else: "hero-arrow-right"}
-            class="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0 ml-2"
-          />
+          <div class="flex items-center gap-2 flex-shrink-0 ml-2">
+            <a
+              :if={@github_link}
+              href={@github_link}
+              target="_blank"
+              rel="noopener"
+              class="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="View on GitHub"
+            >
+              <.icon name="lucide-github" class="w-5 h-5" />
+            </a>
+            <a
+              :if={@link}
+              href={@link}
+              target={if @external, do: "_blank"}
+              rel={if @external, do: "noopener"}
+              class="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Visit project"
+            >
+              <.icon
+                name={if @external, do: "hero-arrow-top-right-on-square", else: "hero-arrow-right"}
+                class="w-5 h-5"
+              />
+            </a>
+          </div>
         </div>
 
         <p :if={@description} class="text-muted-foreground mb-4">
@@ -1255,7 +1272,7 @@ defmodule JolaDevWeb.CoreComponents do
           </.badge>
         </div>
       </.card>
-    </a>
+    </div>
     """
   end
 

@@ -7,9 +7,9 @@ defmodule JolaDevWeb.ErrorHTMLTest do
   test "renders 404.html" do
     html = render_to_string(JolaDevWeb.ErrorHTML, "404", "html", [])
     assert html =~ "Page Not Found"
-    assert html =~ "The page you're looking for doesn't exist"
-    assert html =~ "Go to Homepage"
-    assert html =~ "View Blog Posts"
+    assert html =~ "The page you're looking for seems to have wandered off"
+    assert html =~ "Homepage"
+    assert html =~ "Blog"
   end
 
   test "renders 500.html" do

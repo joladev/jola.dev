@@ -1,44 +1,53 @@
-<section class="py-16 min-h-[60vh] flex items-center justify-center">
-  <div class="max-w-prose mx-auto px-6 md:px-8 text-center">
-    <div class="mb-8">
-      <.icon
-        name="hero-exclamation-triangle"
-        class="w-24 h-24 mx-auto text-muted-foreground opacity-50"
-      />
+<section class="py-16">
+  <div class="max-w-content mx-auto px-6 md:px-8">
+    <header class="mb-12 text-center">
+      <.heading level={1}>404 - Page Not Found</.heading>
+      <.text variant={:lead} class="mt-4">
+        The page you're looking for seems to have wandered off
+      </.text>
+    </header>
+
+    <div class="max-w-prose mx-auto text-center mb-12">
+      <.text variant={:muted} class="mb-8">
+        Don't worry! Here are some helpful places to explore instead:
+      </.text>
     </div>
 
-    <.heading level={1} class="mb-4">Page Not Found</.heading>
-
-    <.text variant={:lead} class="mb-8">
-      Oops! The page you're looking for doesn't exist.
-    </.text>
-
-    <.text variant={:muted} class="mb-12">
-      It might have been moved, deleted, or you may have typed the URL incorrectly.
-    </.text>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <.link
-        href="/"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-      >
-        <.icon name="hero-home" class="w-5 h-5" /> Go to Homepage
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+      <.link href="/" class="block group">
+        <.card variant={:bordered} hover class="text-center h-full">
+          <.icon name="hero-home" class="w-12 h-12 mx-auto mb-4 text-accent" />
+          <.heading level={4}>Homepage</.heading>
+          <.text variant={:muted} class="mt-2">
+            Start fresh from the beginning
+          </.text>
+        </.card>
       </.link>
 
-      <.link
-        href="/posts"
-        class="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-accent transition-colors"
-      >
-        <.icon name="hero-document-text" class="w-5 h-5" /> View Blog Posts
+      <.link href="/posts" class="block group">
+        <.card variant={:bordered} hover class="text-center h-full">
+          <.icon name="hero-document-text" class="w-12 h-12 mx-auto mb-4 text-accent" />
+          <.heading level={4}>Blog</.heading>
+          <.text variant={:muted} class="mt-2">
+            Read my latest thoughts and articles
+          </.text>
+        </.card>
+      </.link>
+
+      <.link href="/projects" class="block group">
+        <.card variant={:bordered} hover class="text-center h-full">
+          <.icon name="hero-code-bracket-square" class="w-12 h-12 mx-auto mb-4 text-accent" />
+          <.heading level={4}>Projects</.heading>
+          <.text variant={:muted} class="mt-2">
+            Explore my open source work
+          </.text>
+        </.card>
       </.link>
     </div>
 
-    <div class="mt-16 pt-8 border-t border-border">
+    <div class="text-center">
       <.text variant={:muted}>
-        You can also try navigating using the menu above, or <.link
-          href="/about"
-          class="text-accent hover:underline"
-        >learn more about me</.link>.
+        Looking for something specific? Try the navigation menu above.
       </.text>
     </div>
   </div>

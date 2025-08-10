@@ -29,7 +29,7 @@ defmodule JolaDevWeb.BlogControllerTest do
 
       html = html_response(conn, 404)
       assert html =~ "Page Not Found"
-      assert html =~ "The page you're looking for doesn't exist"
+      assert html =~ "The page you're looking for seems to have wandered off"
     end
   end
 end

@@ -18,16 +18,18 @@ defmodule JolaDevWeb.Plugs.BlogRedirectTest do
       assert conn.halted
     end
 
-    test "does not redirect invalid paths on blog.jola.dev", %{conn: conn} do
-      original_conn =
+    test "redirects invalid paths on blog.jola.dev to jola.dev without /posts prefix", %{
+      conn: conn
+    } do
+      conn =
         conn
         |> Map.put(:host, "blog.jola.dev")
         |> Map.put(:request_path, "/non-existent-post")
+        |> BlogRedirect.call([])
 
-      result_conn = BlogRedirect.call(original_conn, [])
-
-      assert result_conn == original_conn
-      refute result_conn.halted
+      assert conn.status == 301
+      assert get_resp_header(conn, "location") == ["https://jola.dev/non-existent-post"]
+      assert conn.halted
     end
 
     test "does not redirect on non-blog.jola.dev hosts", %{conn: conn} do

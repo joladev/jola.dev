@@ -11,14 +11,17 @@ defmodule JolaDevWeb.Plugs.BlogRedirect do
       ids = JolaDev.Blog.ids()
       path = strip_path(conn.request_path)
 
-      if path in ids do
-        conn
-        |> put_resp_header("location", "https://jola.dev/posts/" <> path)
-        |> send_resp(:moved_permanently, "")
-        |> halt()
-      else
-        conn
-      end
+      path =
+        if path in ids do
+          "posts/" <> path
+        else
+          path
+        end
+
+      conn
+      |> put_resp_header("location", "https://jola.dev/" <> path)
+      |> send_resp(:moved_permanently, "")
+      |> halt()
     else
       conn
     end

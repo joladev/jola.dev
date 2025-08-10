@@ -13,7 +13,8 @@ config :jola_dev, JolaDevWeb.Endpoint,
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: JolaDevWeb.ErrorHTML, json: JolaDevWeb.ErrorJSON],
-    layout: false
+    root_layout: {JolaDevWeb.Layouts, :root},
+    layout: {JolaDevWeb.Layouts, :app}
   ],
   pubsub_server: JolaDev.PubSub,
   live_view: [signing_salt: "LButKgfw"]

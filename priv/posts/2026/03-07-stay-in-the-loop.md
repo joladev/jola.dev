@@ -2,7 +2,7 @@
   title: "Stay in the Loop: How I Actually Use Claude Code",
   author: "Johanna Larsson",
   tags: ~w(claude llm productivity coding),
-  description: "How to multi-task Claude Code while staying in the loop."
+  description: "How to multi-task Claude Code while staying in the loop, increasing success rate and parallelization."
 }
 ---
 

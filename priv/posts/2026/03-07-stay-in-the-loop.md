@@ -38,6 +38,6 @@ And why reject Claude’s quick fixes as the end? This is all anecdotal, but thi
 
 This is moving in the opposite direction of [Ralph Wiggum](https://ghuntley.com/ralph/) or [Gas Town](https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04). Instead of brute forcing it and having the LLM bash its virtual head against the wall, you take on the job of keeping it on track. Not by sitting by the computer watching it, not by reviewing every individual diff before approving, but by inserting yourself at the crucial points in the development flow. Don’t let it execute until you’re confident the plan is right. Don’t let it fall into the trap of quick fixes.
 
-You do have to jump back and forth between sessions, switching context, but you’re gonna have lots of opportunities to let a few sessions load context or investigate the codebase while you review another one’s output, leading to pretty effective parallelism. LLMs don't make you more productive without investing in finding workflows that
+You do have to jump back and forth between sessions, switching context, but you’re gonna have lots of opportunities to let a few sessions load context or investigate the codebase while you review another one’s output, leading to pretty effective parallelism. LLMs don't make you more productive without you investing in finding workflows that make the tool work for you. Hopefully this helps you find yours!
 
 The models will get better. You'll still need to set the direction.

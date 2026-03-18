@@ -51,8 +51,5 @@ if config_env() == :prod do
     secret_key_base: secret_key_base
 
   config :sentry,
-    dsn: System.fetch_env!("SENTRY_DSN"),
-    environment_name: :production,
-    enable_source_code_context: true,
-    root_source_code_paths: [File.cwd!()]
+    dsn: System.fetch_env!("SENTRY_DSN")
 end

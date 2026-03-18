@@ -10,5 +10,10 @@ config :jola_dev, JolaDevWeb.Endpoint, cache_static_manifest: "priv/static/cache
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :sentry,
+  environment_name: :production,
+  enable_source_code_context: true,
+  root_source_code_paths: [File.cwd!()]
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

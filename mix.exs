@@ -5,7 +5,7 @@ defmodule JolaDev.MixProject do
     [
       app: :jola_dev,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -35,7 +35,7 @@ defmodule JolaDev.MixProject do
     [
       {:phoenix, "~> 1.8.0"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_reload, "~> 1.6", only: :dev},
       {:phoenix_live_view, "~> 1.1.1"},
       {:lazy_html, ">= 0.0.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
@@ -50,7 +50,7 @@ defmodule JolaDev.MixProject do
        depth: 1},
       {:lucide,
        github: "lucide-icons/lucide",
-       tag: "0.536.0",
+       tag: "0.577.0",
        sparse: "icons",
        app: false,
        compile: false,
@@ -58,7 +58,7 @@ defmodule JolaDev.MixProject do
       {:finch, "~> 0.21"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
@@ -66,7 +66,7 @@ defmodule JolaDev.MixProject do
       {:makeup_elixir, ">= 0.0.0"},
       {:recon, "~> 2.5"},
       {:sentry, "~> 12.0"},
-      {:tidewave, "~> 0.2", only: :dev},
+      {:tidewave, "~> 0.5", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end

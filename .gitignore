@@ -39,3 +39,4 @@ npm-debug.log
 .mix_tasks
 
 .DS_Store
+.playwright-mcp/

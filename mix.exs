@@ -55,7 +55,7 @@ defmodule JolaDev.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:finch, "~> 0.13"},
+      {:finch, "~> 0.21"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
@@ -65,8 +65,7 @@ defmodule JolaDev.MixProject do
       {:nimble_publisher, "~> 1.0"},
       {:makeup_elixir, ">= 0.0.0"},
       {:recon, "~> 2.5"},
-      {:sentry, "~> 11.0.1"},
-      {:hackney, "~> 1.8"},
+      {:sentry, "~> 12.0"},
       {:tidewave, "~> 0.2", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]

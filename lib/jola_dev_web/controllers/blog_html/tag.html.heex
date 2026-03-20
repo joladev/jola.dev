@@ -1,0 +1,28 @@
+<section class="py-16">
+  <div class="max-w-content mx-auto px-6 md:px-8">
+    <header class="mb-12 text-center">
+      <.heading level={1}>Posts tagged &ldquo;{@tag}&rdquo;</.heading>
+      <.text variant={:lead} class="mt-4">
+        {length(@posts)} {if length(@posts) == 1, do: "post", else: "posts"}
+      </.text>
+      <.link
+        navigate={~p"/posts"}
+        class="text-sm text-muted hover:text-foreground mt-2 inline-block"
+      >
+        &larr; All posts
+      </.link>
+    </header>
+
+    <div class="grid gap-8 max-w-prose mx-auto">
+      <.blog_post_card
+        :for={post <- @posts}
+        title={post.title}
+        date={Calendar.strftime(post.date, "%B %-d, %Y")}
+        reading_time={JolaDevWeb.BlogHelpers.estimate_reading_time(post.body)}
+        excerpt={post.description}
+        link={~p"/posts/#{post.id}"}
+        tags={post.tags}
+      />
+    </div>
+  </div>
+</section>

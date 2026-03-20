@@ -12,6 +12,24 @@ defmodule JolaDevWeb.BlogControllerTest do
     end
   end
 
+  describe "tag" do
+    test "lists posts filtered by tag", %{conn: conn} do
+      tag = List.first(JolaDev.Blog.all_tags())
+      conn = get(conn, ~p"/posts/tag/#{tag}")
+
+      assert html_response(conn, 200)
+      assert conn.assigns.tag == tag
+      assert length(conn.assigns.posts) > 0
+      assert Enum.all?(conn.assigns.posts, fn post -> tag in post.tags end)
+    end
+
+    test "returns 404 for non-existent tag", %{conn: conn} do
+      conn = get(conn, ~p"/posts/tag/nonexistent-tag-xyz")
+
+      assert html_response(conn, 404)
+    end
+  end
+
   describe "show" do
     test "displays individual post when exists", %{conn: conn} do
       # Get a valid post ID

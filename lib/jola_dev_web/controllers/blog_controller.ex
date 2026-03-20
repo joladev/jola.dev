@@ -12,6 +12,24 @@ defmodule JolaDevWeb.BlogController do
     )
   end
 
+  def tag(conn, %{"tag" => tag}) do
+    posts = JolaDev.Blog.posts_by_tag(tag)
+
+    if posts == [] do
+      conn
+      |> put_status(404)
+      |> put_view(html: JolaDevWeb.ErrorHTML)
+      |> render("404.html")
+    else
+      render(conn, :tag,
+        posts: posts,
+        tag: tag,
+        page_title: "Posts tagged \"#{tag}\" | jola.dev",
+        meta_description: "Blog posts by Johanna Larsson tagged with #{tag}."
+      )
+    end
+  end
+
   def show(conn, params) do
     if post = JolaDev.Blog.find_by_id(params["id"]) do
       render(conn, :show,

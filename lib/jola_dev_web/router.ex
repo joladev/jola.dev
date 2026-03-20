@@ -32,6 +32,7 @@ defmodule JolaDevWeb.Router do
     get "/projects", PageController, :projects
     get "/talks", PageController, :talks
     get "/posts", BlogController, :index
+    get "/posts/tag/:tag", BlogController, :tag
     get "/posts/:id", BlogController, :show
   end
 

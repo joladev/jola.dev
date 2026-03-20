@@ -11,7 +11,7 @@ defmodule JolaDev.Sitemap do
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    #{generate_static_pages()}#{generate_blog_posts()}
+    #{generate_static_pages()}#{generate_tag_pages()}#{generate_blog_posts()}
     </urlset>
     """
   end
@@ -26,6 +26,14 @@ defmodule JolaDev.Sitemap do
     ]
 
     Enum.map_join(pages, "\n", &url_entry/1)
+  end
+
+  defp generate_tag_pages do
+    Blog.all_tags()
+    |> Enum.map(fn tag ->
+      %{loc: "#{@host}/posts/tag/#{tag}", changefreq: "weekly", priority: "0.6"}
+    end)
+    |> Enum.map_join("\n", &url_entry/1)
   end
 
   defp generate_blog_posts do

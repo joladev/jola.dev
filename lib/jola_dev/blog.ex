@@ -49,6 +49,10 @@ defmodule JolaDev.Blog do
   def all_posts, do: @posts
   def all_tags, do: @tags
 
+  def posts_by_tag(tag) do
+    Enum.filter(all_posts(), fn post -> tag in post.tags end)
+  end
+
   def find_by_id(id) do
     Enum.find(all_posts(), fn post -> post.id == id end)
   end

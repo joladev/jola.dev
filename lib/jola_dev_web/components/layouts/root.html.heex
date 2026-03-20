@@ -5,21 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title>
-      {@conn.assigns[:page_title]}
+      {@conn.assigns[:page_title] || "jola.dev"}
     </.live_title>
     <meta
       name="description"
-      content="The personal website of Johanna Larsson, software engineer, manager, writer, speaker."
+      content={
+        @conn.assigns[:meta_description] ||
+          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+      }
     />
-    <meta property="og:title" name="og:title" content={JolaDevWeb.page_title(@conn.assigns)} />
-    <meta property="og:url" name="og:url" content={Phoenix.Controller.current_url(@conn)} />
+    <meta property="og:title" content={@conn.assigns[:page_title] || "jola.dev"} />
+    <meta property="og:url" content={Phoenix.Controller.current_url(@conn)} />
     <meta
       property="og:description"
-      name="og:description"
-      content="Johanna Larsson is a software engineer, manager, writer, speaker. With over 14 years of experience in software development and management, she has worked with clients from various industries, including finance, healthcare, and education. She is passionate about creating innovative solutions that solve real-world problems. She is also an advocate for diversity and inclusion in the tech industry. She believes that technology can be a force for good and strives to make a positive impact in the world. She is committed to using her skills and expertise to create a better future for all."
+      content={
+        @conn.assigns[:meta_description] ||
+          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+      }
     />
-    <meta property="og:type" name="og:type" content="website" />
-    <meta property="og:image" name="og:image" content={~p"/images/og-image.png"} />
+    <meta property="og:type" content={if(@conn.assigns[:post], do: "article", else: "website")} />
+    <meta property="og:image" content={url(~p"/images/og-image.png")} />
+    <meta property="og:site_name" content="jola.dev" />
+    <meta property="og:locale" content="en_US" />
+    <%= if post = @conn.assigns[:post] do %>
+      <meta property="article:published_time" content={Date.to_iso8601(post.date)} />
+      <meta property="article:author" content="https://jola.dev/about" />
+      <%= for tag <- post.tags do %>
+        <meta property="article:tag" content={tag} />
+      <% end %>
+    <% end %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={@conn.assigns[:page_title] || "jola.dev"} />
+    <meta
+      name="twitter:description"
+      content={
+        @conn.assigns[:meta_description] ||
+          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+      }
+    />
+    <meta name="twitter:image" content={url(~p"/images/og-image.png")} />
     <link rel="canonical" href={JolaDevWeb.Helpers.CanonicalUrl.canonical_url(@conn)} />
     <link
       rel="alternate"

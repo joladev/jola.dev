@@ -17,10 +17,6 @@ defmodule JolaDevWeb do
   those modules here.
   """
 
-  def page_title(assigns) do
-    assigns[:page_title]
-  end
-
   def static_paths, do: ~w(assets fonts images robots.txt)
 
   def router do

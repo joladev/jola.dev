@@ -6,7 +6,7 @@ defmodule JolaDevWeb.BlogControllerTest do
       conn = get(conn, ~p"/posts")
 
       assert html_response(conn, 200)
-      assert conn.assigns.page_title == "jola.dev - Posts"
+      assert conn.assigns.page_title == "Blog | jola.dev"
       assert is_list(conn.assigns.posts)
       assert length(conn.assigns.posts) > 0
     end
@@ -20,7 +20,7 @@ defmodule JolaDevWeb.BlogControllerTest do
       conn = get(conn, ~p"/posts/#{post.id}")
 
       assert html_response(conn, 200)
-      assert conn.assigns.page_title == "jola.dev - #{post.title}"
+      assert conn.assigns.page_title == "#{post.title} | jola.dev"
       assert conn.assigns.post.id == post.id
     end
 

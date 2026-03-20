@@ -7,7 +7,12 @@ defmodule JolaDevWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, html: {JolaDevWeb.Layouts, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
+
+    plug :put_secure_browser_headers, %{
+      "strict-transport-security" => "max-age=63072000; includeSubDomains",
+      "referrer-policy" => "strict-origin-when-cross-origin",
+      "permissions-policy" => "camera=(), microphone=(), geolocation=()"
+    }
   end
 
   pipeline :api do
@@ -36,6 +41,11 @@ defmodule JolaDevWeb.Router do
     get "/rss.xml", RssController, :index
     get "/feed.xml", RssController, :index
     get "/sitemap.xml", SitemapController, :index
+  end
+
+  scope "/", JolaDevWeb do
+    get "/llms.txt", LlmsController, :index
+    get "/llms-full.txt", LlmsController, :full
   end
 
   # Other scopes may use custom stacks.

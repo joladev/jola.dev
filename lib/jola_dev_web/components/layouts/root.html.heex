@@ -67,6 +67,11 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="/images/logo.png" />
+    <%= for schema <- JolaDevWeb.SEO.json_ld(@conn) do %>
+      <script type="application/ld+json">
+        <%= raw(Jason.encode!(schema)) %>
+      </script>
+    <% end %>
   </head>
   <body class="min-h-screen antialiased flex flex-col">
     {@inner_content}

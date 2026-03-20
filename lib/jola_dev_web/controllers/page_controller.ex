@@ -16,7 +16,8 @@ defmodule JolaDevWeb.PageController do
     render(conn, :about,
       page_title: "About | jola.dev",
       meta_description:
-        "About Johanna Larsson — software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+        "About Johanna Larsson — software engineer, engineering leader, writer, and speaker with over 14 years of experience.",
+      page_type: :about
     )
   end
 

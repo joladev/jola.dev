@@ -8,7 +8,7 @@ defmodule JolaDev.LlmsTxt do
   @host "https://jola.dev"
 
   def generate do
-    """
+    String.trim_trailing("""
     # jola.dev
 
     > Personal website of Johanna Larsson, a software engineer, engineering leader, writer, and speaker with over 14 years of experience building products and leading teams.
@@ -23,12 +23,11 @@ defmodule JolaDev.LlmsTxt do
     ## Blog Posts
 
     #{post_links()}\
-    """
-    |> String.trim_trailing()
+    """)
   end
 
   def generate_full do
-    """
+    String.trim_trailing("""
     # jola.dev
 
     > Personal website of Johanna Larsson, a software engineer, engineering leader, writer, and speaker with over 14 years of experience building products and leading teams.
@@ -43,20 +42,17 @@ defmodule JolaDev.LlmsTxt do
     ## Blog Posts
 
     #{post_details()}\
-    """
-    |> String.trim_trailing()
+    """)
   end
 
   defp post_links do
-    Blog.all_posts()
-    |> Enum.map_join("\n", fn post ->
+    Enum.map_join(Blog.all_posts(), "\n", fn post ->
       "- [#{post.title}](#{@host}/posts/#{post.id})"
     end)
   end
 
   defp post_details do
-    Blog.all_posts()
-    |> Enum.map_join("\n", fn post ->
+    Enum.map_join(Blog.all_posts(), "\n", fn post ->
       "- [#{post.title}](#{@host}/posts/#{post.id}): #{post.description}"
     end)
   end

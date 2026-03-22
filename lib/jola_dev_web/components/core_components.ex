@@ -965,6 +965,7 @@ defmodule JolaDevWeb.CoreComponents do
               data-mobile-menu-button
               aria-expanded="false"
               aria-controls="mobile-menu"
+              aria-label="Toggle menu"
               class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface transition-all"
             >
               <.icon name="lucide-menu" class="w-5 h-5" />

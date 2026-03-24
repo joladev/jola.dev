@@ -270,6 +270,7 @@ pre:hover .copy-btn {
 }
 .prose code.makeup {
   background: transparent;
+  padding: 0;
 }
 .prose pre {
   @apply bg-transparent px-4;

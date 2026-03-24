@@ -120,7 +120,7 @@ And now we're arriving at [Dokploy](https://dokploy.com/), an open source platfo
 
 So my publish flow is basically: create a PR and wait for CI to finish (I could skip this but it’s nice to know I didn’t mess something up). When I merge the PR Dokploy automatically picks that up and triggers a checkout and build of the repo. Once that finishes, it starts a rolling deploy to replace the running replicas. And we’re live. With cached layers on the server, deploys can finish in 30s, zero effort.
 
-I run this Dokploy instance on [Hetzner](https://hetzner.cloud/?ref=SjrsM8GhyYOl) and my experience has been really positive. The pricing is unbeatable, even with the recent increase, and it’s been rock solid for me. Really, with the Dokploy instance, there’s nothing stopping me from packing up and going somewhere else. Having that kind of freedom is very nice. But I’m more than happy to stick with [Hetzner](https://hetzner.cloud/?ref=SjrsM8GhyYOl).
+I run this Dokploy instance on [Hetzner](https://hetzner.cloud/?ref=SjrsM8GhyYOl) and my experience has been really positive. The pricing is unbeatable, even with the recent increase, and it’s been rock solid for me. Really, with the Dokploy instance, there’s nothing stopping me from packing up and going somewhere else. Having that kind of freedom is very nice. But I’m more than happy to stick with Hetzner.
 
 ## The Little Things
 

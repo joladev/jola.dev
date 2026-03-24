@@ -268,8 +268,11 @@ pre:hover .copy-btn {
 .prose code {
   @apply bg-surface px-1.5 py-0.5 rounded text-sm;
 }
+.prose code.makeup {
+  background: transparent;
+}
 .prose pre {
-  @apply bg-transparent;
+  @apply bg-transparent px-4;
   margin-left: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
   margin-right: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
 }

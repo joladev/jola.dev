@@ -62,7 +62,6 @@ defmodule JolaDevWeb.Router do
   #   pipe_through :api
   # end
 
-  # Enable LiveDashboard in development
   defp put_cdn_cache_header(conn, _opts) do
     put_resp_header(conn, "cache-control", "public, s-maxage=86400, max-age=0")
   end

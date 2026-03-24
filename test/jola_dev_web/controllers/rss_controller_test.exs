@@ -35,14 +35,20 @@ defmodule JolaDevWeb.RssControllerTest do
       assert body =~ ~r/<pubDate>/
     end
 
-    test "feed.xml returns same content as rss.xml", %{conn: conn} do
+    test "feed.xml returns same content type and structure as rss.xml", %{conn: conn} do
       rss_conn = get(conn, ~p"/rss.xml")
       feed_conn = get(conn, ~p"/feed.xml")
 
-      assert response(rss_conn, 200) == response(feed_conn, 200)
-
       assert get_resp_header(rss_conn, "content-type") ==
                get_resp_header(feed_conn, "content-type")
+
+      # Compare bodies without lastBuildDate which includes DateTime.utc_now()
+      strip_build_date = fn body ->
+        String.replace(body, ~r/<lastBuildDate>.*?<\/lastBuildDate>/, "")
+      end
+
+      assert strip_build_date.(response(rss_conn, 200)) ==
+               strip_build_date.(response(feed_conn, 200))
     end
   end
 end

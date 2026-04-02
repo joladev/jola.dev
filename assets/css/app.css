@@ -268,7 +268,7 @@ pre:hover .copy-btn {
 .prose code {
   @apply bg-surface px-1.5 py-0.5 rounded text-sm;
 }
-.prose code.makeup {
+.prose pre code.makeup {
   background: transparent;
   padding: 0;
 }
@@ -281,7 +281,16 @@ pre:hover .copy-btn {
   @apply border-l-4 border-border pl-4 italic text-muted-foreground;
 }
 .prose ul, .prose ol {
-  @apply text-foreground;
+  @apply text-foreground my-4 pb-4;
+}
+.prose ol {
+  @apply pl-6;
+}
+.prose li {
+  @apply my-2 pl-2;
+}
+.prose li::marker {
+  @apply font-semibold;
 }
 .prose hr {
   @apply border-border;

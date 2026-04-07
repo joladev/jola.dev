@@ -6,7 +6,7 @@
 }
 ---
 
-TL;DR my motivation and experience for moving my blog from Cloudflare to [bunny.net](https://bunny.net?ref=f0l8865b7g)
+TL;DR my motivation and experience for moving my blog from Cloudflare to bunny.net
 
 I’ve been a long time Cloudflare user. They offer a solid service that is free for the vast majority of their users, that’s very generous. Their infrastructure is massive and their feature set is undeniably incredible. 
 
@@ -14,7 +14,7 @@ One of my biggest concerns though is around how easily I could become heavily de
 
 ## Bunny.net
 
-[Bunny.net](https://bunny.net?ref=f0l8865b7g) is a Slovenian (EU) company that is building up a lot of momentum. Their CDN-related services rival Cloudflare already, and although their PoP network is smaller than Cloudflare’s, they score highly on performance and speed across the globe. It’s a genuinely competitive alternative to Cloudflare.
+[Bunny.net](https://bunny.net?ref=f0l8865b7g) (affiliate link because why not, raw link [here](https://bunny.net)) is a Slovenian (EU) company that is building up a lot of momentum. Their CDN-related services rival Cloudflare already, and although their PoP network is smaller than Cloudflare’s, they score highly on performance and speed across the globe. It’s a genuinely competitive alternative to Cloudflare.
 
 It has the additional benefit of being a European company, and I like the idea of growing and supporting the European tech scene.
 
@@ -26,7 +26,7 @@ So that’s what we’re moving over! I’m gonna walk you through how to set up
 
 ## Step by step
 
-Setting up your [bunny.net](https://bunny.net?ref=f0l8865b7g) account is quick and you get $20 worth of free credits to play around with, those are valid for 14 days. You don’t need to give them a credit card up front to try things out, but if you do, you get another $30 worth of credits. You do need to confirm your email though before you can start setting things up. Once you’re out of the trial, you pay per use, which for most cases is cents a month. However, note that bunny.net require a minimum payment of $1 per month.
+Setting up your bunny.net account is quick and you get $20 worth of free credits to play around with, those are valid for 14 days. You don’t need to give them a credit card up front to try things out, but if you do, you get another $30 worth of credits. You do need to confirm your email though before you can start setting things up. Once you’re out of the trial, you pay per use, which for most cases is cents a month. However, note that bunny.net require a minimum payment of $1 per month.
 
 I guess a cheap price to pay to *stop being the product* and start becoming the customer.
 

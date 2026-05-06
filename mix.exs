@@ -65,7 +65,7 @@ defmodule JolaDev.MixProject do
       {:nimble_publisher, "~> 1.0"},
       {:makeup_elixir, ">= 0.0.0"},
       {:recon, "~> 2.5"},
-      {:sentry, "~> 12.0"},
+      {:sentry, "~> 13.0"},
       {:tidewave, "~> 0.5", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]

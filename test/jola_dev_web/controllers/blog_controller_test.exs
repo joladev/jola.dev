@@ -8,7 +8,7 @@ defmodule JolaDevWeb.BlogControllerTest do
       assert html_response(conn, 200)
       assert conn.assigns.page_title == "Blog | jola.dev"
       assert is_list(conn.assigns.posts)
-      assert length(conn.assigns.posts) > 0
+      assert conn.assigns.posts != []
     end
   end
 
@@ -19,7 +19,7 @@ defmodule JolaDevWeb.BlogControllerTest do
 
       assert html_response(conn, 200)
       assert conn.assigns.tag == tag
-      assert length(conn.assigns.posts) > 0
+      assert conn.assigns.posts != []
       assert Enum.all?(conn.assigns.posts, fn post -> tag in post.tags end)
     end
 

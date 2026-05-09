@@ -7,7 +7,7 @@ defmodule JolaDev.BlogTest do
       posts = Blog.all_posts()
 
       assert is_list(posts)
-      assert length(posts) > 0
+      assert posts != []
 
       # Verify posts are sorted by date in descending order
       dates = Enum.map(posts, & &1.date)
@@ -20,7 +20,7 @@ defmodule JolaDev.BlogTest do
       tags = Blog.all_tags()
 
       assert is_list(tags)
-      assert length(tags) > 0
+      assert tags != []
       assert tags == Enum.uniq(tags)
       assert tags == Enum.sort(tags)
     end

@@ -24,6 +24,7 @@ defmodule JolaDevWeb.BlogController do
       render(conn, :tag,
         posts: posts,
         tag: tag,
+        noindex: true,
         page_title: "Posts tagged \"#{tag}\" | jola.dev",
         meta_description: "Blog posts by Johanna Larsson tagged with #{tag}."
       )

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta :if={@conn.assigns[:noindex]} name="robots" content="noindex,follow" />
 
     <.live_title>
       {@conn.assigns[:page_title] || "jola.dev"}

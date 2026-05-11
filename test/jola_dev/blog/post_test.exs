@@ -59,7 +59,14 @@ defmodule JolaDev.Blog.PostTest do
 
     test "accepts a Date struct from frontmatter" do
       filename = "2024/01-15-my-post.md"
-      attrs = %{author: "a", title: "t", description: "d", tags: [], last_modified: ~D[2024-06-01]}
+
+      attrs = %{
+        author: "a",
+        title: "t",
+        description: "d",
+        tags: [],
+        last_modified: ~D[2024-06-01]
+      }
 
       post = Post.build(filename, attrs, "")
 

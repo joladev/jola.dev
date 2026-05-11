@@ -22,5 +22,7 @@ defmodule JolaDev.Blog.Post do
 
   defp parse_last_modified(nil, default), do: default
   defp parse_last_modified(%Date{} = date, _default), do: date
-  defp parse_last_modified(string, _default) when is_binary(string), do: Date.from_iso8601!(string)
+
+  defp parse_last_modified(string, _default) when is_binary(string),
+    do: Date.from_iso8601!(string)
 end

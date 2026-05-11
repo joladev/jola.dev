@@ -46,6 +46,36 @@ defmodule JolaDev.Blog.PostTest do
     end
   end
 
+  describe "last_modified" do
+    test "defaults to the post date when not provided in frontmatter" do
+      filename = "2024/01-15-my-post.md"
+      attrs = %{author: "a", title: "t", description: "d", tags: []}
+
+      post = Post.build(filename, attrs, "")
+
+      assert post.last_modified == ~D[2024-01-15]
+      assert post.last_modified == post.date
+    end
+
+    test "accepts a Date struct from frontmatter" do
+      filename = "2024/01-15-my-post.md"
+      attrs = %{author: "a", title: "t", description: "d", tags: [], last_modified: ~D[2024-06-01]}
+
+      post = Post.build(filename, attrs, "")
+
+      assert post.last_modified == ~D[2024-06-01]
+    end
+
+    test "parses an ISO 8601 date string from frontmatter" do
+      filename = "2024/01-15-my-post.md"
+      attrs = %{author: "a", title: "t", description: "d", tags: [], last_modified: "2024-06-01"}
+
+      post = Post.build(filename, attrs, "")
+
+      assert post.last_modified == ~D[2024-06-01]
+    end
+  end
+
   describe "struct enforcement" do
     test "enforces required keys" do
       assert_raise ArgumentError, fn ->

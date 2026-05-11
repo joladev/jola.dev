@@ -62,6 +62,82 @@ defmodule JolaDev.BlogTest do
     end
   end
 
+  describe "related_posts/2" do
+    test "excludes the post itself" do
+      post = List.first(Blog.all_posts())
+      related = Blog.related_posts(post)
+
+      refute Enum.any?(related, &(&1.id == post.id))
+    end
+
+    test "respects the limit argument" do
+      post = List.first(Blog.all_posts())
+
+      assert length(Blog.related_posts(post, 1)) == 1
+      assert length(Blog.related_posts(post, 2)) == 2
+    end
+
+    test "defaults to 3 results when enough posts exist" do
+      post = List.first(Blog.all_posts())
+      related = Blog.related_posts(post)
+
+      assert length(related) == 3
+    end
+
+    test "ranks posts sharing more tags higher than posts sharing fewer" do
+      # Pick a post with multiple tags to exercise the ranking.
+      post = Enum.find(Blog.all_posts(), &(length(&1.tags) >= 2))
+      related = Blog.related_posts(post, 5)
+
+      counts =
+        Enum.map(related, fn p ->
+          Enum.count(p.tags, &(&1 in post.tags))
+        end)
+
+      # Non-increasing — higher counts come first.
+      assert counts == Enum.sort(counts, :desc)
+    end
+
+    test "falls back to latest posts when fewer than limit share tags" do
+      # A post with a unique tag that no other post shares forces full fallback.
+      unique = %JolaDev.Blog.Post{
+        id: "synthetic-test-post",
+        author: "test",
+        title: "test",
+        body: "",
+        description: "",
+        tags: ["this-tag-shares-with-nothing-#{System.unique_integer()}"],
+        date: ~D[2030-01-01]
+      }
+
+      related = Blog.related_posts(unique, 3)
+      latest_three = Blog.all_posts() |> Enum.take(3)
+
+      assert related == latest_three
+    end
+
+    test "mixes tag-matches with latest fillers when partial" do
+      # A post sharing only one tag with one other post should yield 1 match + 2 fillers.
+      [reference | _] = Enum.filter(Blog.all_posts(), &(length(&1.tags) >= 1))
+
+      synthetic = %JolaDev.Blog.Post{
+        id: "synthetic-partial-#{System.unique_integer()}",
+        author: "test",
+        title: "test",
+        body: "",
+        description: "",
+        tags: [hd(reference.tags)],
+        date: ~D[2030-01-01]
+      }
+
+      related = Blog.related_posts(synthetic, 3)
+
+      assert length(related) == 3
+      # The first result must share the tag.
+      assert hd(reference.tags) in hd(related).tags
+    end
+  end
+
   describe "post structure" do
     test "posts have all required fields" do
       post = List.first(Blog.all_posts())

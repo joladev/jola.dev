@@ -7,8 +7,6 @@
 ---
 
 
-# If the Goal is Resiliency, Defensive Programming is Your Enemy
-
 This may sound incredibly unintuitive, but if you want to build resilient software, conditionals are your worst enemy.
 
 I've worked on enough projects to see this pattern play out over and over. Teams start with the best intentions, trying to handle every edge case, wrap every operation in error handling, and provide fallbacks for every possible failure. But what they end up with is something far worse than the occasional crash: a system that lies to you.

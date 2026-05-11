@@ -14,9 +14,11 @@ defmodule JolaDevWeb.Endpoint do
     same_site: "Lax"
   ]
 
-  socket "/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [session: @session_options]],
-    longpoll: [connect_info: [session: @session_options]]
+  # No LiveView modules are wired up; the client bundle no longer connects here.
+  # Re-enable if a `use JolaDevWeb, :live_view` module is added.
+  # socket "/live", Phoenix.LiveView.Socket,
+  #   websocket: [connect_info: [session: @session_options]],
+  #   longpoll: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -29,6 +31,7 @@ defmodule JolaDevWeb.Endpoint do
     only: JolaDevWeb.static_paths()
 
   plug JolaDevWeb.Plugs.BlogRedirect
+  plug JolaDevWeb.Plugs.StripTrailingSlash
 
   if Code.ensure_loaded?(Tidewave) do
     plug Tidewave

@@ -80,7 +80,7 @@ You can see the whole router here https://github.com/joladev/jola.dev/blob/main/
 
 This setup means I even cache the HTML pages, which makes this ridiculously fast. Here’s the landing page response time from various locations, using the [Larm response time checker tool](https://larm.dev/tools/response-time/r/89374810-dbb3-4227-87d1-9a947be29e49):
 
-<img src="/images/joladev-larm-response-time.png" style="margin-bottom:16px" />
+<img src="/images/joladev-larm-response-time.png" alt="Larm response time chart showing landing-page latency from multiple worldwide locations" width="1588" height="760" loading="lazy" decoding="async" style="margin-bottom:16px" />
 
 Because I’m caching the HTML pages, if I publish a new post I do need to purge the pull zone to reset the cached HTML files.
 

@@ -25,16 +25,25 @@
     />
     <meta property="og:type" content={if(@conn.assigns[:post], do: "article", else: "website")} />
     <meta property="og:image" content={url(~p"/images/og-image.png")} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={@conn.assigns[:page_title] || "jola.dev"} />
     <meta property="og:site_name" content="jola.dev" />
     <meta property="og:locale" content="en_US" />
     <%= if post = @conn.assigns[:post] do %>
-      <meta property="article:published_time" content={Date.to_iso8601(post.date)} />
+      <meta
+        property="article:published_time"
+        content={DateTime.new!(post.date, ~T[00:00:00], "Etc/UTC") |> DateTime.to_iso8601()}
+      />
       <meta property="article:author" content="https://jola.dev/about" />
       <%= for tag <- post.tags do %>
         <meta property="article:tag" content={tag} />
       <% end %>
     <% end %>
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@joladev" />
+    <meta name="twitter:creator" content="@joladev" />
     <meta name="twitter:title" content={@conn.assigns[:page_title] || "jola.dev"} />
     <meta
       name="twitter:description"
@@ -44,7 +53,10 @@
       }
     />
     <meta name="twitter:image" content={url(~p"/images/og-image.png")} />
-    <link rel="canonical" href={JolaDevWeb.Helpers.CanonicalUrl.canonical_url(@conn)} />
+    <meta name="twitter:image:alt" content={@conn.assigns[:page_title] || "jola.dev"} />
+    <%= unless @conn.status && @conn.status >= 400 do %>
+      <link rel="canonical" href={JolaDevWeb.Helpers.CanonicalUrl.canonical_url(@conn)} />
+    <% end %>
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -58,8 +70,8 @@
       type="font/woff2"
       crossorigin
     />
-    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    <link rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer type="text/javascript" src={~p"/assets/app.js"}>
     </script>
     <script
       defer
@@ -67,7 +79,8 @@
       data-website-id="ee45eb1e-80d4-41dd-9ee1-8cb7739a9086"
     >
     </script>
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <%= for schema <- JolaDevWeb.SEO.json_ld(@conn) do %>
       <script type="application/ld+json">
         <%= raw(Jason.encode!(schema)) %>

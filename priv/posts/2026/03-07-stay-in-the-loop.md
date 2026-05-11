@@ -12,7 +12,7 @@
 
 Described this way of working to a coworker and although I don’t think this is revolutionary, it felt like it would be worth a blog post. This has been working pretty well for me, running 6+ concurrent sessions at different stages of planning and executing. It does require a lot of context switching, but the overall output has been great.
 
-# The workflow
+## The workflow
 
 You don't start by asking Claude to take action. You start by asking it to load **context**. Read Linear tickets, Notion docs, relevant files, the codebase. The goal is to build up a shared picture of the world before any work happens.
 
@@ -26,7 +26,7 @@ Finally: **execution**. You’ve got a plan you believe in, all the research has
 
 That’s it. Plan → Execute. If you’re not done yet, back to plan. Put yourself squarely in the loop.
 
-# Why this works
+## Why this works
 
 Human communication, human language, is ambiguous and we often end up in situations where you and another person think you agree on something, but you actually have completely different understandings of what that thing is. It’s only when you dig into the details that you realize your lack of alignment.
 
@@ -34,7 +34,7 @@ LLMs use this lossy and vague form of communication to do everything. By forcing
 
 And why reject Claude’s quick fixes as the end? This is all anecdotal, but this is where I experience the most friction. Instead of stepping back and reflecting over the failures and issues, and trying to figure out the core of the issue, in this situation Claude seems to default to try to quickly solve it, without putting in much effort. Who knows why, but you can see the pattern if you look for it. Break out of that failure loop by asking it to _think_.
 
-# Human in the loop
+## Human in the loop
 
 This is moving in the opposite direction of [Ralph Wiggum](https://ghuntley.com/ralph/) or [Gas Town](https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04). Instead of brute forcing it and having the LLM bash its virtual head against the wall, you take on the job of keeping it on track. Not by sitting by the computer watching it, not by reviewing every individual diff before approving, but by inserting yourself at the crucial points in the development flow. Don’t let it execute until you’re confident the plan is right. Don’t let it fall into the trap of quick fixes.
 

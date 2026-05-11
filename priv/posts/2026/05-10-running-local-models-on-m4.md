@@ -12,7 +12,7 @@ I gotta say though, it’s not easy to get this stuff set up. First you have to 
 
 Then there’s a plethora of configuration options to tweak. From the more well-known, like temperature, to more esoteric options like K Cache Quantization Type. Many of these tools come with a basic recommended set of options, but the appropriate ones can depend on things like whether you’re enabling thinking or not!
 
-# Qwen 3.5-9B (4b quant)
+## Qwen 3.5-9B (4b quant)
 
 `qwen3.5-9b@q4_k_s` ([HuggingFace link](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF)) is the best model I’ve gotten working with a reasonable ~40 tokens per second, thinking enabled, successful tool use, and a 128K context window, running on LM Studio. Compared to a SOTA model, it gets distracted more easily, sometimes it gets stuck in loops, it’ll misinterpret asks etc. But it’s surprisingly good for something that can run on a 24GB Macbook Pro while leaving space for lots of other things running too!
 
@@ -30,7 +30,7 @@ To enable thinking I also had to select the model, go to configuration, scroll t
 
 I’ve been using it through both [pi](https://pi.dev/) and [OpenCode](https://opencode.ai/). I still haven’t quite made my mind up on with one I prefer. Pi feels a bit snappier, but although I really appreciate the idea of the harness building itself and all that customization, I can’t help but wish it came with some sensible defaults. I feel like you could easily end up spending more time tweaking your pi set up to be just right, than you do on your actual projects!
 
-# Pi setup
+## Pi setup
 
 Here’s the `~/.pi/agent/models.json`:
 
@@ -55,7 +55,7 @@ Here’s the `~/.pi/agent/models.json`:
 
 and to hide the distracting thinking, add `"hideThinkingBlock": true` to your `~/.pi/agent/settings.json`.
 
-# OpenCode setup
+## OpenCode setup
 
 `~/.config/opencode/opencode.json`
 
@@ -83,7 +83,7 @@ and to hide the distracting thinking, add `"hideThinkingBlock": true` to your `~
 }
 ```
 
-# Comparison with SOTA models
+## Comparison with SOTA models
 
 A model like Qwen 3.5 9B (Q4) is nowhere near being able to independently solve complex problems over longer period of time, like SOTA models are. There’s no point in asking it to build an entire app in one go, you’ll just burn your thighs without getting anything out of it.
 
@@ -93,7 +93,7 @@ With the local modal I have to take on a lot more of the thinking and planning, 
 
 To give you an idea of some things that work and don’t, here are some very basic examples.
 
-## Example 1:
+### Example 1:
 
 I wanted to bump the Elixir linter `credo` to the latest version and I got warnings out of my code. As an experiment, I asked Qwen to take a look.
 
@@ -130,7 +130,7 @@ Qwen:
 
 I asked Qwen to make the edits and it did 4 parallel edits, very clean. Overall this was a very simple task that I could’ve done myself by tabbing back and forth between the terminal and my editor to get the line numbers to edit. Not a big difference in effort, but nice and convenient.
 
-## Example 2:
+### Example 2:
 
 After some dependency bumps I had a dependabot PR with git conflicts that dependabot for some reason was refusing to rebase. I pulled it down, rebased, and asked Qwen to take a look. It was a very simple conflict to resolve, just take the newer version of each, and the model recognized that.
 
@@ -173,7 +173,7 @@ Bumps [tailwind](https://github.com/phoenixframework/tailwind) from 0.3.1 to 0.4
 
 Additionally it failed to recognize that `git rebase --continue` opens an editor, and OpenCode then proceeded to hang, although that might just have been a one-off.
 
-# Conclusion
+## Conclusion
 
 Anyway, LLMs are incredibly flexible and there’s a million things even a local model could do. Your imagination is the limit. Local models have serious tradeoffs, but they come with some pretty attractive benefits:
 

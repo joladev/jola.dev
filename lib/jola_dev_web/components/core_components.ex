@@ -1067,7 +1067,7 @@ defmodule JolaDevWeb.CoreComponents do
             <p :if={@tagline} class="text-sm text-muted-foreground mb-1">
               {@tagline}
             </p>
-            <p class="text-xs text-muted">
+            <p class="text-xs text-muted-foreground">
               © {DateTime.utc_now().year} Johanna Larsson. All rights reserved.
             </p>
           </div>
@@ -1127,7 +1127,7 @@ defmodule JolaDevWeb.CoreComponents do
           {@subtitle}
         </p>
 
-        <p :if={@description} class="text-lg text-muted mb-8">
+        <p :if={@description} class="text-lg text-muted-foreground mb-8">
           {@description}
         </p>
 

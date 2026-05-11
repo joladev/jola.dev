@@ -111,14 +111,14 @@ defmodule JolaDev.BlogTest do
       }
 
       related = Blog.related_posts(unique, 3)
-      latest_three = Blog.all_posts() |> Enum.take(3)
+      latest_three = Enum.take(Blog.all_posts(), 3)
 
       assert related == latest_three
     end
 
     test "mixes tag-matches with latest fillers when partial" do
       # A post sharing only one tag with one other post should yield 1 match + 2 fillers.
-      [reference | _] = Enum.filter(Blog.all_posts(), &(length(&1.tags) >= 1))
+      [reference | _] = Enum.filter(Blog.all_posts(), &(&1.tags != []))
 
       synthetic = %JolaDev.Blog.Post{
         id: "synthetic-partial-#{System.unique_integer()}",

@@ -18,7 +18,7 @@ It also means I get full control of what I’m building. Using a tool someone el
 
 So I kept things simple. No Ecto, no DB. Just server-side rendered HTML. It’s blazingly fast, as you can see from this PageSpeed Insights report.
 
-<img src="/images/joladev-speed-test.png" style="width:50%; margin: auto" />
+<img src="/images/joladev-speed-test.png" alt="PageSpeed Insights performance score for jola.dev" width="808" height="536" loading="lazy" decoding="async" style="width:50%; margin: auto" />
 
 ## NimblePublisher
 

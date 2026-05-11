@@ -1,8 +1,8 @@
 %{
   title: "The new `Registry.select/2` and what match specs are",
   author: "Johanna Larsson",
-  tags: ~w(phoenix plug elixir),
-  description: "I want to share a simple pattern for setting up HTTP based health checks for Plug/Phoenix applications"
+  tags: ~w(elixir registry erlang),
+  description: "A walkthrough of Elixir 1.9's new Registry.select/2 function, plus a gentle introduction to how Erlang match specifications work."
 }
 ---
 The Elixir 1.9 changelog includes a new function for registries, reasonably overshadowed by the new release task and better config handling. I want to tell you a bit about `Registry.select/2`, what it does, and why it’s exciting. This will also include a very brief introduction to how Erlang match specs work.

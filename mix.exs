@@ -10,7 +10,8 @@ defmodule JolaDev.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      listeners: [Phoenix.CodeReloader]
+      listeners: [Phoenix.CodeReloader],
+      preferred_cli_env: [precommit: :test]
     ]
   end
 
@@ -85,6 +86,13 @@ defmodule JolaDev.MixProject do
         "tailwind jola_dev --minify",
         "esbuild jola_dev --minify",
         "phx.digest"
+      ],
+      precommit: [
+        "compile --warnings-as-errors",
+        "deps.unlock --unused",
+        "format",
+        "test",
+        "credo --strict"
       ]
     ]
   end

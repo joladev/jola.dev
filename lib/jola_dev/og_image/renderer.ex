@@ -19,7 +19,7 @@ defmodule JolaDev.OGImage.Renderer do
   @logo_gap 20
   @wordmark_size 48
   @title_size 72
-  @title_y 320
+  @title_bottom_y 470
   @description_size 32
   @description_y 500
   @background "#0a0a0a"
@@ -92,7 +92,7 @@ defmodule JolaDev.OGImage.Renderer do
       font_size: @title_size,
       font_weight: :bold,
       color: @foreground,
-      y: @title_y
+      y_bottom: @title_bottom_y
     )
     |> place_text(description,
       font_size: @description_size,
@@ -153,6 +153,13 @@ defmodule JolaDev.OGImage.Renderer do
       end
 
     {:ok, text} = Image.Text.text(content, text_opts)
-    Image.compose!(canvas, text, x: @padding, y: Keyword.fetch!(opts, :y))
+
+    y =
+      case Keyword.fetch(opts, :y) do
+        {:ok, y} -> y
+        :error -> Keyword.fetch!(opts, :y_bottom) - Image.height(text)
+      end
+
+    Image.compose!(canvas, text, x: @padding, y: y)
   end
 end

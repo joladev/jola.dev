@@ -37,7 +37,7 @@ defmodule JolaDevWeb.BlogController do
     if post = JolaDev.Blog.find_by_id(params["id"]) do
       render(conn, :show,
         post: post,
-        related_posts: JolaDev.Blog.related_posts(post),
+        related_posts: JolaDev.Blog.recent_posts(post),
         page_title: "#{post.title} | jola.dev",
         meta_description: post.description,
         og_image: JolaDev.OGImage.path_for("posts/#{post.id}")

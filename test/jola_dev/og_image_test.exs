@@ -10,28 +10,28 @@ defmodule JolaDev.OGImageTest do
     end
   end
 
-  describe "bytes_for/1" do
+  describe "image_for/1" do
     test "returns the baked PNG bytes for a known static slug" do
-      assert {:ok, bytes} = OGImage.bytes_for("home")
+      assert {:ok, bytes} = OGImage.image_for("home")
       assert <<137, "PNG\r\n", 26, "\n", _rest::binary>> = bytes
     end
 
     test "returns the baked PNG bytes for a known post slug" do
       post = List.first(JolaDev.Blog.all_posts())
 
-      assert {:ok, bytes} = OGImage.bytes_for("posts/#{post.id}")
+      assert {:ok, bytes} = OGImage.image_for("posts/#{post.id}")
       assert <<137, "PNG\r\n", 26, "\n", _rest::binary>> = bytes
     end
 
     test "returns the baked PNG bytes for a known tag slug" do
       tag = List.first(JolaDev.Blog.all_tags())
 
-      assert {:ok, bytes} = OGImage.bytes_for("posts/tag/#{tag}")
+      assert {:ok, bytes} = OGImage.image_for("posts/tag/#{tag}")
       assert <<137, "PNG\r\n", 26, "\n", _rest::binary>> = bytes
     end
 
     test "returns :error for an unknown slug" do
-      assert OGImage.bytes_for("no-such-page") == :error
+      assert OGImage.image_for("no-such-page") == :error
     end
   end
 end

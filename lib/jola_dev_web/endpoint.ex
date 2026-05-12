@@ -30,6 +30,7 @@ defmodule JolaDevWeb.Endpoint do
     gzip: Mix.env() == :prod,
     only: JolaDevWeb.static_paths()
 
+  plug JolaDevWeb.Plugs.OGImage
   plug JolaDevWeb.Plugs.BlogRedirect
   plug JolaDevWeb.Plugs.StripTrailingSlash
 

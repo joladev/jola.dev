@@ -8,6 +8,7 @@ defmodule JolaDevWeb.PageController do
       page_title: "Johanna Larsson — Software Engineer & Speaker",
       meta_description:
         "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience building products and leading teams.",
+      og_image: JolaDev.OGImage.path_for("home"),
       recent_posts: recent_posts
     )
   end
@@ -17,6 +18,7 @@ defmodule JolaDevWeb.PageController do
       page_title: "About | jola.dev",
       meta_description:
         "About Johanna Larsson — software engineer, engineering leader, writer, and speaker with over 14 years of experience.",
+      og_image: JolaDev.OGImage.path_for("about"),
       page_type: :about
     )
   end
@@ -25,7 +27,8 @@ defmodule JolaDevWeb.PageController do
     render(conn, :projects,
       page_title: "Projects | jola.dev",
       meta_description:
-        "Open source projects by Johanna Larsson, including HexDiff, ElixirEvents, and more."
+        "Open source projects by Johanna Larsson, including HexDiff, ElixirEvents, and more.",
+      og_image: JolaDev.OGImage.path_for("projects")
     )
   end
 
@@ -33,7 +36,8 @@ defmodule JolaDevWeb.PageController do
     render(conn, :talks,
       page_title: "Talks | jola.dev",
       meta_description:
-        "Conference talks and presentations by Johanna Larsson on Elixir, distributed systems, and engineering leadership."
+        "Conference talks and presentations by Johanna Larsson on Elixir, distributed systems, and engineering leadership.",
+      og_image: JolaDev.OGImage.path_for("talks")
     )
   end
 end

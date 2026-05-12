@@ -37,7 +37,7 @@ defmodule JolaDevWeb.SEO do
         "author" => person(),
         "publisher" => person(),
         "mainEntityOfPage" => url,
-        "image" => "#{@host}#{~p"/images/og-image.png"}",
+        "image" => "#{@host}#{JolaDev.OGImage.path_for("posts/#{post.id}")}",
         "keywords" => post.tags
       }
     ]

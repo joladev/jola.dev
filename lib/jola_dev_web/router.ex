@@ -42,6 +42,8 @@ defmodule JolaDevWeb.Router do
     get "/posts", BlogController, :index
     get "/posts/tag/:tag", BlogController, :tag
     get "/posts/:id", BlogController, :show
+
+    get "/images/og/*slug", OGImageController, :show
   end
 
   scope "/", JolaDevWeb do

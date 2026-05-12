@@ -23,6 +23,7 @@ defmodule JolaDevWeb.SEOTest do
       assert blog_posting["dateModified"] == Date.to_iso8601(post.last_modified)
       assert blog_posting["inLanguage"] == "en"
       assert blog_posting["url"] == "https://jola.dev/posts/#{post.id}"
+      assert blog_posting["image"] == "https://jola.dev/images/og/posts/#{post.id}.png"
       assert blog_posting["author"]["@type"] == "Person"
       assert blog_posting["keywords"] == post.tags
     end

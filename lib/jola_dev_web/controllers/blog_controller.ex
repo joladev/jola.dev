@@ -8,7 +8,8 @@ defmodule JolaDevWeb.BlogController do
       posts: posts,
       page_title: "Blog | jola.dev",
       meta_description:
-        "Blog posts by Johanna Larsson on software engineering, Elixir, and engineering leadership."
+        "Blog posts by Johanna Larsson on software engineering, Elixir, and engineering leadership.",
+      og_image: JolaDev.OGImage.path_for("posts")
     )
   end
 
@@ -26,7 +27,8 @@ defmodule JolaDevWeb.BlogController do
         tag: tag,
         noindex: true,
         page_title: "Posts tagged \"#{tag}\" | jola.dev",
-        meta_description: "Blog posts by Johanna Larsson tagged with #{tag}."
+        meta_description: "Blog posts by Johanna Larsson tagged with #{tag}.",
+        og_image: JolaDev.OGImage.path_for("posts/tag/#{tag}")
       )
     end
   end
@@ -37,7 +39,8 @@ defmodule JolaDevWeb.BlogController do
         post: post,
         related_posts: JolaDev.Blog.related_posts(post),
         page_title: "#{post.title} | jola.dev",
-        meta_description: post.description
+        meta_description: post.description,
+        og_image: JolaDev.OGImage.path_for("posts/#{post.id}")
       )
     else
       conn

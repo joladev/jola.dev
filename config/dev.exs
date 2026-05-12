@@ -53,8 +53,10 @@ config :jola_dev, JolaDevWeb.Endpoint,
     ]
   ]
 
-# Enable dev routes for dashboard and mailbox
-config :jola_dev, dev_routes: true
+config :jola_dev,
+  # Enable dev routes for dashboard and mailbox
+  dev_routes: true,
+  og_image_dev_mode: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

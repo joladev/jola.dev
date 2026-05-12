@@ -27,12 +27,7 @@
     <meta property="og:type" content={if(@conn.assigns[:post], do: "article", else: "website")} />
     <meta
       property="og:image"
-      content={
-        Phoenix.VerifiedRoutes.unverified_url(
-          JolaDevWeb.Endpoint,
-          @conn.assigns[:og_image] || "/images/og-image.png"
-        )
-      }
+      content={JolaDevWeb.Helpers.OGImage.url_for(@conn)}
     />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
@@ -63,12 +58,7 @@
     />
     <meta
       name="twitter:image"
-      content={
-        Phoenix.VerifiedRoutes.unverified_url(
-          JolaDevWeb.Endpoint,
-          @conn.assigns[:og_image] || "/images/og-image.png"
-        )
-      }
+      content={JolaDevWeb.Helpers.OGImage.url_for(@conn)}
     />
     <meta name="twitter:image:alt" content={@conn.assigns[:page_title] || "jola.dev"} />
     <%= unless @conn.status && @conn.status >= 400 do %>
@@ -98,7 +88,7 @@
     </script>
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <%= for schema <- JolaDevWeb.SEO.json_ld(@conn) do %>
+    <%= for schema <- JolaDevWeb.Helpers.SEO.json_ld(@conn) do %>
       <script type="application/ld+json">
         <%= raw(Jason.encode!(schema)) %>
       </script>

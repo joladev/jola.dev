@@ -1,4 +1,4 @@
-defmodule JolaDevWeb.SEO do
+defmodule JolaDevWeb.Helpers.SEO do
   @moduledoc """
   Generates JSON-LD structured data for search engines and AI systems.
   """

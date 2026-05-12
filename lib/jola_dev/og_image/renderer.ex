@@ -33,10 +33,10 @@ defmodule JolaDev.OGImage.Renderer do
   @static_content %{
     "home" =>
       {"Johanna Larsson",
-       "Software engineer, engineering leader, writer, and speaker with over 14 years of experience building products and leading teams."},
+       "Software engineer, engineering leader, writer, and speaker with many years of experience building products and leading teams."},
     "about" =>
       {"About",
-       "About Johanna Larsson: software engineer, engineering leader, writer, and speaker with over 14 years of experience."},
+       "About Johanna Larsson: software engineer, engineering leader, writer, and speaker with many years of experience."},
     "projects" =>
       {"Projects",
        "Open source projects by Johanna Larsson, including HexDiff, ElixirEvents, and more."},

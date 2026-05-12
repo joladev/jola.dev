@@ -12,7 +12,7 @@
       name="description"
       content={
         @conn.assigns[:meta_description] ||
-          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with many years of experience."
       }
     />
     <meta property="og:title" content={@conn.assigns[:page_title] || "jola.dev"} />
@@ -21,7 +21,7 @@
       property="og:description"
       content={
         @conn.assigns[:meta_description] ||
-          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with many years of experience."
       }
     />
     <meta property="og:type" content={if(@conn.assigns[:post], do: "article", else: "website")} />
@@ -58,7 +58,7 @@
       name="twitter:description"
       content={
         @conn.assigns[:meta_description] ||
-          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with over 14 years of experience."
+          "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with many years of experience."
       }
     />
     <meta

@@ -11,7 +11,7 @@ defmodule JolaDev.LlmsTxt do
     String.trim_trailing("""
     # jola.dev
 
-    > Personal website of Johanna Larsson, a software engineer, engineering leader, writer, and speaker with over 14 years of experience building products and leading teams.
+    > Personal website of Johanna Larsson, a software engineer, engineering leader, writer, and speaker with many years of experience building products and leading teams.
 
     ## Pages
 
@@ -30,7 +30,7 @@ defmodule JolaDev.LlmsTxt do
     String.trim_trailing("""
     # jola.dev
 
-    > Personal website of Johanna Larsson, a software engineer, engineering leader, writer, and speaker with over 14 years of experience building products and leading teams.
+    > Personal website of Johanna Larsson, a software engineer, engineering leader, writer, and speaker with many years of experience building products and leading teams.
 
     ## Pages
 

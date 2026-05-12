@@ -1,13 +1,6 @@
 defmodule JolaDev.OGImage.Renderer do
   @moduledoc """
-  Pure image-rendering primitives for OGImage. Kept in a sibling module so
-  that `JolaDev.OGImage` can call into it from a compile-time module
-  attribute (Elixir module attributes can't call functions defined in the
-  same module they're being compiled into).
-
-  Requires Inter installed system-wide so fontconfig can find it
-  (`brew install --cask font-inter` on macOS, `fonts-inter` apt package
-  in the Docker builder stage).
+  Pure image-rendering primitives for OGImage.
   """
 
   @width 1200

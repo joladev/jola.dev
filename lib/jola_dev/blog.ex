@@ -65,6 +65,13 @@ defmodule JolaDev.Blog do
     Enum.map(all_posts(), & &1.id)
   end
 
+  def recent_posts(%JolaDev.Blog.Post{id: id}, limit \\ 3) do
+    all_posts()
+    |> Enum.reject(&(&1.id == id))
+    |> Enum.sort_by(& &1.date, {:desc, Date})
+    |> Enum.take(limit)
+  end
+
   def related_posts(%JolaDev.Blog.Post{id: id, tags: tags}, limit \\ 3) do
     all_posts()
     |> Enum.reject(&(&1.id == id))

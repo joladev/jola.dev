@@ -1352,10 +1352,13 @@ defmodule JolaDevWeb.CoreComponents do
       <.card variant={:bordered} class="overflow-hidden">
         <div class="relative aspect-video bg-surface rounded-lg overflow-hidden mb-4">
           <img
-            src={"https://img.youtube.com/vi/#{@video_id}/maxresdefault.jpg"}
+            src={"https://img.youtube.com/vi/#{@video_id}/hqdefault.jpg"}
             alt={@title}
+            width="480"
+            height="360"
             class="w-full h-full object-cover"
             loading="lazy"
+            decoding="async"
           />
           <div class="absolute inset-0 flex items-center justify-center bg-background/60 group-hover:bg-background/50 transition-colors">
             <div class="w-16 h-16 bg-foreground/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">

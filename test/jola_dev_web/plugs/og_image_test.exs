@@ -39,13 +39,13 @@ defmodule JolaDevWeb.Plugs.OGImageTest do
       assert <<137, "PNG\r\n", 26, "\n", _rest::binary>> = conn.resp_body
     end
 
-    test "falls through for an unknown OG slug", %{conn: conn} do
+    test "returns default image for an unknown OG slug", %{conn: conn} do
       original = Map.put(conn, :request_path, "/images/og/no-such-page.png")
 
       result = OGImage.call(original, [])
 
-      assert result == original
-      refute result.halted
+      assert result.status == 200
+      assert <<137, "PNG\r\n", 26, "\n", _rest::binary>> = result.resp_body
     end
 
     test "passes through for paths outside /images/og/", %{conn: conn} do

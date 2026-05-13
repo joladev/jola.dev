@@ -31,7 +31,7 @@ defmodule JolaDev.OGImageTest do
     end
 
     test "returns :error for an unknown slug" do
-      assert OGImage.image_for("no-such-page") == :error
+      assert OGImage.image_for("no-such-page") == {:ok, OGImage.default_image()}
     end
   end
 end

@@ -17,6 +17,11 @@ defmodule JolaDev.OGImage do
                 {slug, Renderer.generate_bytes(title, description)}
               end)
 
+  @default_image (
+                   {title, description} = Catalog.content_for("home")
+                   Renderer.generate_bytes(title, description)
+                 )
+
   @doc """
   Returns the public asset path for a slug's OG image. Used so the
   path scheme stays consistent.
@@ -24,6 +29,16 @@ defmodule JolaDev.OGImage do
   def path_for(slug) when is_binary(slug), do: "/images/og/#{slug}.png"
 
   def image_for(slug) do
+    with :error <- image_for_slug(slug) do
+      {:ok, @default_image}
+    end
+  end
+
+  def default_image do
+    @default_image
+  end
+
+  defp image_for_slug(slug) do
     if @images do
       Map.fetch(@images, slug)
     else

@@ -67,7 +67,7 @@ Image.write!(canvas, "og.png")
 
 And here’s the image I get from running it.
 
-<img src="/images/og-image-example.png" alt="An example generated OG image from the snippet above" width="618" height="324” loading="lazy" decoding="async" style="margin-bottom:16px" />
+<img src="/images/og-image-example.png" alt="An example generated OG image from the snippet above" width="618" height="324" loading="lazy" decoding="async" style="margin-bottom:16px;border:1px solid #efefef;" />
 
 # Hooking it up
 
@@ -219,6 +219,6 @@ You probably want to tweak the cache headers you’re setting in the plug for `d
 
 Having nice previews show up in social media and messaging apps when your links are shared is a lot of fun and it doesn’t necessarily take that much effort. This blog tries to separate things into clear layers, similar to how I implemented it myself, but you can probably get a minimal version working with half as many lines. Or you can try something even fancier by doing some macro magic to map your routes to images. The options are endless. Play around with it, try some different designs. Here’s the OG image for this blog post.
 
-<img src="/images/generating-og-images.png" alt="An example generated OG image from the snippet above" width="618" height="324" loading="lazy" decoding="async" style="margin-bottom:16px" />
+<img src="/images/generating-og-images.png" alt="An example generated OG image from the snippet above" width="618" height="324" loading="lazy" decoding="async" style="margin-bottom:16px;border:1px solid #efefef;" />
 
 Hope this was helpful and that you’ll try it out! It ended up being a lot more straightforward than I expected to get this set up, although to be fair I then spent tons of time tinkering and tweaking the exact setup. If there’s interest for it I might try to set up a library in the style of `NimblePublisher` that covers basic use cases. Let me know!

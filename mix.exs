@@ -10,9 +10,12 @@ defmodule JolaDev.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      listeners: [Phoenix.CodeReloader],
-      preferred_cli_env: [precommit: :test]
+      listeners: [Phoenix.CodeReloader]
     ]
+  end
+
+  def cli do
+    [preferred_envs: [precommit: :test]]
   end
 
   # Configuration for the OTP application.

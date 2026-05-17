@@ -1,7 +1,7 @@
 %{
-  title: "bunnyx: a bunny.net elixir client library",
+  title: "bunnyx: a bunny.net Elixir client library",
   author: "Johanna Larsson",
-  tags: ~w(elixir bunny bunnynet opensource),
+  tags: ~w(elixir bunnynet opensource),
   description: "A best-practice Elixir library for interacting with the bunny.net API"
 }
 ---

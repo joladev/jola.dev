@@ -72,21 +72,21 @@ end
 
 **Main API (`Bunnyx.new/1`)**
 
-- **CDN**: `PullZone` (CRUD, hostnames, SSL, edge rules, referrers, IP blocking, statistics)
-- **DNS**: `DnsZone` (CRUD, DNSSEC, export/import, statistics), `DnsRecord` (add, update, delete)
-- **Storage management**: `StorageZone` (CRUD, statistics, password reset)
-- **Video libraries**: `VideoLibrary` (CRUD, API keys, watermarks, referrers, DRM stats)
-- **Cache**: `Purge` (URL and pull zone purging)
-- **Security**: `Shield` (zones, WAF rules, rate limiting, access lists, bot detection, metrics, API Guardian)
-- **Compute**: `EdgeScript` (scripts, code, releases, secrets, variables), `MagicContainers` (apps, registries, containers, endpoints, volumes)
-- **Account**: `Billing` (details, summary, invoices), `Account` (affiliate, audit log, search), `ApiKey`, `Logging` (CDN + origin logs)
-- **Reference**: `Statistics` (global), `Country`, `Region`
+- **CDN**: `PullZone` (CRUD, hostnames, SSL, edge rules, referrers, IP blocking, statistics)
+- **DNS**: `DnsZone` (CRUD, DNSSEC, export/import, statistics), `DnsRecord` (add, update, delete)
+- **Storage management**: `StorageZone` (CRUD, statistics, password reset)
+- **Video libraries**: `VideoLibrary` (CRUD, API keys, watermarks, referrers, DRM stats)
+- **Cache**: `Purge` (URL and pull zone purging)
+- **Security**: `Shield` (zones, WAF rules, rate limiting, access lists, bot detection, metrics, API Guardian)
+- **Compute**: `EdgeScript` (scripts, code, releases, secrets, variables), `MagicContainers` (apps, registries, containers, endpoints, volumes)
+- **Account**: `Billing` (details, summary, invoices), `Account` (affiliate, audit log, search), `ApiKey`, `Logging` (CDN + origin logs)
+- **Reference**: `Statistics` (global), `Country`, `Region`
 
 **Separate clients**
 
-- **Edge storage** (`Bunnyx.Storage`): upload, download, delete, list files
-- **S3** (`Bunnyx.S3`): PUT, GET, DELETE, HEAD, COPY, ListObjectsV2, multipart uploads
-- **Stream** (`Bunnyx.Stream`): video CRUD, upload, fetch, collections, captions, thumbnails, re-encode, transcription, smart actions, analytics, oEmbed
+- **Edge storage** (`Bunnyx.Storage`): upload, download, delete, list files
+- **S3** (`Bunnyx.S3`): PUT, GET, DELETE, HEAD, COPY, ListObjectsV2, multipart uploads
+- **Stream** (`Bunnyx.Stream`): video CRUD, upload, fetch, collections, captions, thumbnails, re-encode, transcription, smart actions, analytics, oEmbed
 
 # What next
 

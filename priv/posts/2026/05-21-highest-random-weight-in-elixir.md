@@ -16,7 +16,7 @@ That said, it does have a downside. You have to start and manage the ring proces
 
 As described by the [Wikipedia page](https://en.wikipedia.org/wiki/Rendezvous_hashing): *Rendezvous hashing is both much simpler and more general than consistent hashing.* Also called HRW or Highest Random Weight*.* In practice, you can use it very much like you would ExHashRing.
 
-ExHashRing example.
+`ExHashRing` example.
 
 ```elixir
 {:ok, ring} = ExHashRing.Ring.start_link()
@@ -150,7 +150,7 @@ Distribution.run()
 I extended that to add HRW with MurmurHash3, HRW with skeleton, and ExHashRing, for comparison.
 
 ```elixir
-⏺ 10 nodes, 100000 keys (ideal 10000 per node):
+  10 nodes, 100000 keys (ideal 10000 per node):
     phash2 (HRW)           min: 9691  max: 10639  stddev: 249.9  (2.5% of mean)
     murmur3 x86_32 (HRW)   min: 9859  max: 10192  stddev: 112.2  (1.12% of mean)
     murmur3 x64_128 (HRW)  min: 9864  max: 10170  stddev: 98.1   (0.98% of mean)

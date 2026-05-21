@@ -8,7 +8,7 @@
 
 Consistent hashing is a common building block for distributed Elixir and enables fairly low complexity and high value design patterns, like the distributed rate limiter or cache. I’ve written about it before.
 
-The most common way of assigning keys to nodes, ensuring that any node participating in the cluster can figure out which node owns the given key, is Discord’s ExHashRing. This is an incredibly battle-tested and reliable library with excellent performance characteristics, and I’ve only had good experiences with it.
+The most common way of assigning keys to nodes, ensuring that any node participating in the cluster can figure out which node owns the given key, is Discord’s [ExHashRing](https://github.com/discord/ex_hash_ring). This is an incredibly battle-tested and reliable library with excellent performance characteristics, and I’ve only had good experiences with it.
 
 That said, it does have a downside. You have to start and manage the ring processes. It’s not a huge downside, you can give them global names and it’s trivial to look them up, but you still want them set up under your supervision tree and they are stateful persistent things that hang around. That state has to be managed. It’s not a big deal at all, but when I found a stateless alternative it did immediately catch my attention.
 

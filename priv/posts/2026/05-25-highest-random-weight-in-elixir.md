@@ -39,15 +39,15 @@ There’s a downside of course. The big O notation for `HRW.owner` is linear (O(
 
 ```elixir
 Name                                ips        average  deviation         median         99th %
-ExHashRing.Ring.find_node        2.67 M        0.37 μs  ±1149.12%        0.33 μs        0.50 μs
-HRW.owner                        0.40 M        2.51 μs   ±207.32%        2.38 μs        3.42 μs
+ExHashRing.Ring.find_node        2.67 M      375.20 ns  ±1375.85%         334 ns         500 ns
+HRW.owner                        2.39 M      418.13 ns  ±1317.18%         375 ns         541 ns
 
 Comparison:
 ExHashRing.Ring.find_node        2.67 M
-HRW.owner                        0.40 M - 6.70x slower +2.13 μs
+HRW.owner                        2.39 M - 1.11x slower +42.93 ns
 ```
 
-`ExHashRing` is extremely fast, and stays fast as the number of nodes grow. But at a smaller number of nodes, unless this is an extremely hot path, there’s really not much difference between 0.37 µs and 2.51 µs. You’re free to pick whichever one you think reads better.
+`ExHashRing` is extremely fast, and stays fast as the number of nodes grow. But at a smaller number of nodes, even on a fairly hot path, there's not much difference here. You’re free to pick whichever one you think reads better.
 
 ## Basic HRW algorithm
 
@@ -178,6 +178,6 @@ As you can see, we’re doing just fine with `:erlang.phash2.` Murmur3 is maybe 
 
 You’re very welcome to try out the `hrw` library on [hex.pm](http://hex.pm), or why not take a look at the Github repository at https://github.com/joladev/hrw. For very large number of nodes, you’ll want to use `ExHashRing` or `HRW.Skeleton`, for anything else, why not stick with plain `HRW.owner`?
 
-The library comes with additional strategies not described here, like `HRW.Weighted` which lets you assign more key space to specific nodes, useful for heterogenous clusters where some machines are bigger, and affinity, which lets you associate keys with certain properties and prefer or even limit them to specific nodes.
+The library comes with additional strategies not described here, like `HRW.Weighted` which lets you assign more key space to specific nodes, useful for heterogenous clusters where some machines are bigger, and `HRW.Bounded`, which gives you greater precision in how keys are distributed when you know the keys up front.
 
 Let me know how you find it.

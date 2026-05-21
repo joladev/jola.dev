@@ -6,6 +6,8 @@
 }
 ---
 
+> Disclaimer: This blog post was written in 2025 during a time when I experimented with LLM-assisted writing.
+
 Projects that go over time or fail to accomplish their goals all share the same problem: a failure to identify the smallest possible piece of the feature or product that can deliver value.
 
 I've seen this pattern repeat itself countless times. A team starts with an ambitious vision, gets excited about all the possibilities, and before you know it, they're three months into a project that was supposed to take three weeks. The feature set has ballooned, the deadline has passed, and worst of all, users still haven't seen anything.

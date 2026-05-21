@@ -6,6 +6,8 @@
 }
 ---
 
+> Disclaimer: This blog post was written in 2025 during a time when I experimented with LLM-assisted writing.
+
 I know estimates have a bad reputation. Most engineers hear "estimate" and immediately think of micromanagement, unrealistic deadlines, and that manager who asks "is it done yet?" every few hours. I've seen teams reflexively pad their numbers by 3x just to avoid the inevitable disappointment when reality doesn't match the plan.
 
 But after years of building products, I've come to see estimates differently. Good estimation isn't about control or tracking every minute of your day. It's about creating trust and transparency in your team.

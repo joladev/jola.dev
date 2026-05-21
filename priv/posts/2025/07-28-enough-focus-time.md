@@ -6,6 +6,8 @@
 }
 ---
 
+> Disclaimer: This blog post was written in 2025 during a time when I experimented with LLM-assisted writing.
+
 You think software engineers need more focus time? Think again.
 
 Writing code is, let's face it, a lot of fun. There's a strong feedback loop of solving problems and feeling the reward when everything clicks. The bigger the problem, the bigger the rush. Few things beat making that critical breakthrough after weeks of being stuck. Your algorithm now runs a million times faster, you've cut the codebase in half, or you've invented an elegant new approach to data streaming. It's genuinely addictive.

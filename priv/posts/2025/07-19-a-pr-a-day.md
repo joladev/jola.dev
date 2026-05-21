@@ -6,6 +6,8 @@
 }
 ---
 
+> Disclaimer: This blog post was written in 2025 during a time when I experimented with LLM-assisted writing.
+
 There's something deeply satisfying about clicking that merge button. That moment when your code goes from "work in progress" to "shipped" never gets old. But here's what I've learned after years of building software: if you're not merging at least one pull request a day, you're probably making your life harder than it needs to be.
 
 ## The Miscommunication Problem

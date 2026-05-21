@@ -6,6 +6,7 @@
 }
 ---
 
+> Disclaimer: This blog post was written in 2025 during a time when I experimented with LLM-assisted writing.
 
 This may sound incredibly unintuitive, but if you want to build resilient software, conditionals are your worst enemy.
 

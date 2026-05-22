@@ -21,10 +21,13 @@ defmodule JolaDev.OGImage.Renderer do
 
   @logo_path "priv/static/images/logo.png"
 
-  def generate_bytes(title, description) when is_binary(title) and is_binary(description) do
-    title
-    |> build_canvas(description)
-    |> Image.write!(:memory, suffix: ".png")
+  def render(title, description) when is_binary(title) and is_binary(description) do
+    image =
+      title
+      |> build_canvas(description)
+      |> Image.write!(:memory, suffix: ".png")
+
+    {:ok, image}
   end
 
   defp build_canvas(title, description) do

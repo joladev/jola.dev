@@ -15,5 +15,8 @@ config :sentry,
   enable_source_code_context: true,
   root_source_code_paths: [File.cwd!()]
 
+config :logger, :default_handler,
+  formatter: LoggerJSON.Formatters.Basic.new(metadata: {:all_except, [:__sentry__]})
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

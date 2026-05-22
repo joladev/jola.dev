@@ -4,9 +4,9 @@ defmodule JolaDev.OGImage.RendererTest do
 
   describe "generate_bytes/2" do
     test "returns a PNG binary" do
-      bytes = Renderer.generate_bytes("Title", "Description.")
+      bytes = Renderer.render("Title", "Description.")
 
-      assert <<137, "PNG\r\n", 26, "\n", _rest::binary>> = bytes
+      assert {:ok, <<137, "PNG\r\n", 26, "\n", _rest::binary>>} = bytes
     end
   end
 end

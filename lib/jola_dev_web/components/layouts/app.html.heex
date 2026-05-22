@@ -4,6 +4,7 @@
       <:link href="/" active={@conn.request_path == "/"}>Home</:link>
       <:link href="/about" active={@conn.request_path == "/about"}>About</:link>
       <:link href="/posts" active={String.starts_with?(@conn.request_path, "/posts")}>Blog</:link>
+      <:link href="/newsletter" active={@conn.request_path == "/newsletter"}>Newsletter</:link>
       <:link href="/projects" active={@conn.request_path == "/projects"}>Projects</:link>
       <:link href="/talks" active={@conn.request_path == "/talks"}>Talks</:link>
     </.navigation>

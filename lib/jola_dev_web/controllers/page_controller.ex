@@ -36,4 +36,12 @@ defmodule JolaDevWeb.PageController do
         "Conference talks and presentations by Johanna Larsson on Elixir, distributed systems, and engineering leadership."
     )
   end
+
+  def newsletter(conn, _params) do
+    render(conn, :newsletter,
+      page_title: "Newsletter | jola.dev",
+      meta_description:
+        "Newsletter by Johanna Larsson with content from the blog, delivered monthly."
+    )
+  end
 end

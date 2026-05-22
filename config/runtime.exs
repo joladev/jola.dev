@@ -52,4 +52,7 @@ if config_env() == :prod do
 
   config :sentry,
     dsn: System.fetch_env!("SENTRY_DSN")
+
+  config :logger, :default_handler,
+    formatter: LoggerJSON.Formatters.Basic.new(metadata: {:all_except, [:__sentry__]})
 end

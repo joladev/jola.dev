@@ -72,7 +72,8 @@ defmodule JolaDev.MixProject do
       {:sentry, "~> 13.0"},
       {:tidewave, "~> 0.5", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:image, "~> 0.67"}
+      {:image, "~> 0.67"},
+      {:logger_json, "~> 7.0"}
     ]
   end
 

@@ -8,7 +8,7 @@ defmodule JolaDevWeb.Helpers.SEO do
   @host "https://jola.dev"
 
   def json_ld(conn) do
-    [website_schema()] ++ page_schemas(conn) ++ breadcrumb_schemas(conn)
+    [website_schema(), person_schema()] ++ page_schemas(conn) ++ breadcrumb_schemas(conn)
   end
 
   defp website_schema do
@@ -16,9 +16,12 @@ defmodule JolaDevWeb.Helpers.SEO do
       "@context" => "https://schema.org",
       "@type" => "WebSite",
       "name" => "jola.dev",
-      "url" => @host,
-      "author" => person_ref()
+      "url" => @host
     }
+  end
+
+  defp person_schema do
+    Map.put(person(), "@context", "https://schema.org")
   end
 
   defp page_schemas(%{assigns: %{post: post}}) do
@@ -48,20 +51,42 @@ defmodule JolaDevWeb.Helpers.SEO do
       %{
         "@context" => "https://schema.org",
         "@type" => "ProfilePage",
-        "mainEntity" =>
-          Map.merge(person(), %{
-            "sameAs" => [
-              "https://github.com/joladev",
-              "https://linkedin.com/in/joladev",
-              "https://bsky.app/profile/jola.dev",
-              "https://twitter.com/joladev"
-            ]
-          })
+        "mainEntity" => person_ref()
+      }
+    ]
+  end
+
+  defp page_schemas(%{assigns: %{posts: _, tag: _}}), do: []
+
+  defp page_schemas(%{assigns: %{posts: posts}}) do
+    [
+      %{
+        "@context" => "https://schema.org",
+        "@type" => "Blog",
+        "@id" => "#{@host}/posts#blog",
+        "url" => "#{@host}/posts",
+        "name" => "jola.dev blog",
+        "author" => person_ref(),
+        "blogPost" => Enum.map(posts, &blog_post_summary/1)
       }
     ]
   end
 
   defp page_schemas(_conn), do: []
+
+  defp blog_post_summary(post) do
+    url = "#{@host}#{~p"/posts/#{post.id}"}"
+
+    %{
+      "@type" => "BlogPosting",
+      "headline" => post.title,
+      "url" => url,
+      "datePublished" => Date.to_iso8601(post.date),
+      "dateModified" => Date.to_iso8601(post.last_modified),
+      "image" => "#{@host}#{JolaDev.OGImage.path_for("posts/#{post.id}")}",
+      "author" => person_ref()
+    }
+  end
 
   defp person do
     %{
@@ -69,7 +94,13 @@ defmodule JolaDevWeb.Helpers.SEO do
       "@id" => "#{@host}/#person",
       "name" => "Johanna Larsson",
       "url" => "#{@host}#{~p"/about"}",
-      "jobTitle" => "Software Engineer & Engineering Leader"
+      "jobTitle" => "Software Engineer & Engineering Leader",
+      "sameAs" => [
+        "https://github.com/joladev",
+        "https://linkedin.com/in/joladev",
+        "https://bsky.app/profile/jola.dev",
+        "https://twitter.com/joladev"
+      ]
     }
   end
 

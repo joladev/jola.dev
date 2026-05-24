@@ -2,7 +2,9 @@
   title: "Building a Distributed Rate Limiter in Elixir with HashRing",
   author: "Johanna Larsson",
   tags: ~w(disterl),
-  description: "Using distributed Elixir to upgrade a node local rate limiter"
+  description: "Using distributed Elixir to upgrade a node local rate limiter",
+  canonical_url:
+    "https://blog.appsignal.com/2025/02/04/building-a-distributed-rate-limiter-in-elixir-with-hashring.html"
 }
 ---
 

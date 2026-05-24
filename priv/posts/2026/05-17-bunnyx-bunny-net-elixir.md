@@ -8,9 +8,9 @@
 
 [bunny.net](https://bunny.net?ref=f0l8865b7g) is a CDN service provider with lots of extra bells and whistles, most similar to Cloudflare in feature set, but maintained by a European company. Unlike Cloudflare, they’re not free, but they are cheap enough that it doesn’t really matter. Unless you’re making very heavy use of their service, you won’t be paying more than the minimum €1 each month. And as a paying customer, your relationship is a lot different than it is as a non-paying user of Cloudflare.
 
-I’ve been using bunny.net for a lot of things I’ve been building recently, including the landing page and status page feature for [Larm](https://larm.dev), the uptime monitoring project I’ve been working on. As part of that work, I wanted a feature rich client library for interacting with the extensive bunny.net API.
+I’ve been using bunny.net for a lot of things I’ve been building recently, including the landing page and status page feature for [Larm](https://larm.dev), the uptime monitoring project I’ve been working on, and I wrote about [migrating my blog from Cloudflare to bunny.net](/posts/dropping-cloudflare) recently. As part of that work, I wanted a feature rich client library for interacting with the extensive bunny.net API.
 
-# Introducing: [bunnyx](https://github.com/joladev/bunnyx)
+## Introducing: [bunnyx](https://github.com/joladev/bunnyx)
 
 This is not the first Elixir library for interacting with the bunny API. I ended up rolling my own because I wanted something that was flexible enough to fit into my system design. The version that I built into Larm wasn’t as feature rich as what I’ve ended up open sourcing here, but once I had something going, I just got into the flow of testing through the API endpoints end to end, and documenting and verifying each one. And suddenly I had a whole feature complete library.
 
@@ -18,7 +18,7 @@ This is not the first Elixir library for interacting with the bunny API. I ended
 
 Additionally I invested a lot of time and energy into the test suite. Apart from extensive unit test coverage, I built a series of Livebook runbooks that you can feed an API key into and execute each and every request scenario, even running through the whole book to automatically create, read, update, and delete, resources. This means you can easily verify the behavior of `bunnyx` against the actual bunny API.
 
-# Quickstart
+## Quickstart
 
 ```elixir
 # Before running this, you'll need:
@@ -68,7 +68,7 @@ defmodule MyApp.Bunny do
 end
 ```
 
-# Feature set
+## Feature set
 
 **Main API (`Bunnyx.new/1`)**
 
@@ -88,7 +88,7 @@ end
 - **S3** (`Bunnyx.S3`): PUT, GET, DELETE, HEAD, COPY, ListObjectsV2, multipart uploads
 - **Stream** (`Bunnyx.Stream`): video CRUD, upload, fetch, collections, captions, thumbnails, re-encode, transcription, smart actions, analytics, oEmbed
 
-# What next
+## What next
 
 First of all I want to give a huge shoutout to Wojtek Mach for setting an incredible example for the Elixir community on how to design libraries. Req is one of my favorite reference repos and I keep coming back to it and discovering new gems.
 

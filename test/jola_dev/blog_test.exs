@@ -94,7 +94,7 @@ defmodule JolaDev.BlogTest do
           Enum.count(p.tags, &(&1 in post.tags))
         end)
 
-      # Non-increasing — higher counts come first.
+      # Non-increasing, higher counts come first.
       assert counts == Enum.sort(counts, :desc)
     end
 

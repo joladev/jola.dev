@@ -315,4 +315,4 @@ This app is intentionally kept simple but powerful. Everything is set up the way
 
 And while you’re at it, why not host it on Hetzner! If you use the [referral link to sign up you get €20 and I get €10](https://hetzner.cloud/?ref=SjrsM8GhyYOl). If you prefer not to use the referral link, here’s a plain link: https://www.hetzner.com/cloud/. Also consider joining me in [sponsoring Dokploy](https://github.com/sponsors/Dokploy).
 
-Source code is available at: https://github.com/joladev/jola.dev. Next up I’ll talk about setting up [bunny.net](https://bunny.net?ref=f0l8865b7g) and a separate post on Dokploy on Hetzner.
+Source code is available at: https://github.com/joladev/jola.dev. [Next up](/posts/dropping-cloudflare) I’ll talk about setting up [bunny.net](https://bunny.net?ref=f0l8865b7g) and a separate post on Dokploy on Hetzner.

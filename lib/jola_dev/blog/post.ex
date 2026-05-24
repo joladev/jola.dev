@@ -3,7 +3,17 @@ defmodule JolaDev.Blog.Post do
   Struct representing a blog post with metadata and content.
   """
   @enforce_keys [:id, :author, :title, :body, :description, :tags, :date]
-  defstruct [:id, :author, :title, :body, :description, :tags, :date, :last_modified]
+  defstruct [
+    :id,
+    :author,
+    :title,
+    :body,
+    :description,
+    :tags,
+    :date,
+    :last_modified,
+    :canonical_url
+  ]
 
   def build(filename, attrs, body) do
     [year, month_day_id] =

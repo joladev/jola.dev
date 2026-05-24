@@ -19,7 +19,7 @@ After bringing this up in the Slack I was encouraged to suggest it on the Elixir
 
 ## Registry.select/2
 
-So, the final version that got merged ended up being based on match specs, giving a close to direct access to the underlying ETS table of the Registry. I’ll grab some examples from the documentation to give an idea of what this means.
+So, the final version that got merged ended up being based on match specs, giving a close to direct access to the [underlying ETS table](/posts/patterns-for-managing-ets-tables) of the Registry. I’ll grab some examples from the documentation to give an idea of what this means.
 
 Get all registered processes, keys and values.
 

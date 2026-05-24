@@ -8,7 +8,7 @@
 
 TL;DR my motivation and experience for moving my blog from Cloudflare to bunny.net
 
-I’ve been a long time Cloudflare user. They offer a solid service that is free for the vast majority of their users, that’s very generous. Their infrastructure is massive and their feature set is undeniably incredible. 
+I’ve been a long time Cloudflare user. They offer a solid service that is free for the vast majority of their users, that’s very generous. Their infrastructure is massive and their feature set is undeniably incredible.
 
 One of my biggest concerns though is around how easily I could become heavily dependent on this one single company that then can decide to cut me off and disable all of my websites, for any arbitrary reason. It’s a single point of failure for the internet. Every Cloudflare outage ends up in the news. And I can’t help but feel that the idea of centralizing the internet into a single US corporation feels off. Not to mention the various scandals that have surrounded them. So I was open to alternatives.
 
@@ -36,7 +36,7 @@ The pull zone is the main mechanism for enabling the CDN for your website. You�
 
 1. Fill in the pull zone name. Just make it something meaningful to you, for example the website name.
 2. For origin type, select Origin URL.
-3. Fill in your Origin URL. This would be the address for directly accessing your server. In my case, it’s the public IP of my server. 
+3. Fill in your Origin URL. This would be the address for directly accessing your server. In my case, it’s the public IP of my server.
 4. If you’re running multiple apps on your server, for example using Dokploy, coolify, or self-hosted PaaSs like that, you’ll want to pass the Host header as well. Here you put in the domain of your app. In my case, that’s jola.dev.
 5. For tier, select Standard.
 6. Finally you can select your pricing zones. Note that some zones are more expensive, so you can choose to disable them. This just means that people in those areas will get redirected to the closest zone you do have enabled.
@@ -50,7 +50,7 @@ Now that you’ve set up the pull zone, it’s time to hook it up to your websit
 1. Under “Add a custom hostname” fill in your website domain name.
 2. You’ll get a modal with some instructions. You need to follow them to set up the DNS name to point your website to go through the CDN.
 3. Go to where you manage domain name and add a CNAME record to point your domain to the given CNAME value in the modal, something like website.b-cdn.net.
-4. Once you’ve done that, wait a few minutes to let it propagate, and then click “Verify & Activate SSL”. 
+4. Once you’ve done that, wait a few minutes to let it propagate, and then click “Verify & Activate SSL”.
 5. If it says success, you’re done. Your website is now running through the bunny.net CDN, similar to the Cloudflare orange cloud.
 
 ### Configuring caching
@@ -61,7 +61,7 @@ If your website is set up to return the appropriate cache headers for each resou
 
 Alternatively, if you don’t have cache headers set up, and you don’t want to control that yourself, you can instead enable Smart Cache. This will default to caching typically cached resources like images, CSS, JS files etc, while avoiding caching things like HTML pages. This will work for most cases!
 
-But I wanted to go *faster*. If you’ve read my post about building this website, here’s how I’ve set up my cache headers: I added a new pipeline in the router called `public` and added an extra middleware to it. I technically have everything using this pipeline, but leaving the standard `browser` pipeline that comes out of the box with Phoenix keeps my options open to add authenticated (uncached) pages in the future. 
+But I wanted to go *faster*. If you've read [my post about building this website](/posts/building-a-blog-with-elixir-and-phoenix), here’s how I’ve set up my cache headers: I added a new pipeline in the router called `public` and added an extra middleware to it. I technically have everything using this pipeline, but leaving the standard `browser` pipeline that comes out of the box with Phoenix keeps my options open to add authenticated (uncached) pages in the future.
 
 ```elixir
   pipeline :public do
@@ -70,7 +70,7 @@ But I wanted to go *faster*. If you’ve read my post about building this websit
     plug :put_secure_browser_headers, @secure_headers
     plug :put_cdn_cache_header
   end
-  
+
   defp put_cdn_cache_header(conn, _opts) do
     put_resp_header(conn, "cache-control", "public, s-maxage=86400, max-age=0")
   end
@@ -94,7 +94,7 @@ DDoS protection comes out of the box, but we can set some other things up. First
 
 Next, go to Caching → General and scroll down. At the bottom of the page you can select Stale Cache: While Origin Offline and While Updating. This means bunny will keep serving cached content even if it is stale, if it can’t reach your origin, and that it will serve stale content while fetching the latest version. Both are nice to haves, nothing you have to enable, but provide a slightly better service to your users!
 
-Next, let’s set up an Edge rule to redirect any requests to our automatically generated pull zone domain to our actual domain, to avoid confusing crawlers. On your pull zone, in the left menu, click Edge rules. 
+Next, let’s set up an Edge rule to redirect any requests to our automatically generated pull zone domain to our actual domain, to avoid confusing crawlers. On your pull zone, in the left menu, click Edge rules.
 
 1. Add edge rule.
 2. Name it “Default domain redirect”.
@@ -114,3 +114,5 @@ This post just covers the very basics of getting set up on bunny.net. I haven’
 I especially appreciate the great statistics, logs, and metrics you get out of the dashboard. You can even see every single request coming through to help you investigate issues, and clear feedback on what’s getting cached and not. I’m actively moving everything else over and I’m excited for the upcoming S3 compatible storage!
 
 You should give [bunny.net](https://bunny.net?ref=f0l8865b7g) a try!
+
+ps Since writing this I've open-sourced [bunnyx](/posts/bunnyx-bunny-net-elixir), my Elixir client for the bunny.net API.

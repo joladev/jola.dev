@@ -11,7 +11,7 @@ Erlang queues are similar to lists but double-ended, meaning you can efficiently
 
 > Queues are double-ended. The mental picture of a queue is a line of people (items) waiting for their turn. The queue front is the end with the item that has waited the longest. The queue rear is the end an item enters when it starts to wait. If instead using the mental picture of a list, the front is called head and the rear is called tail.
 
-A common use case is where you want to temporarily store items and eventually take them back out in the order that you put them in.
+A common use case is where you want to temporarily store items and eventually take them back out in the order that you put them in. I use this pattern as the buffer in [Push-based GenStage](/posts/push-based-genstage).
 
 Using them can feel a bit awkward, partly because Erlang orders arguments differently than Elixir, and partly because the internal representation of queues is exposed. Note that the docs clearly state that you should treat it as an opaque type.
 

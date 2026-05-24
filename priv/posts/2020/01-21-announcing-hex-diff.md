@@ -27,4 +27,4 @@ When it’s easy to work in a secure way, people are more likely to do it. This 
 
 ## What’s next?
 
-The project is open-source, licensed under Apache 2.0, like Elixir itself. You’ll find it under the `hexpm` organization [on Github](https://github.com/hexpm/diff). Please don’t hesitate to share your ideas for improvements or additions!
+The project is open-source, licensed under Apache 2.0, like Elixir itself. You’ll find it under the `hexpm` organization [on Github](https://github.com/hexpm/diff). Please don’t hesitate to share your ideas for improvements or additions! If you're curious about how we built it, I wrote a separate post on [Building Hex Diff](/posts/building-hex-diff).

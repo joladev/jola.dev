@@ -5,7 +5,7 @@ defmodule JolaDevWeb.PageController do
     recent_posts = Enum.take(JolaDev.Blog.all_posts(), 3)
 
     render(conn, :home,
-      page_title: "Johanna Larsson — Software Engineer & Speaker",
+      page_title: "Johanna Larsson, Software Engineer and Speaker",
       meta_description:
         "Johanna Larsson is a software engineer, engineering leader, writer, and speaker with many years of experience building products and leading teams.",
       recent_posts: recent_posts
@@ -14,9 +14,9 @@ defmodule JolaDevWeb.PageController do
 
   def about(conn, _params) do
     render(conn, :about,
-      page_title: "About | jola.dev",
+      page_title: "About Johanna Larsson",
       meta_description:
-        "About Johanna Larsson — software engineer, engineering leader, writer, and speaker with many years of experience.",
+        "About Johanna Larsson, software engineer, engineering leader, writer, and speaker with many years of experience.",
       page_type: :about
     )
   end

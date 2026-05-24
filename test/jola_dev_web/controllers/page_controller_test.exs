@@ -6,7 +6,7 @@ defmodule JolaDevWeb.PageControllerTest do
       conn = get(conn, ~p"/")
 
       assert html_response(conn, 200) =~ "jola.dev"
-      assert conn.assigns.page_title == "Johanna Larsson — Software Engineer & Speaker"
+      assert conn.assigns.page_title == "Johanna Larsson, Software Engineer and Speaker"
       assert is_list(conn.assigns.recent_posts)
       assert length(conn.assigns.recent_posts) == 3
     end
@@ -17,7 +17,7 @@ defmodule JolaDevWeb.PageControllerTest do
       conn = get(conn, ~p"/about")
 
       assert html_response(conn, 200)
-      assert conn.assigns.page_title == "About | jola.dev"
+      assert conn.assigns.page_title == "About Johanna Larsson"
     end
   end
 

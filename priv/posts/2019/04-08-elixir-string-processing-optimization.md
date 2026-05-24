@@ -43,7 +43,7 @@ Fortunately, Elixir and Erlang have a solution for this: ETS. In the words of th
 
 > This module is an interface to the Erlang built-in term storage BIFs. These provide the ability to store very large quantities of data in an Erlang runtime system and to have constant access time to the data.
 
-So here we have something that acts a little bit more like a mutable hash map. There are lots of other reasons why ETS is much cooler than a plan hash map, but I’ll leave that to a future article. For now, let’s just pretend that it’s a hash map.
+So here we have something that acts a little bit more like a mutable hash map. There are lots of other reasons why ETS is much cooler than a plain hash map, but I [wrote about that separately](/posts/patterns-for-managing-ets-tables). For now, let’s just pretend that it’s a hash map.
 
 It’s started with `:ets.new(:table_name, options)`. You can insert data with `:ets.insert` and read with `:ets.lookup`, but the two operations we’re interested in are `:ets.update_counter` and `:ets.match_object`. Here’s what it looks like if we replace the map with an ETS table.
 

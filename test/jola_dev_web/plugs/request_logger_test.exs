@@ -44,7 +44,7 @@ defmodule JolaDevWeb.Plugs.RequestLoggerTest do
     IO.iodata_to_binary(msg)
   end
 
-  describe "call/2 — request log" do
+  describe "call/2 request log" do
     test "emits structured request fields on entry", %{conn: conn} do
       conn
       |> Map.put(:method, "POST")
@@ -93,7 +93,7 @@ defmodule JolaDevWeb.Plugs.RequestLoggerTest do
     end
   end
 
-  describe "call/2 — response log via register_before_send" do
+  describe "call/2 response log via register_before_send" do
     test "emits structured response fields when send_resp fires", %{conn: conn} do
       conn
       |> call_plug()

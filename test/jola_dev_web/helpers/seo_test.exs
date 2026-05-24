@@ -11,6 +11,18 @@ defmodule JolaDevWeb.Helpers.SEOTest do
       website = Enum.find(schemas, &(&1["@type"] == "WebSite"))
       assert website["name"] == "jola.dev"
       assert website["url"] == "https://jola.dev"
+      refute Map.has_key?(website, "author")
+    end
+
+    test "includes Person schema on all pages", %{conn: conn} do
+      for path <- [~p"/", ~p"/posts", ~p"/projects", ~p"/talks", ~p"/about"] do
+        schemas = SEO.json_ld(get(conn, path))
+        person = Enum.find(schemas, &(&1["@type"] == "Person"))
+
+        assert person["@id"] == "https://jola.dev/#person", "missing Person on #{path}"
+        assert person["name"] == "Johanna Larsson"
+        assert is_list(person["sameAs"])
+      end
     end
 
     test "includes BlogPosting schema on blog post pages", %{conn: conn} do
@@ -30,14 +42,12 @@ defmodule JolaDevWeb.Helpers.SEOTest do
       assert blog_posting["keywords"] == post.tags
     end
 
-    test "includes ProfilePage schema on about page", %{conn: conn} do
+    test "includes ProfilePage schema on about page referencing the Person", %{conn: conn} do
       conn = get(conn, ~p"/about")
       schemas = SEO.json_ld(conn)
 
       profile = Enum.find(schemas, &(&1["@type"] == "ProfilePage"))
-      assert profile["mainEntity"]["@type"] == "Person"
-      assert profile["mainEntity"]["name"] == "Johanna Larsson"
-      assert is_list(profile["mainEntity"]["sameAs"])
+      assert profile["mainEntity"] == %{"@id" => "https://jola.dev/#person"}
     end
 
     test "does not include BlogPosting on non-post pages", %{conn: conn} do
@@ -45,6 +55,31 @@ defmodule JolaDevWeb.Helpers.SEOTest do
       schemas = SEO.json_ld(conn)
 
       refute Enum.any?(schemas, &(&1["@type"] == "BlogPosting"))
+    end
+
+    test "includes Blog schema with blogPost list on /posts", %{conn: conn} do
+      conn = get(conn, ~p"/posts")
+      schemas = SEO.json_ld(conn)
+
+      blog = Enum.find(schemas, &(&1["@type"] == "Blog"))
+      assert blog["@id"] == "https://jola.dev/posts#blog"
+      assert blog["url"] == "https://jola.dev/posts"
+      assert blog["author"] == %{"@id" => "https://jola.dev/#person"}
+      assert is_list(blog["blogPost"])
+      assert length(blog["blogPost"]) == length(JolaDev.Blog.all_posts())
+
+      first = hd(blog["blogPost"])
+      assert first["@type"] == "BlogPosting"
+      assert is_binary(first["headline"])
+      assert String.starts_with?(first["url"], "https://jola.dev/posts/")
+      assert first["author"] == %{"@id" => "https://jola.dev/#person"}
+    end
+
+    test "does not include Blog schema on tag pages", %{conn: conn} do
+      conn = get(conn, ~p"/posts/tag/elixir")
+      schemas = SEO.json_ld(conn)
+
+      refute Enum.any?(schemas, &(&1["@type"] == "Blog"))
     end
 
     test "omits BreadcrumbList on the home page", %{conn: conn} do

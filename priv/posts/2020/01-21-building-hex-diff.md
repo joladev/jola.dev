@@ -5,7 +5,8 @@
   description: "I wanted to give some insight into the Hex Diff project, how it works, and some issues we ran into on the way."
 }
 ---
-I wanted to give some insight into the Hex Diff project, how it works, and some issues we ran into on the way. The project is [open-source](https://github.com/hexpm/diff), so feel free to look behind the curtain to see what makes it tick. Some parts of the project originate from my toy version (no longer live), but others were written specifically for this project. We also ended up finding and fixing a bunch of bugs in other projects!
+
+I wanted to give some insight into the Hex Diff project, how it works, and some issues we ran into on the way. The project is [open-source](https://github.com/hexpm/diff), so feel free to look behind the curtain to see what makes it tick. Some parts of the project originate from my toy version (no longer live), but others were written specifically for this project. We also ended up finding and fixing a bunch of bugs in other projects! This is a companion to [the announcement post](/posts/announcing-hex-diff).
 
 ## The Search View
 
@@ -19,7 +20,7 @@ Hex has an API with loads of useful endpoints, including search, but we ended up
 
 Really, the only things we need are a list of package names and a list of versions for each of the packages, and we’ll be able to implement our own search. Luckily, `hex_core` also lets you query the CDN fronted registry itself for simple stuff, like getting all package names and versions! This means we can do super cheap requests for this data.
 
-The last thing to consider is how LiveView works. While typing into the input field every single key input turns into an event on the backend. Although you could build throttling into this, the slower you are to react to the events, the less snappy the UI feels. Instead of loading all the repo data from Hex on `mount` into each LV process, or throttling or debouncing events, I went with a different approach. I set up an ETS table to own all the data, and then a process that periodically refreshes it with the latest results from Hex. Now we can query the package name and version data directly from ETS, and not worry about LiveView overloading anything while making the UI super fast.
+The last thing to consider is how LiveView works. While typing into the input field every single key input turns into an event on the backend. Although you could build throttling into this, the slower you are to react to the events, the less snappy the UI feels. Instead of loading all the repo data from Hex on `mount` into each LV process, or throttling or debouncing events, I went with a different approach. I set up [an ETS table](/posts/patterns-for-managing-ets-tables) to own all the data, and then a process that periodically refreshes it with the latest results from Hex. Now we can query the package name and version data directly from ETS, and not worry about LiveView overloading anything while making the UI super fast.
 
 ## Generating and Rendering Diffs
 

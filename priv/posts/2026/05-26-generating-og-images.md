@@ -221,4 +221,6 @@ Having nice previews show up in social media and messaging apps when your links 
 
 <img src="/images/generating-og-images.png" alt="An example generated OG image from the snippet above" width="618" height="324" loading="lazy" decoding="async" style="margin-bottom:16px;border:1px solid #efefef;" />
 
-Hope this was helpful and that you’ll try it out! It ended up being a lot more straightforward than I expected to get this set up, although to be fair I then spent tons of time tinkering and tweaking the exact setup. If there’s interest for it I might try to set up a library in the style of `NimblePublisher` that covers basic use cases. Let me know!
+Hope this was helpful and that you’ll try it out! It ended up being a lot more straightforward than I expected to get this set up, although to be fair I then spent tons of time tinkering and tweaking the exact setup.
+
+If you want a smoother path to getting it up and running, take a look at the `NimblePublisher` style library I extracted from this: [OGMate](https://github.com/joladev/og_mate). I'll probably write a separate blog post about it.

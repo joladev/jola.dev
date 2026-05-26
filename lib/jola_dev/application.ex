@@ -13,7 +13,6 @@ defmodule JolaDev.Application do
       JolaDevWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:jola_dev, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: JolaDev.PubSub},
-      {Finch, name: JolaDev.Finch},
       JolaDevWeb.Endpoint
     ]
 

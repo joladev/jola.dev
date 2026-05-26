@@ -11,4 +11,20 @@ defmodule JolaDevWeb.Layouts do
   use JolaDevWeb, :html
 
   embed_templates "layouts/*"
+
+  def tagline do
+    Enum.random([
+      "Flibbertigibetting",
+      "Reticulating splines",
+      "Contemplating",
+      "Innovating",
+      "Architecting",
+      "Optimizing",
+      "Debugging reality",
+      "Compiling thoughts",
+      "Building software with care",
+      "Building software with love",
+      "Building software with passion"
+    ])
+  end
 end

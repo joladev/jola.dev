@@ -294,6 +294,47 @@ defmodule JolaDevWeb.CoreComponents do
     """
   end
 
+  attr :author, :string, required: true
+  attr :class, :string, default: nil
+
+  def author(assigns) do
+    ~H"""
+    <p class={[
+      "mt-16 pt-8 border-t border-border text-muted-foreground",
+      @class
+    ]}>
+      Written by <.link href="/about" class="underline text-foreground">{@author}</.link>.
+      Thoughts on this post? Find me on Bluesky at <.link
+        href="https://bsky.app/profile/jola.dev"
+        class="underline text-foreground"
+      >@jola.dev</.link>.
+    </p>
+    """
+  end
+
+  attr :class, :string, default: nil
+
+  def sponsor(assigns) do
+    ~H"""
+    <aside class={["mt-12", @class]}>
+      <div class="rounded-lg border border-accent/30 bg-accent/5 p-6 md:p-8">
+        <p class="text-lg font-semibold text-foreground mb-2">
+          Like this post?
+        </p>
+        <p class="text-muted-foreground mb-5">
+          Support my writing on GitHub Sponsors and get a monthly newsletter with content from the blog.
+        </p>
+        <.link
+          href="https://github.com/sponsors/joladev"
+          class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+        >
+          Sponsor me on GitHub <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
+        </.link>
+      </div>
+    </aside>
+    """
+  end
+
   @doc """
   Renders the site navigation.
 

@@ -25,16 +25,9 @@
       {raw(@post.body)}
     </div>
 
-    <p class="mt-16 pt-8 border-t border-border">
-      Written by <.link href="/about" class="underline">{@post.author}</.link>. Thoughts on this post? Find me on Bluesky at <.link
-        href="https://bsky.app/profile/jola.dev"
-        class="underline"
-      >@jola.dev</.link>. If you like my writing, consider
-      <.link href="https://github.com/sponsors/joladev" class="underline text-accent">
-        supporting me on Github Sponsors
-      </.link>
-      and get a monthly newsletter with content from my blog.
-    </p>
+    <.author author={@post.author} />
+
+    <.sponsor />
 
     <section :if={@related_posts != []} class="mt-16 pt-8 border-t border-border">
       <.heading level={2} class="text-xl mb-6">Related posts</.heading>

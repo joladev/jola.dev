@@ -312,6 +312,7 @@ defmodule JolaDevWeb.CoreComponents do
     """
   end
 
+  attr :title, :string, required: true
   attr :class, :string, default: nil
 
   def sponsor(assigns) do
@@ -319,7 +320,7 @@ defmodule JolaDevWeb.CoreComponents do
     <aside class={["mt-12", @class]}>
       <div class="rounded-lg border border-accent/30 bg-accent/5 p-6 md:p-8">
         <p class="text-lg font-semibold text-foreground mb-2">
-          Like this post?
+          {assigns.title}
         </p>
         <p class="text-muted-foreground mb-5">
           Support my writing on GitHub Sponsors and get a monthly newsletter with content from the blog.

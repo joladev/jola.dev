@@ -21,7 +21,7 @@ ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 FROM ${BUILDER_IMAGE} as builder
 
 # install build dependencies
-RUN apt-get update -y && apt-get install -y build-essential git nodejs npm fonts-inter \
+RUN apt-get update -y && apt-get install -y build-essential git nodejs npm fontconfig \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
 # prepare build dir
@@ -46,6 +46,10 @@ COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
 COPY priv priv
+
+RUN mkdir -p /usr/share/fonts/truetype/jola-dev \
+  && cp priv/fonts/*.ttf /usr/share/fonts/truetype/jola-dev/ \
+  && fc-cache -f
 
 COPY lib lib
 

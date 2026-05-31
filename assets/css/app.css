@@ -163,7 +163,11 @@
   transition: opacity 0.15s, color 0.15s, background-color 0.15s;
 }
 
-pre:hover .copy-btn {
+.code-wrapper {
+  position: relative;
+}
+
+.code-wrapper:hover .copy-btn {
   opacity: 1;
 }
 
@@ -203,7 +207,10 @@ pre:hover .copy-btn {
   padding: 0;
 }
 .prose pre {
-  @apply bg-transparent px-4 py-4 mb-4 border-y overflow-x-auto;
+  @apply bg-transparent px-4 py-4 border-y overflow-x-auto;
+}
+.prose .code-wrapper {
+  @apply mb-4;
   margin-left: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
   margin-right: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
 }

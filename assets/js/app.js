@@ -34,9 +34,12 @@ function initializeMobileMenu() {
 // Copy button for code blocks
 function initializeCodeCopy() {
   document.querySelectorAll('pre.lumis').forEach(pre => {
-    if (pre.querySelector('.copy-btn')) return;
+    if (pre.parentElement.classList.contains('code-wrapper')) return;
 
-    pre.style.position = 'relative';
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-wrapper';
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
 
     const btn = document.createElement('button');
     btn.className = 'copy-btn';
@@ -55,7 +58,7 @@ function initializeCodeCopy() {
       });
     });
 
-    pre.appendChild(btn);
+    wrapper.appendChild(btn);
   });
 }
 

@@ -31,7 +31,9 @@ defmodule JolaDev.OGImage.Renderer do
   end
 
   defp build_canvas(title, description) do
-    Image.new!(@width, @height, color: @background)
+    image = Image.new!(@width, @height, color: @background)
+
+    image
     |> draw_grid()
     |> place_logo()
     |> render_wordmark()

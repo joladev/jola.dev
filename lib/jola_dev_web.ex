@@ -86,8 +86,8 @@ defmodule JolaDevWeb do
       use Gettext, backend: JolaDevWeb.Gettext
 
       # Shortcut for generating JS commands
-      alias Phoenix.LiveView.JS
       alias JolaDevWeb.Layouts
+      alias Phoenix.LiveView.JS
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())

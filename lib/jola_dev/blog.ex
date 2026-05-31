@@ -9,31 +9,7 @@ defmodule JolaDev.Blog do
     build: JolaDev.Blog.Post,
     from: Application.app_dir(:jola_dev, "priv/posts/**/*.md"),
     as: :posts,
-    html_converter: JolaDev.Blog.MarkdownConverter,
-    highlighters: [:makeup_elixir],
-    earmark_options:
-      Earmark.Options.make_options!(
-        registered_processors: [
-          Earmark.TagSpecificProcessors.new([
-            {"a", &Earmark.AstTools.merge_atts_in_node(&1, class: "underline")},
-            {"h1", &Earmark.AstTools.merge_atts_in_node(&1, class: "text-3xl py-4")},
-            {"h2", &Earmark.AstTools.merge_atts_in_node(&1, class: "text-2xl py-4")},
-            {"h3", &Earmark.AstTools.merge_atts_in_node(&1, class: "text-xl py-4")},
-            {"p", &Earmark.AstTools.merge_atts_in_node(&1, class: "text-md pb-4")},
-            {"code", &Earmark.AstTools.merge_atts_in_node(&1, class: "")},
-            {"pre",
-             &Earmark.AstTools.merge_atts_in_node(&1,
-               class: "mb-4 p-1 py-4 overflow-x-scroll border-y"
-             )},
-            {"ol", &Earmark.AstTools.merge_atts_in_node(&1, class: "list-decimal")},
-            {"ul", &Earmark.AstTools.merge_atts_in_node(&1, class: "list-disc pb-4")},
-            {"blockquote",
-             &Earmark.AstTools.merge_atts_in_node(&1,
-               class: "pl-4 border-l-2 mb-4 border-purple-700"
-             )}
-          ])
-        ]
-      )
+    html_converter: JolaDev.Blog.MarkdownConverter
 
   # The @posts variable is first defined by NimblePublisher.
   # Let's further modify it by sorting all posts by descending date.

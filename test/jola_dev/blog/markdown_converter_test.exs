@@ -5,9 +5,8 @@ defmodule JolaDev.Blog.MarkdownConverterTest do
   describe "convert/4" do
     test "converts markdown to HTML" do
       body = "# Hello World\n\nThis is a paragraph."
-      opts = [earmark_options: %Earmark.Options{}]
 
-      html = MarkdownConverter.convert("test.md", body, %{}, opts)
+      html = MarkdownConverter.convert("test.md", body, %{}, [])
 
       assert html =~ "<h1>"
       assert html =~ "Hello World"
@@ -15,7 +14,7 @@ defmodule JolaDev.Blog.MarkdownConverterTest do
       assert html =~ "This is a paragraph."
     end
 
-    test "highlights Elixir code blocks" do
+    test "highlights Elixir code blocks with linked classes" do
       body = """
       Here is some code:
 
@@ -26,44 +25,34 @@ defmodule JolaDev.Blog.MarkdownConverterTest do
       ```
       """
 
-      opts = [earmark_options: %Earmark.Options{}]
+      html = MarkdownConverter.convert("test.md", body, %{}, [])
 
-      html = MarkdownConverter.convert("test.md", body, %{}, opts)
-
-      assert html =~ ~s(<code class="makeup ok">)
+      assert html =~ ~s(<pre class="lumis">)
+      assert html =~ ~s(class="language-elixir")
       assert html =~ "defmodule"
-      assert html =~ "<span"
+      assert html =~ "<span "
     end
 
-    test "handles inline code" do
+    test "leaves inline code unhighlighted" do
       body = "Use `mix test` to run tests."
-      opts = [earmark_options: %Earmark.Options{}]
 
-      html = MarkdownConverter.convert("test.md", body, %{}, opts)
+      html = MarkdownConverter.convert("test.md", body, %{}, [])
 
-      assert html =~ "<code"
-      # Inline code gets highlighted too
-      assert html =~ ~s(<span class="n">mix</span>)
-      assert html =~ ~s(<span class="n">test</span>)
+      assert html =~ "<code>mix test</code>"
+      refute html =~ "<pre"
     end
 
-    test "highlights code with HTML entities" do
+    test "highlights code containing HTML-entity-like text" do
       body = """
       ```elixir
       1 &lt; 2 &amp;&amp; 3 &gt; 2
       ```
       """
 
-      opts = [earmark_options: %Earmark.Options{}]
+      html = MarkdownConverter.convert("test.md", body, %{}, [])
 
-      html = MarkdownConverter.convert("test.md", body, %{}, opts)
-
-      # The code should be properly highlighted with makeup
-      assert html =~ ~s(<code class="makeup ok">)
-      # HTML entities are parsed as Elixir syntax
-      # &lt; becomes & + lt; which are highlighted separately
-      assert html =~ ~s(<span class="o">&amp;</span>)
-      assert html =~ ~s(<span class="n">lt</span>)
+      assert html =~ ~s(<pre class="lumis">)
+      assert html =~ "<span "
     end
   end
 end

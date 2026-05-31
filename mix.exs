@@ -67,14 +67,13 @@ defmodule JolaDev.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       {:nimble_publisher, "~> 1.0"},
-      {:makeup_elixir, ">= 0.0.0"},
       {:recon, "~> 2.5"},
       {:sentry, "~> 13.0"},
-      {:tidewave, "~> 0.5", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:image, "~> 0.67"},
       {:logger_json, "~> 7.0"},
-      {:og_mate, "~> 0.1"}
+      {:og_mate, "~> 0.1"},
+      {:mdex, "~> 0.12"}
     ]
   end
 

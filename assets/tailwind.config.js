@@ -14,7 +14,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Hanken Grotesk', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['Maple Mono', 'ui-monospace', 'monospace'],
+        heading: ['Schibsted Grotesk', 'sans-serif'],
       },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',

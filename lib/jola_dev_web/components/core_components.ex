@@ -363,7 +363,7 @@ defmodule JolaDevWeb.CoreComponents do
           <div class="flex items-center space-x-8">
             <.link
               href="/"
-              class="flex items-center gap-2 text-xl font-semibold text-foreground hover:opacity-80 transition-opacity"
+              class="flex items-center gap-2 text-xl font-semibold text-foreground hover:opacity-80 transition-opacity font-heading"
             >
               <.icon name="lucide-terminal" class="w-6 h-6 text-accent" /> jola.dev
             </.link>

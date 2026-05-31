@@ -31,23 +31,14 @@ defmodule JolaDev.OGImage.Renderer do
   end
 
   defp build_canvas(title, description) do
-    canvas = Image.new!(@width, @height, color: @background)
+    image = Image.new!(@width, @height, color: @background)
 
-    canvas
+    image
     |> draw_grid()
     |> place_logo()
-    |> place_wordmark()
-    |> place_text(title,
-      font_size: @title_size,
-      font_weight: :bold,
-      color: @foreground,
-      y_bottom: @title_bottom_y
-    )
-    |> place_text(description,
-      font_size: @description_size,
-      color: @muted,
-      y: @description_y
-    )
+    |> render_wordmark()
+    |> render_title(title)
+    |> render_description(description)
   end
 
   defp draw_grid(image) do
@@ -74,41 +65,41 @@ defmodule JolaDev.OGImage.Renderer do
     Image.compose!(canvas, resized, x: @padding, y: @padding)
   end
 
-  defp place_wordmark(canvas) do
+  defp render_wordmark(canvas) do
     {:ok, text} =
       Image.Text.text("jola.dev",
-        font: "Inter",
+        font: "Schibsted Grotesk",
         font_size: @wordmark_size,
         font_weight: :bold,
         text_fill_color: @foreground
       )
 
-    y_offset = @padding + div(@logo_size - Image.height(text), 2)
-    Image.compose!(canvas, text, x: @padding + @logo_size + @logo_gap, y: y_offset)
+    y = @padding + div(@logo_size - Image.height(text), 2)
+    Image.compose!(canvas, text, x: @padding + @logo_size + @logo_gap, y: y)
   end
 
-  defp place_text(canvas, content, opts) do
-    base = [
-      font: "Inter",
-      font_size: Keyword.fetch!(opts, :font_size),
-      text_fill_color: Keyword.fetch!(opts, :color),
-      width: @width - 2 * @padding
-    ]
+  defp render_title(canvas, title) do
+    {:ok, text} =
+      Image.Text.text(title,
+        font: "Schibsted Grotesk",
+        font_size: @title_size,
+        font_weight: :bold,
+        text_fill_color: @foreground,
+        width: @width - 2 * @padding
+      )
 
-    text_opts =
-      case Keyword.get(opts, :font_weight) do
-        nil -> base
-        weight -> Keyword.put(base, :font_weight, weight)
-      end
+    Image.compose!(canvas, text, x: @padding, y: @title_bottom_y - Image.height(text))
+  end
 
-    {:ok, text} = Image.Text.text(content, text_opts)
+  defp render_description(canvas, description) do
+    {:ok, text} =
+      Image.Text.text(description,
+        font: "Hanken Grotesk",
+        font_size: @description_size,
+        text_fill_color: @muted,
+        width: @width - 2 * @padding
+      )
 
-    y =
-      case Keyword.fetch(opts, :y) do
-        {:ok, y} -> y
-        :error -> Keyword.fetch!(opts, :y_bottom) - Image.height(text)
-      end
-
-    Image.compose!(canvas, text, x: @padding, y: y)
+    Image.compose!(canvas, text, x: @padding, y: @description_y)
   end
 end

@@ -286,7 +286,7 @@ defmodule JolaDevWeb.CoreComponents do
       @variant == :default && "",
       @variant == :bordered && "border border-border",
       @variant == :interactive && "border border-border cursor-pointer transition-all",
-      @hover && "hover:bg-surface/50 hover:-translate-y-0.5 transition-all duration-200",
+      @hover && "hover:bg-surface/50",
       @class
     ]}>
       {render_slot(@inner_block)}

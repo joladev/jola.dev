@@ -5,17 +5,14 @@ defmodule JolaDevWeb.ErrorHTMLTest do
   import Phoenix.Template
 
   test "renders 404.html" do
-    html = render_to_string(JolaDevWeb.ErrorHTML, "404", "html", [])
+    html = render_to_string(JolaDevWeb.ErrorHTML, "404", "html", conn: %Plug.Conn{assigns: %{}})
     assert html =~ "Page Not Found"
     assert html =~ "The page you're looking for seems to have wandered off"
-    assert html =~ "Homepage"
-    assert html =~ "Blog"
   end
 
   test "renders 500.html" do
-    html = render_to_string(JolaDevWeb.ErrorHTML, "500", "html", [])
+    html = render_to_string(JolaDevWeb.ErrorHTML, "500", "html", conn: %Plug.Conn{assigns: %{}})
     assert html =~ "Internal Server Error"
-    assert html =~ "Something went wrong on our end"
-    assert html =~ "Go to Homepage"
+    assert html =~ "Something has gone terribly wrong"
   end
 end

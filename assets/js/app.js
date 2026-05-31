@@ -33,7 +33,7 @@ function initializeMobileMenu() {
 
 // Copy button for code blocks
 function initializeCodeCopy() {
-  document.querySelectorAll('pre:has(code.makeup)').forEach(pre => {
+  document.querySelectorAll('pre.lumis').forEach(pre => {
     if (pre.querySelector('.copy-btn')) return;
 
     pre.style.position = 'relative';

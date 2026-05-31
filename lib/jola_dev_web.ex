@@ -39,8 +39,7 @@ defmodule JolaDevWeb do
   def controller do
     quote do
       use Phoenix.Controller,
-        formats: [:html, :json, :xml],
-        layouts: [html: JolaDevWeb.Layouts]
+        formats: [:html, :json, :xml]
 
       import Plug.Conn
       use Gettext, backend: JolaDevWeb.Gettext
@@ -51,8 +50,7 @@ defmodule JolaDevWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {JolaDevWeb.Layouts, :app}
+      use Phoenix.LiveView
 
       unquote(html_helpers())
     end
@@ -89,6 +87,7 @@ defmodule JolaDevWeb do
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
+      alias JolaDevWeb.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())

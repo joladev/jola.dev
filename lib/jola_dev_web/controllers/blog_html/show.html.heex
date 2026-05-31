@@ -1,48 +1,50 @@
-<article class="py-16">
-  <div class="max-w-prose mx-auto px-4 md:px-0">
-    <header class="mb-12">
-      <.heading level={1} class="mb-4">{@post.title}</.heading>
+<Layouts.app current_path={@conn.request_path}>
+  <article class="py-16">
+    <div class="max-w-prose mx-auto px-4 md:px-0">
+      <header class="mb-12">
+        <.heading level={1} class="mb-4">{@post.title}</.heading>
 
-      <div class="flex items-center gap-6 text-sm text-muted-foreground">
-        <div class="flex items-center gap-1.5">
-          <.icon name="hero-calendar" class="w-4 h-4" />
-          <time>{Calendar.strftime(@post.date, "%B %-d, %Y")}</time>
+        <div class="flex items-center gap-6 text-sm text-muted-foreground">
+          <div class="flex items-center gap-1.5">
+            <.icon name="hero-calendar" class="w-4 h-4" />
+            <time>{Calendar.strftime(@post.date, "%B %-d, %Y")}</time>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <.icon name="hero-clock" class="w-4 h-4" />
+            <span>{JolaDevWeb.BlogHelpers.estimate_reading_time(@post.body)} min read</span>
+          </div>
         </div>
-        <div class="flex items-center gap-1.5">
-          <.icon name="hero-clock" class="w-4 h-4" />
-          <span>{JolaDevWeb.BlogHelpers.estimate_reading_time(@post.body)} min read</span>
+
+        <div :if={@post.tags != []} class="flex flex-wrap gap-2 mt-4">
+          <.link :for={tag <- @post.tags} navigate={~p"/posts/tag/#{tag}"}>
+            <.badge variant={:muted}>{tag}</.badge>
+          </.link>
         </div>
+      </header>
+
+      <div class="prose prose-lg">
+        {raw(@post.body)}
       </div>
 
-      <div :if={@post.tags != []} class="flex flex-wrap gap-2 mt-4">
-        <.link :for={tag <- @post.tags} navigate={~p"/posts/tag/#{tag}"}>
-          <.badge variant={:muted}>{tag}</.badge>
+      <.author author={@post.author} />
+
+      <.sponsor title="Like this post?" />
+
+      <section :if={@related_posts != []} class="mt-16 pt-8 border-t border-border">
+        <.heading level={2} class="text-xl mb-6">Related posts</.heading>
+        <div class="flex flex-col gap-6">
+          <.blog_card :for={post <- @related_posts} post={post} />
+        </div>
+      </section>
+
+      <footer class="mt-16 pt-8 border-t border-border">
+        <.link
+          href="/posts"
+          class="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <.icon name="hero-arrow-left" class="w-4 h-4 mr-2" /> Back to all posts
         </.link>
-      </div>
-    </header>
-
-    <div class="prose prose-lg">
-      {raw(@post.body)}
+      </footer>
     </div>
-
-    <.author author={@post.author} />
-
-    <.sponsor title="Like this post?" />
-
-    <section :if={@related_posts != []} class="mt-16 pt-8 border-t border-border">
-      <.heading level={2} class="text-xl mb-6">Related posts</.heading>
-      <div class="flex flex-col gap-6">
-        <.blog_card :for={post <- @related_posts} post={post} />
-      </div>
-    </section>
-
-    <footer class="mt-16 pt-8 border-t border-border">
-      <.link
-        href="/posts"
-        class="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-      >
-        <.icon name="hero-arrow-left" class="w-4 h-4 mr-2" /> Back to all posts
-      </.link>
-    </footer>
-  </div>
-</article>
+  </article>
+</Layouts.app>

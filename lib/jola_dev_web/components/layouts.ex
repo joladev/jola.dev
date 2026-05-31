@@ -12,6 +12,37 @@ defmodule JolaDevWeb.Layouts do
 
   embed_templates "layouts/*"
 
+  attr :current_path, :string, default: nil
+  slot :inner_block, required: true
+
+  def app(assigns) do
+    ~H"""
+    <div class="min-h-screen flex flex-col">
+      <header class="border-b border-border">
+        <.navigation social_links>
+          <:link href="/" active={@current_path == "/"}>Home</:link>
+          <:link href="/about" active={@current_path == "/about"}>About</:link>
+          <:link
+            href="/posts"
+            active={is_binary(@current_path) and String.starts_with?(@current_path, "/posts")}
+          >
+            Blog
+          </:link>
+          <:link href="/newsletter" active={@current_path == "/newsletter"}>Newsletter</:link>
+          <:link href="/projects" active={@current_path == "/projects"}>Projects</:link>
+          <:link href="/talks" active={@current_path == "/talks"}>Talks</:link>
+        </.navigation>
+      </header>
+
+      <main class="flex-grow">
+        {render_slot(@inner_block)}
+      </main>
+
+      <.footer tagline={tagline()} />
+    </div>
+    """
+  end
+
   def tagline do
     Enum.random([
       "Flibbertigibetting",

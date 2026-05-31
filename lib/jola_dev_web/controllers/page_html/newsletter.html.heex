@@ -1,43 +1,45 @@
-<section class="py-16">
-  <div class="max-w-prose mx-auto px-6 md:px-8">
-    <header class="mb-12 text-center">
-      <.heading level={1}>Newsletter</.heading>
-    </header>
+<Layouts.app current_path={@conn.request_path}>
+  <section class="py-16">
+    <div class="max-w-prose mx-auto px-6 md:px-8">
+      <header class="mb-12 text-center">
+        <.heading level={1}>Newsletter</.heading>
+      </header>
 
-    <div class="space-y-6">
-      <.text variant={:lead} class="text-justify">
-        Get a monthly newsletter with content from the blog, delivered to your inbox.
-      </.text>
-    </div>
+      <div class="space-y-6">
+        <.text variant={:lead} class="text-justify">
+          Get a monthly newsletter with content from the blog, delivered to your inbox.
+        </.text>
+      </div>
 
-    <div class="space-y-6">
-      <form
-        action="https://buttondown.com/api/emails/embed-subscribe/joladev"
-        method="post"
-        class="embeddable-buttondown-form flex flex-col gap-2 w-[300px] mx-auto mt-16"
-      >
-        <label for="bd-email">Enter your email</label>
-        <input
-          type="email"
-          name="email"
-          id="bd-email"
-          class="h-10 rounded-md border border-border text-black px-2 selection:bg-accent"
-        />
-        <input
-          type="submit"
-          value="Subscribe"
-          class="bg-accent text-white px-4 py-2 rounded-md cursor-pointer"
-        />
-        <p class="mx-auto pt-4">
-          <.link
-            href="https://buttondown.com/refer/joladev"
-            target="_blank"
-            class="underline text-xs"
-          >
-            Powered by Buttondown.
-          </.link>
-        </p>
-      </form>
+      <div class="space-y-6">
+        <form
+          action="https://buttondown.com/api/emails/embed-subscribe/joladev"
+          method="post"
+          class="embeddable-buttondown-form flex flex-col gap-2 w-[300px] mx-auto mt-16"
+        >
+          <label for="bd-email">Enter your email</label>
+          <input
+            type="email"
+            name="email"
+            id="bd-email"
+            class="h-10 rounded-md border border-border text-black px-2 selection:bg-accent"
+          />
+          <input
+            type="submit"
+            value="Subscribe"
+            class="bg-accent text-white px-4 py-2 rounded-md cursor-pointer"
+          />
+          <p class="mx-auto pt-4">
+            <.link
+              href="https://buttondown.com/refer/joladev"
+              target="_blank"
+              class="underline text-xs"
+            >
+              Powered by Buttondown.
+            </.link>
+          </p>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</Layouts.app>

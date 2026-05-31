@@ -1,94 +1,96 @@
-<section class="py-16">
-  <div class="max-w-content mx-auto px-6 md:px-8">
-    <header class="mb-12 text-center">
-      <.heading level={1}>Projects</.heading>
-      <.text variant={:lead} class="mt-4">
-        Open source contributions and side projects I'm proud of
-      </.text>
-    </header>
+<Layouts.app current_path={@conn.request_path}>
+  <section class="py-16">
+    <div class="max-w-content mx-auto px-6 md:px-8">
+      <header class="mb-12 text-center">
+        <.heading level={1}>Projects</.heading>
+        <.text variant={:lead} class="mt-4">
+          Open source contributions and side projects I'm proud of
+        </.text>
+      </header>
 
-    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <.project_card
-        title="OGMate"
-        description="A library for generating Open Graph images for your website, in Elixir."
-        tags={["Elixir", "Open Source"]}
-        github_link="https://github.com/joladev/og_mate"
-        external
-      />
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <.project_card
+          title="OGMate"
+          description="A library for generating Open Graph images for your website, in Elixir."
+          tags={["Elixir", "Open Source"]}
+          github_link="https://github.com/joladev/og_mate"
+          external
+        />
 
-      <.project_card
-        title="HRW"
-        description="A library for rendezvous hashing, also known as highest random weight, in Elixir."
-        tags={["Elixir", "Open Source"]}
-        github_link="https://github.com/joladev/hrw"
-        external
-      />
+        <.project_card
+          title="HRW"
+          description="A library for rendezvous hashing, also known as highest random weight, in Elixir."
+          tags={["Elixir", "Open Source"]}
+          github_link="https://github.com/joladev/hrw"
+          external
+        />
 
-      <.project_card
-        title="bunnyx"
-        description="A client library for the bunny.net API, in Elixir."
-        tags={["Elixir", "Open Source"]}
-        github_link="https://github.com/joladev/bunnyx"
-        external
-      />
+        <.project_card
+          title="bunnyx"
+          description="A client library for the bunny.net API, in Elixir."
+          tags={["Elixir", "Open Source"]}
+          github_link="https://github.com/joladev/bunnyx"
+          external
+        />
 
-      <.project_card
-        title="Larm"
-        description="Uptime monitoring with full request traces, multi-location verification, and status pages. Hosted in Europe.."
-        tags={["Elixir", "Uptime monitoring", "EU", "Europe"]}
-        link="https://larm.dev/"
-        external
-      />
+        <.project_card
+          title="Larm"
+          description="Uptime monitoring with full request traces, multi-location verification, and status pages. Hosted in Europe.."
+          tags={["Elixir", "Uptime monitoring", "EU", "Europe"]}
+          link="https://larm.dev/"
+          external
+        />
 
-      <.project_card
-        title="ElixirEvents"
-        description="The Elixir Event calendar, find conferences and meetups!"
-        tags={["Elixir", "Community", "Events", "Open Source"]}
-        link="https://elixirevents.net/"
-        github_link="https://github.com/joladev/elixir_events"
-        external
-      />
+        <.project_card
+          title="ElixirEvents"
+          description="The Elixir Event calendar, find conferences and meetups!"
+          tags={["Elixir", "Community", "Events", "Open Source"]}
+          link="https://elixirevents.net/"
+          github_link="https://github.com/joladev/elixir_events"
+          external
+        />
 
-      <.project_card
-        title="jola.dev"
-        description="This website, built with Phoenix, NimblePublisher, and Tailwind CSS."
-        tags={["Elixir", "Phoenix", "Tailwind CSS", "Open Source"]}
-        github_link="https://github.com/joladev/jola.dev"
-        external
-      />
+        <.project_card
+          title="jola.dev"
+          description="This website, built with Phoenix, NimblePublisher, and Tailwind CSS."
+          tags={["Elixir", "Phoenix", "Tailwind CSS", "Open Source"]}
+          github_link="https://github.com/joladev/jola.dev"
+          external
+        />
 
-      <.project_card
-        title="darkdown.app"
-        description="Gorgeous notes, nothing else. An online markdown editor with dark mode, easy sharing, and AI integration."
-        tags={["React", "AI", "Markdown"]}
-        link="https://darkdown.app"
-        external
-      />
+        <.project_card
+          title="darkdown.app"
+          description="Gorgeous notes, nothing else. An online markdown editor with dark mode, easy sharing, and AI integration."
+          tags={["React", "AI", "Markdown"]}
+          link="https://darkdown.app"
+          external
+        />
 
-      <.project_card
-        title="devstats.io"
-        description="Github App integration that pulls down repo contribution statistics and visualizes it, to help teams improve."
-        tags={["Elixir", "Phoenix", "Github"]}
-        link="https://devstats.io"
-        external
-      />
+        <.project_card
+          title="devstats.io"
+          description="Github App integration that pulls down repo contribution statistics and visualizes it, to help teams improve."
+          tags={["Elixir", "Phoenix", "Github"]}
+          link="https://devstats.io"
+          external
+        />
 
-      <.project_card
-        title="DispatchKit"
-        description="Effortless Event Routing for Modern Engineering Teams.  Send events with a single HTTP POST. Route them anywhere."
-        tags={["Elixir", "Phoenix", "Events"]}
-        link="https://dispatchkit.app/"
-        external
-      />
+        <.project_card
+          title="DispatchKit"
+          description="Effortless Event Routing for Modern Engineering Teams.  Send events with a single HTTP POST. Route them anywhere."
+          tags={["Elixir", "Phoenix", "Events"]}
+          link="https://dispatchkit.app/"
+          external
+        />
 
-      <.project_card
-        title="HexDiff"
-        description="Generate diffs of packages hosted on hex.pm and visualize and share. Unlike other diffs, these show what code was actually uploaded on hex.pm."
-        tags={["Elixir", "Phoenix", "Open Source"]}
-        link="https://diff.hex.pm/"
-        github_link="https://github.com/hexpm/diff/"
-        external
-      />
+        <.project_card
+          title="HexDiff"
+          description="Generate diffs of packages hosted on hex.pm and visualize and share. Unlike other diffs, these show what code was actually uploaded on hex.pm."
+          tags={["Elixir", "Phoenix", "Open Source"]}
+          link="https://diff.hex.pm/"
+          github_link="https://github.com/hexpm/diff/"
+          external
+        />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</Layouts.app>

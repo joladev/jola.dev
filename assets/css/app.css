@@ -181,7 +181,7 @@ pre:hover .copy-btn {
 .prose h2 { @apply text-2xl py-4; }
 .prose h3 { @apply text-xl py-4; }
 .prose p {
-  @apply text-foreground pb-4;
+  @apply text-foreground pb-4 text-lg;
 }
 .prose strong {
   @apply text-foreground font-semibold;

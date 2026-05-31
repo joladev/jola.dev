@@ -221,4 +221,4 @@ Having nice previews show up in social media and messaging apps when your links 
 
 Hope this was helpful and that you’ll try it out! It ended up being a lot more straightforward than I expected to get this set up, although to be fair I then spent tons of time tinkering and tweaking the exact setup.
 
-If you want a smoother path to getting it up and running, take a look at the `NimblePublisher` style library I extracted from this: [OGMate](https://github.com/joladev/og_mate). This blog is currently using OGMate! I'll probably write a separate blog post about it.
+If you want a smoother path to getting it up and running, take a look at the `NimblePublisher` style library I extracted from this: [OGMate](https://github.com/joladev/og_mate). This blog is currently using OGMate! For another take on OG images in Elixir, there's also [Peter Ullrich's OGI](https://github.com/PJUllrich/ogi).

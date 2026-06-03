@@ -73,7 +73,8 @@ defmodule JolaDev.MixProject do
       {:image, "~> 0.67"},
       {:logger_json, "~> 7.0"},
       {:og_mate, "~> 0.1"},
-      {:mdex, "~> 0.12"}
+      {:mdex, "~> 0.12"},
+      {:req, "~> 0.5.18"}
     ]
   end
 

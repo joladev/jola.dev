@@ -61,7 +61,7 @@
       content={JolaDevWeb.Helpers.OGImage.url_for(@conn)}
     />
     <meta name="twitter:image:alt" content={@conn.assigns[:page_title] || "jola.dev"} />
-    <meta name="fediverse:creator" content="@joladev@mastodon.social">
+    <meta name="fediverse:creator" content="@joladev@mastodon.social" />
     <%= unless @conn.status && @conn.status >= 400 do %>
       <link rel="canonical" href={JolaDevWeb.Helpers.CanonicalUrl.canonical_url(@conn)} />
     <% end %>
@@ -103,7 +103,7 @@
     </script>
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link href="https://mastodon.social/@joladev" rel="me">
+    <link href="https://mastodon.social/@joladev" rel="me" />
     <%= for schema <- JolaDevWeb.Helpers.SEO.json_ld(@conn) do %>
       <script type="application/ld+json">
         <%= raw(Jason.encode!(schema)) %>

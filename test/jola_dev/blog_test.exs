@@ -38,6 +38,12 @@ defmodule JolaDev.BlogTest do
     test "returns nil when post id does not exist" do
       assert Blog.find_by_id("non-existent-id") == nil
     end
+
+    test "text_content is markdown, not converted HTML" do
+      post = JolaDev.Blog.find_by_id("dropping-cloudflare")
+      assert post.text_content =~ "## "
+      refute post.text_content =~ "<p>"
+    end
   end
 
   describe "titles/0" do

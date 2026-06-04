@@ -8,9 +8,9 @@
 
 [standard.site](https://standard.site) is an AT Protocol schema for long-form publishing that lets blogs expose their posts as records, so readers, indexers, and Bluesky can find and render them across the network. There’s a lot of stuff being built on top of this right now, but you can already start publishing things. Publishing your blog posts has the cute little upside of your Bluesky link previews getting a special CTA, because Bluesky automatically pulls the information from standard.site.
 
-<img src="/images/bluesky-standard-site-screenshot.png" alt="A screenshot showing the special CTA footer in Bluesky for page previews from standard.site" width="618" height="324" loading="lazy" decoding="async" />
+<img src="/images/bluesky-standard-site-screenshot.png" alt="A screenshot showing the special CTA footer in Bluesky for page previews from standard.site" width="400" height="324" loading="lazy" decoding="async" style="margin:auto;padding-bottom:16px;padding-top:16px" />
 
-On top of that, once you’ve published your records, you can view them in atproto explorer, in pdsls.dev, and they’ll automatically be aggregated in several places like docs.surf. To read more about why federated content is cool, Mat Marquis goes into more detail here.
+On top of that, once you’ve published your records, you can view them in [atproto explorer](https://atproto.at/uri/at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.document), in [pdsls.dev](https://pdsls.dev/at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.document/dropping-cloudflare), and they’ll automatically be aggregated in several places like [docs.surf](https://docs.surf/). To read more about why federated content is cool, Mat Marquis goes into more detail [here](https://wil.to/posts/standard-site/).
 
 I wanted to get something up and running without too much complexity, so I went for an approach where I manually publish my posts using a `mix` command. So the end result we’re aiming for is being able to run something like `mix atproto.publish <slug>`, and have that record point at the live post on this website.
 
@@ -20,7 +20,7 @@ Okay, let’s look at some code!
 
 I spent a day exploring this and I ended up with a basic `atproto` client and some simple niceties. I made a deliberate effort not to DRY things up too much, I’m very much in the camp of “most abstractions are premature”. I’d rather feel the pain a little bit before I get too clever.
 
-To be able to publish our records we need a PDS, a Personal Data Server. You’re free to set up your own, it’s basically your home in the `atproto` universe, where your data lives. You’ll also need an account. I’ll be using my main Bluesky account, `jola.dev`, and the main Bluesky API endpoint `https://bsky.social/xrpc`. Armed with an identifier and a password, we’re ready to go.
+To be able to publish our records we need a PDS, a Personal Data Server. You’re free to set up your own, it’s basically your home in the `atproto` universe, where your data lives. You’ll also need an account. I’ll be using my [main Bluesky account](https://bsky.app/profile/jola.dev), `jola.dev`, and the main Bluesky API endpoint `https://bsky.social/xrpc`. Armed with an identifier and a password, we’re ready to go.
 
 We’re going to be implementing an `atproto` client with 4 different operations: `login`, `resolve_handle`, `create_publication`, and `publish_document`.
 
@@ -285,7 +285,7 @@ iex(2)> {:ok, result} = Client.create_publication(session, Atproto.publication()
  }}
 ```
 
-That’s it. You can see the record live in the atproto explorer.
+That’s it. You can see the [record live in the atproto explorer](https://atproto.at/uri/at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.publication/self).
 
 But documents is more a repetitive task, so this is where the `mix` task comes in.
 
@@ -319,12 +319,12 @@ Let’s try it out.
 Published generating-og-images as at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.document/generating-og-images
 ```
 
-And the record is live!
+[And the record is live!](https://atproto.at/uri/at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.document/generating-og-images#tree)
 
 ## Do it automatically?
 
 I hope that’s been useful and at least vaguely interesting. I’m very curious to see where all this will lead. I doubt you’ll be able to just copy paste everything that I have here and that it’ll just work for you, although I guess if you’ve set up `NimblePublisher` the same way I have, it might! But it should provide the blueprint for you to set things up for yourself.
 
-In the post I’ve cut some corners, it’s already a lot of code. One of those corners is that `atproto` documents support `textContent`, so you can publish the content of your post, meaning the whole thing lives fully on the PDS, which is cool. The full version is available on Github.
+In the post I’ve cut some corners, it’s already a lot of code. One of those corners is that `atproto` documents support `textContent`, so you can publish the content of your post, meaning the whole thing lives fully on the PDS, which is cool. The full version is available on [Github](https://github.com/joladev/jola.dev/blob/main/lib/jola_dev/atproto.ex).
 
 I know I said I don’t want to get clever about this, but I have been thinking about approaches to automatically publishing new blog posts. I might want to do something where, at deploy time I compare what’s published and what’s not, and then do some reconciliation? We’ll see where I end up! Thanks for reading!

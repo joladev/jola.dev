@@ -129,7 +129,10 @@ defmodule JolaDev.Atproto.Client do
     end
   end
 
-  defp to_rfc3339(nil), do: nil
-  defp to_rfc3339(%Date{} = date), do: to_rfc3339(DateTime.new!(date, ~T[00:00:00], "Etc/UTC"))
-  defp to_rfc3339(%DateTime{} = dt), do: DateTime.to_iso8601(dt)
+  # atproto expects `rfc3339`, Elixir has `iso8601` which is compatible.
+  defp to_rfc3339(%Date{} = date) do
+    date
+    |> DateTime.new!(~T[00:00:00], "Etc/UTC")
+    |> DateTime.to_iso8601()
+  end
 end

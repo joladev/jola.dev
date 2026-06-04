@@ -12,7 +12,7 @@
 
 On top of that, once you’ve published your records, you can view them in [atproto explorer](https://atproto.at/uri/at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.document), in [pdsls.dev](https://pdsls.dev/at://did:plc:bvraa6gajy4tfr3eh2sisdkr/site.standard.document/dropping-cloudflare), and they’ll automatically be aggregated in several places like [docs.surf](https://docs.surf/). To read more about why federated content is cool, Mat Marquis goes into more detail [here](https://wil.to/posts/standard-site/).
 
-I wanted to get something up and running without too much complexity, so I went for an approach where I manually publish my posts using a `mix` command. So the end result we’re aiming for is being able to run something like `mix atproto.publish <slug>`, and have that record point at the live post on this website.
+You can use [pdsls.dev](https://pdsls.dev/), signing in to your account, to manually create records. But it'd be more fun to do it in Elixir and start working towards automation! I wanted to get something up and running without too much complexity, so I went for an approach where I manually publish my posts using a `mix` command. So the end result we’re aiming for is being able to run something like `mix atproto.publish <slug>`, and have that record point at the live post on this website.
 
 Okay, let’s look at some code!
 

@@ -30,6 +30,13 @@ defmodule JolaDevWeb.Router do
   pipeline :rss do
     plug :accepts, ["xml"]
     plug :put_layout, false
+    plug :put_secure_browser_headers, @secure_headers
+    plug :put_cdn_cache_header
+  end
+
+  pipeline :resource do
+    plug :put_secure_browser_headers, @secure_headers
+    plug :put_cdn_cache_header
   end
 
   scope "/", JolaDevWeb do
@@ -54,8 +61,11 @@ defmodule JolaDevWeb.Router do
   end
 
   scope "/", JolaDevWeb do
+    pipe_through :resource
+
     get "/llms.txt", LlmsController, :index
     get "/llms-full.txt", LlmsController, :full
+    get "/.well-known/site.standard.publication", WellKnownController, :publication
   end
 
   # Other scopes may use custom stacks.

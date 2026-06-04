@@ -9,7 +9,8 @@ defmodule JolaDev.Blog do
     build: JolaDev.Blog.Post,
     from: Application.app_dir(:jola_dev, "priv/posts/**/*.md"),
     as: :posts,
-    html_converter: JolaDev.Blog.MarkdownConverter
+    html_converter: JolaDev.Blog.MarkdownConverter,
+    parser: JolaDev.Blog.Parser
 
   # The @posts variable is first defined by NimblePublisher.
   # Let's further modify it by sorting all posts by descending date.

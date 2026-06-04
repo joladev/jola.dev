@@ -27,10 +27,7 @@ defmodule JolaDev.Blog.Post do
     date = Date.from_iso8601!("#{year}-#{month}-#{day}")
     last_modified = parse_last_modified(Map.get(attrs, :last_modified), date)
 
-    attrs =
-      attrs
-      |> Map.put(:last_modified, last_modified)
-      |> Map.put(:text_content, parse_text_content(body))
+    attrs = Map.put(attrs, :last_modified, last_modified)
 
     struct!(__MODULE__, [id: id, date: date, body: body] ++ Map.to_list(attrs))
   end
@@ -40,18 +37,4 @@ defmodule JolaDev.Blog.Post do
 
   defp parse_last_modified(string, _default) when is_binary(string),
     do: Date.from_iso8601!(string)
-
-  defp parse_text_content(body) do
-    body
-    |> MDEx.parse_document!(
-      extension: [
-        strikethrough: true,
-        table: true,
-        autolink: true,
-        tasklist: true,
-        footnotes: true
-      ]
-    )
-    |> MDEx.to_markdown!()
-  end
 end

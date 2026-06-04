@@ -74,17 +74,17 @@ defmodule JolaDev.Atproto.Client do
   end
 
   defp publication_record(%Publication{} = publication, icon) do
-    drop_nil(%{
+    %{
       "$type" => "site.standard.publication",
       "name" => publication.name,
       "url" => publication.url,
       "description" => publication.description,
       "icon" => icon
-    })
+    }
   end
 
   defp document_record(%Document{} = document, cover_image) do
-    drop_nil(%{
+    %{
       "$type" => "site.standard.document",
       "site" => document.site,
       "title" => document.title,
@@ -95,7 +95,7 @@ defmodule JolaDev.Atproto.Client do
       "textContent" => document.text_content,
       "tags" => document.tags,
       "coverImage" => cover_image
-    })
+    }
   end
 
   defp put_record(session, collection, rkey, record) do
@@ -128,8 +128,6 @@ defmodule JolaDev.Atproto.Client do
       {:error, reason} -> {:error, reason}
     end
   end
-
-  defp drop_nil(map), do: Map.reject(map, fn {_k, v} -> is_nil(v) end)
 
   defp to_rfc3339(nil), do: nil
   defp to_rfc3339(%Date{} = date), do: to_rfc3339(DateTime.new!(date, ~T[00:00:00], "Etc/UTC"))

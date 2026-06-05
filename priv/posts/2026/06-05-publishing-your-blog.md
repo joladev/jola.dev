@@ -1,8 +1,8 @@
 %{
   title: "Publishing your blog to standard.site in Elixir",
   author: "Johanna Larsson",
-  tags: ~w(atproto elixir),
-  description: "A walkthrough for how to start posting your Elixir blog posts to standard.site, using a small mix task and an atproto client."
+  tags: ~w(atproto elixir phoenix bluesky nimblepublisher),
+  description: "A walkthrough for posting your Elixir/Phoenix blog to Bluesky and the standard.site network, using a small mix task and an atproto client."
 }
 ---
 

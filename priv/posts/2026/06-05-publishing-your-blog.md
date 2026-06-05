@@ -2,7 +2,7 @@
   title: "Publishing your blog to standard.site in Elixir",
   author: "Johanna Larsson",
   tags: ~w(atproto elixir),
-  description: "A walkthrough for how to start posting your Elixir blog posts to standard.site, using a small mix task."
+  description: "A walkthrough for how to start posting your Elixir blog posts to standard.site, using a small mix task and an atproto client."
 }
 ---
 

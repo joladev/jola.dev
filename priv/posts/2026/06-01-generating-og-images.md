@@ -10,7 +10,7 @@ I recently added per-page OG images to this blog and it was less complicated tha
 
 So let’s start with the requirements: I wanted a low effort approach to creating per blog post OG images, and that new posts should automatically get images without any additional work. Additionally, I wanted matching images for pages like `/about`. I’m using [NimblePublisher](https://github.com/dashbitco/nimble_publisher) to render markdown to HTML at build time and I wanted to follow the same principle for the OG images.
 
-# Image library
+## Image library
 
 Step one was figuring out how to generate these images on the fly. The JS community has [takumi-js](https://github.com/kane50613/takumi) and [satori](https://github.com/vercel/satori) that take a basic HTML template and render it to an SVG/PNG using the Yoga layout engine. This is very convenient because you can write a HTML/CSS and get an image out of it, and it’s fast enough that you can generate images ad-hoc.
 
@@ -67,7 +67,7 @@ And here’s the image I get from running it.
 
 <img src="/images/og-image-example.png" alt="An example generated OG image from the snippet above" width="618" height="324" loading="lazy" decoding="async" style="margin-bottom:16px;border:1px solid #efefef;" />
 
-# Hooking it up
+## Hooking it up
 
 As mentioned I wanted to follow the basic design of `NimblePublisher` and generate the images at build time and keep them in memory. This is not necessarily the most efficient way to do this, writing the images to disk and serving them using `Plug.Static` would be more performant, especially if you’re creating a lot of them, but would also add additional complexity. I’ll probably go there eventually, but for now keeping them in memory works great.
 
@@ -180,7 +180,7 @@ This means we’re automatically generating the URLs and as long as they match u
 
 That’s it, OG image generation that will automatically create new images for every new blog post.
 
-# Generating images on the fly
+## Generating images on the fly
 
 What I’ve sketched out above doesn’t have the best local developer experience since it will rebuild all the images on every change to your blog posts. Image generation is fast, but the more pages you have the more this will add up. For this blog, generating a full set of OG images takes about 1.6s on my machine. So let’s try something different, let’s generate the images on the fly. You could do this in production too, but it’s a lot of unnecessary effort, even if it’s just ~20-50ms per image.
 
@@ -213,7 +213,7 @@ end
 
 You probably want to tweak the cache headers you’re setting in the plug for `dev_mode`, but otherwise that’s it. We can keep the change to this single layer. Nice!
 
-# Custom OG images are cool
+## Custom OG images are cool
 
 Having nice previews show up in social media and messaging apps when your links are shared is a lot of fun and it doesn’t necessarily take that much effort. This blog tries to separate things into clear layers, similar to how I implemented it myself, but you can probably get a minimal version working with half as many lines. Or you can try something even fancier by doing some macro magic to map your routes to images. The options are endless. Play around with it, try some different designs. Here’s the OG image for this blog post.
 

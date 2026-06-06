@@ -330,13 +330,13 @@ defmodule JolaDevWeb.CoreComponents do
             href="https://github.com/sponsors/joladev"
             class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
-          🙏 Sponsor me on GitHub <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
+            🙏 Sponsor me on GitHub <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
           </.link>
           <.link
             href="https://ko-fi.com/joladev"
             class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
-          ☕ Buy me a coffee on Ko-fi <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
+            ☕ Buy me a coffee on Ko-fi <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
           </.link>
         </div>
       </div>

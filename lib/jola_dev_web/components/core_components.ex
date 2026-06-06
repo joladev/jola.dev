@@ -323,14 +323,22 @@ defmodule JolaDevWeb.CoreComponents do
           {assigns.title}
         </p>
         <p class="text-muted-foreground mb-5">
-          Support my writing on GitHub Sponsors and get a monthly newsletter with content from the blog.
+          Support my writing on GitHub Sponsors and get a monthly newsletter with content from the blog, or buy me a coffee on Ko-fi.
         </p>
-        <.link
-          href="https://github.com/sponsors/joladev"
-          class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
-        >
-          Sponsor me on GitHub <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
-        </.link>
+        <div class="flex items-center gap-6">
+          <.link
+            href="https://github.com/sponsors/joladev"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+          🙏 Sponsor me on GitHub <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
+          </.link>
+          <.link
+            href="https://ko-fi.com/joladev"
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+          ☕ Buy me a coffee on Ko-fi <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4" />
+          </.link>
+        </div>
       </div>
     </aside>
     """

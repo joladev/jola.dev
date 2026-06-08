@@ -66,7 +66,7 @@ defmodule JolaDev.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:nimble_publisher, "~> 1.0"},
+      {:nimble_publisher, "~> 2.0"},
       {:recon, "~> 2.5"},
       {:sentry, "~> 13.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},

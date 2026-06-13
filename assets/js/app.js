@@ -62,7 +62,25 @@ function initializeCodeCopy() {
   });
 }
 
+function initializeBubblesVotes() {
+  document.querySelectorAll('[data-url]').forEach(el => {
+    const url = el.getAttribute('data-url');
+    fetch(`https://bubbles.town/api/vote-count?url=${encodeURIComponent(url)}`)
+      .then(r => r.json())
+      .then(d => {
+        if (!d.id) return
+        el.outerHTML = `
+        <a href="https://bubbles.town/entry/${d.id}" class="underline" style="color: #4ecdc4" target="_blank">
+          vote on Bubbles ▲<span class="bubbles-count text-foreground">${d.count ? d.count : ''}</span>
+        </a>
+        `
+      })
+      .catch(() => { });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initializeMobileMenu();
   initializeCodeCopy();
+  initializeBubblesVotes()
 });

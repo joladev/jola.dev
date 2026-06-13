@@ -74,7 +74,7 @@ defmodule JolaDev.MixProject do
       {:logger_json, "~> 7.0"},
       {:og_mate, "~> 0.1"},
       {:mdex, "~> 0.12"},
-      {:req, "~> 0.5.18"},
+      {:req, "~> 0.6.1"},
       {:mimic, "~> 2.3"}
     ]
   end

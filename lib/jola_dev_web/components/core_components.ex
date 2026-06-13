@@ -396,8 +396,7 @@ defmodule JolaDevWeb.CoreComponents do
                   "absolute -bottom-1 left-0 h-0.5 bg-accent transition-all",
                   link[:active] && "w-full",
                   !link[:active] && "w-0 group-hover:w-full"
-                ]}>
-                </span>
+                ]}></span>
               </.link>
             </div>
           </div>

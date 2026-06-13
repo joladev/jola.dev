@@ -295,6 +295,7 @@ defmodule JolaDevWeb.CoreComponents do
   end
 
   attr :author, :string, required: true
+  attr :url, :string, required: true
   attr :class, :string, default: nil
 
   def author(assigns) do
@@ -304,10 +305,14 @@ defmodule JolaDevWeb.CoreComponents do
       @class
     ]}>
       Written by <.link href="/about" class="underline text-foreground">{@author}</.link>.
-      Thoughts on this post? Find me on Bluesky at <.link
+      Thoughts on this post? Find me on Bluesky at
+      <.link
         href="https://bsky.app/profile/jola.dev"
         class="underline text-foreground"
-      >@jola.dev</.link>.
+      >
+        @jola.dev
+      </.link>
+      or why not give it a <span class="vote-on-bubbles" data-url={@url}> vote on Bubbles</span>.
     </p>
     """
   end

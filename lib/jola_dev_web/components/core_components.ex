@@ -295,7 +295,6 @@ defmodule JolaDevWeb.CoreComponents do
   end
 
   attr :author, :string, required: true
-  attr :url, :string, required: true
   attr :class, :string, default: nil
 
   def author(assigns) do
@@ -312,7 +311,7 @@ defmodule JolaDevWeb.CoreComponents do
       >
         @jola.dev
       </.link>
-      or why not give it a <span class="vote-on-bubbles" data-url={@url}> vote on <.link href="https://bubbles.town/" class="underline">Bubbles</.link></span>.
+      .
     </p>
     """
   end
@@ -322,7 +321,7 @@ defmodule JolaDevWeb.CoreComponents do
 
   def sponsor(assigns) do
     ~H"""
-    <aside class={["mt-12", @class]}>
+    <aside class={["mt-8", @class]}>
       <div class="rounded-lg border border-accent/30 bg-accent/5 p-6 md:p-8">
         <p class="text-lg font-semibold text-foreground mb-2">
           {assigns.title}
@@ -790,6 +789,14 @@ defmodule JolaDevWeb.CoreComponents do
         </p>
       </.card>
     </div>
+    """
+  end
+
+  attr :url, :string, required: true
+
+  def bubbles_vote(assigns) do
+    ~H"""
+    <div id="vote-on-bubbles" data-url={@url} class="mt-2" />
     """
   end
 end

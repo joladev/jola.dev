@@ -312,7 +312,7 @@ defmodule JolaDevWeb.CoreComponents do
       >
         @jola.dev
       </.link>
-      or why not give it a <span class="vote-on-bubbles" data-url={@url}> vote on Bubbles</span>.
+      or why not give it a <span class="vote-on-bubbles" data-url={@url}> vote on <.link href="https://bubbles.town/" class="underline">Bubbles</.link></span>.
     </p>
     """
   end

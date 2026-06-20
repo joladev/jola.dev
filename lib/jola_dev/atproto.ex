@@ -10,9 +10,11 @@ defmodule JolaDev.Atproto do
 
   # Retrieved by using JolaDev.Atproto.Client.resolve_handle
   @did "did:plc:bvraa6gajy4tfr3eh2sisdkr"
+  @publication_rkey "3mope7jyypk22"
   @url "https://jola.dev"
 
-  def publication_uri, do: "at://#{@did}/site.standard.publication/self"
+  def publication_uri, do: "at://#{@did}/site.standard.publication/#{@publication_rkey}"
+  def publication_rkey, do: @publication_rkey
   def document_uri(rkey), do: "at://#{@did}/site.standard.document/#{rkey}"
 
   def publication do
@@ -21,7 +23,10 @@ defmodule JolaDev.Atproto do
       url: @url,
       description: "Johanna Larsson's blog",
       icon:
-        {File.read!(Application.app_dir(:jola_dev, "priv/static/images/logo.png")), "image/png"}
+        {File.read!(Application.app_dir(:jola_dev, "priv/static/images/logo.png")), "image/png"},
+      preferences: %{
+        showInDiscover: true
+      }
     }
   end
 

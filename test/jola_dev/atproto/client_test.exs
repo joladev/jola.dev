@@ -16,7 +16,7 @@ defmodule JolaDev.Atproto.ClientTest do
 
       document = %Document{
         rkey: rkey,
-        site: "at://did:plc:test/site.standard.publication/self",
+        site: "at://did:plc:test/site.standard.publication/tid",
         title: "My Post",
         path: "/posts/my-post",
         published_at: ~D[2026-04-02],

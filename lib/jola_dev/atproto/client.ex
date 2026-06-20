@@ -59,7 +59,7 @@ defmodule JolaDev.Atproto.Client do
   def create_publication(session, %Publication{} = publication) do
     with {:ok, icon} <- upload_blob(session, publication.icon) do
       record = publication_record(publication, icon)
-      put_record(session, "site.standard.publication", "self", record)
+      put_record(session, "site.standard.publication", JolaDev.Atproto.publication_rkey(), record)
     end
   end
 
@@ -79,7 +79,8 @@ defmodule JolaDev.Atproto.Client do
       "name" => publication.name,
       "url" => publication.url,
       "description" => publication.description,
-      "icon" => icon
+      "icon" => icon,
+      "preferences" => publication.preferences
     }
   end
 

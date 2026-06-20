@@ -4,5 +4,5 @@ defmodule JolaDev.Atproto.Publication do
   """
 
   @enforce_keys [:name, :url]
-  defstruct @enforce_keys ++ [:description, :icon]
+  defstruct @enforce_keys ++ [:description, :icon, :preferences]
 end

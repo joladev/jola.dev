@@ -21,7 +21,7 @@ This was the first thing I read that I felt like really articulated the problem.
 > Finally, LLM-generated prose undermines a social contract of sorts: absent LLMs, it is presumed that of the reader and the writer, it is the writer that has undertaken the greater intellectual exertion. (That is, it is more work to write than to read!) For the reader, this is important: should they struggle with an idea, they can reasonably assume that the writer themselves understands it — and it is the least a reader can do to labor to make sense of it.
 >
 
-So in fact it doesn’t matter whether the content is good, or even that the writing is fine, it’s the action of using an LLM to write instead of writing yourself. The very fact that the author reduced the effort they made to product the content is a violation of the social contract.
+So in fact it doesn’t matter whether the content is good, or even that the writing is fine, it’s the action of using an LLM to write instead of writing yourself. The very fact that the author reduced the effort they made to produce the content is a violation of the social contract.
 
 ## You can’t avoid it
 

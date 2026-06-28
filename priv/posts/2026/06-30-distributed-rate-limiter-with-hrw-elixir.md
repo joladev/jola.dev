@@ -38,13 +38,13 @@ iex --name second@127.0.0.1
 They’re started in distributed mode, but are still not connected. Let’s do that next. Go to the tab for one of the nodes, let’s say `first`.
 
 ```elixir
-iex(second@127.0.0.1)1> Node.list
+iex(first@127.0.0.1)1> Node.list
 []
-iex(second@127.0.0.1)2> Node.ping(:"second@127.0.0.1")
+iex(first@127.0.0.1)2> Node.ping(:"second@127.0.0.1")
 :pong
-iex(second@127.0.0.1)3> Node.list
+iex(first@127.0.0.1)3> Node.list
 [:"second@127.0.0.1"]
-iex(second@127.0.0.1)4> Node.self
+iex(first@127.0.0.1)4> Node.self
 :"first@127.0.0.1"
 ```
 

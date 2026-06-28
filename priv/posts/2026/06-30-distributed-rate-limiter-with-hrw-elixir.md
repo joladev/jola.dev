@@ -1,5 +1,5 @@
 %{
-  title: "Tracking cluster state with distributed Elixir",
+  title: "Distributed rate limiter with HRW in Elixir",
   author: "Johanna Larsson",
   tags: ~w(elixir hrw distributed),
   description: "A practical guide to tracking cluster state and using it for real applications like a distributed rate limiter."

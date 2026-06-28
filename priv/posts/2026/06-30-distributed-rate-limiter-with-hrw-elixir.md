@@ -60,11 +60,11 @@ The magic invocation that gives us access to the cluster membership transitions 
 defmodule Cluster do
   use GenServer
 
-	require Logger
+  require Logger
 
-	def members(name \\ __MODULE__) do
-	  GenServer.call(name, :members)
-	end
+  def members(name \\ __MODULE__) do
+    GenServer.call(name, :members)
+  end
 
   def start_link(opts) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)

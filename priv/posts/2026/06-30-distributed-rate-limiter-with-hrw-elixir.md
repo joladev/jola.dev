@@ -45,7 +45,7 @@ iex(second@127.0.0.1)2> Node.ping(:"second@127.0.0.1")
 iex(second@127.0.0.1)3> Node.list
 [:"second@127.0.0.1"]
 iex(second@127.0.0.1)4> Node.self
-:"second@127.0.0.1"
+:"first@127.0.0.1"
 ```
 
 And we’re connected! Although really cool, it’s not really enough to just be connected, we want to be able to do something with it.
@@ -74,7 +74,7 @@ defmodule Cluster do
   def init(_opts) do
     :net_kernel.monitor_nodes(true)
 		nodes = [Node.self() | Node.list()]
-    Logger.info("Cluster: #{Enum.join(nodes, ", "}")
+		Logger.info("Cluster: #{Enum.join(nodes, ", ")}")
     {:ok, nodes}
   end
 
@@ -108,9 +108,21 @@ But we have the option of avoiding adding another service to our stack: we can t
 
 Traditionally this has been done using [ExHashRing](https://github.com/discord/ex_hash_ring) (the battle-tested [consistent hashing](https://en.wikipedia.org/wiki/Consistent_hashing) implementation for Elixir), but for clusters with less than 10 nodes there’s an alternative that’s potentially even faster and has slightly better distribution: [HRW](https://github.com/joladev/hrw) (highest random weight, also known as [rendezvous hashing](https://en.wikipedia.org/wiki/Rendezvous_hashing)). They both do the same thing, use ~~magic~~ math to associate any given key with a specific node, given a specific set of nodes. And both HRW and consistent hashing share the same incredibly important property: they cause minimal key re-assignment as the list of nodes changes. This means that if you auto-scale a node here and there, it won’t invalidate every key→node assignment, instead just a minimal subset.
 
-Ok, that’s enough of that. Let’s take a look at the example code. I’m using ExHammer here, but you can use any rate limiter.
+Ok, that’s enough of that. Let’s take a look at the example code. I’m using Hammer here, but you can use any rate limiter.
+
+Setting up the Hammer backend.
 
 ```elixir
+defmodule HammerBackend do
+  use Hammer, backend: :ets
+end
+
+```
+
+and then our rate limiter.
+
+```elixir
+
 defmodule RateLimiter do
   use GenServer
 
@@ -145,7 +157,7 @@ defmodule RateLimiter do
   end
 
   defp hit_internal(ip) do
-    Hammer.hit(ip, @scale, @limit)
+    HammerBackend.hit(ip, @scale, @limit)
   end
 end
 ```

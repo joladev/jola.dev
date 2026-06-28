@@ -48,7 +48,7 @@ iex(1)> Application.started_applications
 ]
 ```
 
-While running locally `mix` actually figures out which dependencies are applications and need to be started for you automatically, although if you go back far enough you had to specify that list yourself. The way `mix` knows whether to treat something like an application is this big in the `mix.exs` of the app:
+While running locally `mix` actually figures out which dependencies are applications and need to be started for you automatically, although if you go back far enough you had to specify that list yourself. The way `mix` knows whether to treat something like an application is this bit in the `mix.exs` of the app:
 
 ```elixir
   def application do

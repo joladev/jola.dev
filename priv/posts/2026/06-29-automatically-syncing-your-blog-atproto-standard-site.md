@@ -2,7 +2,7 @@
   title: "Automatically syncing your blog to atproto and standard.site",
   author: "Johanna Larsson",
   tags: ~w(blog atproto standardsite elixir phoenix oss),
-  description: "A little love letter to the small web, to the now classic technology of RSS, to the future of atproto, and to the people who share for the joy of sharing."
+  description: "Kicking off a little side project for automatically discovering content through blog post feeds and syncing to atproto and standard.site."
 }
 ---
 

@@ -24,7 +24,7 @@ So the design is:
 
 ## annot.at
 
-I’m writing the code in public on [Tangled](https://tangled.org/jola.dev/annot.at) with a Github mirror. This is very much a work in progress but feel free to take a look. I’m also hosting it at [annot.at](http://annot.at), which is the instance I use to manage my own blog. You’re very welcome to try it out, but remember it’s under active development and may change over time. I’ve implemented 1-5 of the list above, although I think I’ll go back to some earlier parts and redesign them. I have a tendency to figure things out by just starting to type, I’m not the kind of programmer who can just build the perfect version in their mind. I have to start writing the code to figure it out.
+I’m writing the code in public on [Tangled](https://tangled.org/jola.dev/annot.at) with a [Github mirror](https://github.com/joladev/annot.at), and I'm doing a little devlog/changelog at [blog.annot.at](https://blog.annot.at). This is very much a work in progress but feel free to take a look. I’m also hosting it at [annot.at](http://annot.at), which is the instance I use to manage my own blog. You’re very welcome to try it out, but remember it’s under active development and may change over time. I’ve implemented 1-5 of the list above, although I think I’ll go back to some earlier parts and redesign them. I have a tendency to figure things out by just starting to type, I’m not the kind of programmer who can just build the perfect version in their mind. I have to start writing the code to figure it out.
 
 But ok, let’s do a little whirlwind tour of how it works.
 
@@ -56,4 +56,4 @@ The current version of [annot.at](http://annot.at) can discover your feed and pu
 
 Not to mention the biggest feature: actually syncing automatically by polling your feed. But I’m working on it! I believe that atproto will just continue to grow as people find more interesting use cases for it, and the fact that your data belongs to you and can follow you around, the fact that you can actually host your own data on your own PDS, but still use all these amazing services, is incredible.
 
-Feel free to check out the code and tinker with it, and maybe use it for reference to build your own cool atproto apps. You can even run it locally and login, since it doesn’t require a client ID or client secret, and use it to publish your blog. If you prefer not to run it yourself, try out [annot.at](https://annot.at).
+Feel free to check out the code and tinker with it, and maybe use it for reference to build your own cool atproto apps. You can even run it locally and login, since it doesn’t require a client ID or client secret, and use it to publish your blog. If you prefer not to run it yourself, try out [annot.at](https://annot.at). I'm going to try to do a frequent devlog/changelog at [https://blog.annot.at](https://blog.annot.at), hosted on the lovely [pckt.blog](https://pckt.blog).

@@ -73,8 +73,8 @@ defmodule Cluster do
   @impl GenServer
   def init(_opts) do
     :net_kernel.monitor_nodes(true)
-		nodes = [Node.self() | Node.list()]
-		Logger.info("Cluster: #{Enum.join(nodes, ", ")}")
+    nodes = [Node.self() | Node.list()]
+    Logger.info("Cluster: #{Enum.join(nodes, ", ")}")
     {:ok, nodes}
   end
 

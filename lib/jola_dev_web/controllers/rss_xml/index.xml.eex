@@ -7,7 +7,7 @@
     <language>en-us</language>
     <lastBuildDate><%= JolaDevWeb.RssXML.format_rfc822(DateTime.utc_now()) %></lastBuildDate>
     <atom:link href="<%= url(~p"/rss.xml") %>" rel="self" type="application/rss+xml" />
-    
+
     <%= for post <- @posts do %>
     <item>
       <title><%= post.title %></title>
@@ -17,6 +17,9 @@
       <pubDate><%= JolaDevWeb.RssXML.format_rfc822(post.date) %></pubDate>
       <guid isPermaLink="true"><%= url(~p"/posts/#{post.id}") %></guid>
       <author><%= post.author %></author>
+      <%= for tag <- post.tags do %>
+        <category><%= tag %></category>
+      <% end %>
     </item>
     <% end %>
   </channel>

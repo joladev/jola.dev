@@ -6,6 +6,7 @@ defmodule JolaDev.Atproto do
 
   alias JolaDev.Atproto.Document
   alias JolaDev.Atproto.Publication
+  alias JolaDev.Atproto.TID
   alias JolaDev.Blog.Post
 
   # Retrieved by using JolaDev.Atproto.Client.resolve_handle
@@ -15,7 +16,11 @@ defmodule JolaDev.Atproto do
 
   def publication_uri, do: "at://#{@did}/site.standard.publication/#{@publication_rkey}"
   def publication_rkey, do: @publication_rkey
-  def document_uri(rkey), do: "at://#{@did}/site.standard.document/#{rkey}"
+
+  def document_uri(slug, published_at) do
+    rkey = TID.deterministic(slug, published_at)
+    "at://#{@did}/site.standard.document/#{rkey}"
+  end
 
   def publication do
     %Publication{
@@ -32,9 +37,10 @@ defmodule JolaDev.Atproto do
 
   def document(%Post{} = post) do
     {:ok, cover_image} = JolaDev.OGImage.image_for("posts/#{post.id}")
+    rkey = TID.deterministic(post.id, post.date)
 
     %Document{
-      rkey: post.id,
+      rkey: rkey,
       site: publication_uri(),
       title: post.title,
       path: "/posts/#{post.id}",

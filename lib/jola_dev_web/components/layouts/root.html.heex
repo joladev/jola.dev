@@ -44,7 +44,10 @@
       <%= for tag <- post.tags do %>
         <meta property="article:tag" content={tag} />
       <% end %>
-      <link rel="site.standard.document" href={JolaDev.Atproto.document_uri(post.id)} />
+      <link
+        rel="site.standard.document"
+        href={JolaDev.Atproto.document_uri(post.id, post.date)}
+      />
     <% end %>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@joladev" />

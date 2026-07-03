@@ -50,7 +50,7 @@ steps:
 
 The trickiest part was using specific versions of Elixir and Erlang. You can use
 
-```elixir
+```yaml
 dependencies:
   - elixir
   - erlang

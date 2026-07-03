@@ -10,7 +10,7 @@ Continuing down the atproto rabbit hole, I spent some time getting a CI workflow
 
 This uses the new `microvm` engine that was only recently released, which enables us to run a PostgreSQL service in the workflow. By default it only listens on a unix socket, so we have to set some extra configuration there for it to match the standard Phoenix scaffold setup.
 
-```elixir
+```yaml
 when:
   - event: ["push", "pull_request"]
     branch: ["main"]

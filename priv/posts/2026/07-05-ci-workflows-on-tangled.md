@@ -56,7 +56,15 @@ dependencies:
   - erlang
 ```
 
-but that gives you an unspecified version of Elixir. It happened to be 1.18 when I tried.
+but that gives you an unspecified version of Elixir. It happened to be 1.18 when I tried. Instead, you'll want to find specific NixOS packages to depend on, like the full workflow does.
+
+```yaml
+dependencies:
+  - beam29Packages.elixir_1_20
+  - beam29Packages.erlang
+```
+
+The BEAM 29 packages I found here https://mynixos.com/nixpkgs/packages/beam29Packages.
 
 I don’t have much experience with NixOS so it was a bit of trial and error to get here, but once I got the config right it runs perfect. Here’s an example run [https://tangled.org/jola.dev/annot.at/pipelines/28076/workflow/ci.yml](https://tangled.org/jola.dev/annot.at/pipelines/28076/workflow/ci.yml).
 

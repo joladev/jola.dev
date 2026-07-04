@@ -6,9 +6,11 @@
 }
 ---
 
-Continuing down the atproto rabbit hole, I spent some time getting a CI workflow set up for [https://tangled.org/jola.dev/annot.at](https://tangled.org/jola.dev/annot.at). I couldn’t find any examples of Elixir CI workflows for Tangled so it took some experimenting, 
+[Tangled](https://tangled.org/) is a Github competitor built on top of atproto. The company behind it is a Finnish startup, situated in Finland, with all servers and data held in the EU. They have taken VC money, but at least conceptually the fact that it's built on top of atproto means that if the strings that came with that cash pull the company in the wrong direction, your data is still yours and you could potentially move it somewhere else.
 
-This uses the new `microvm` engine that was only recently released, which enables us to run a PostgreSQL service in the workflow. By default it only listens on a unix socket, so we have to set some extra configuration there for it to match the standard Phoenix scaffold setup.
+Continuing down my atproto rabbit hole, I spent some time getting a CI workflow set up for [https://tangled.org/jola.dev/annot.at](https://tangled.org/jola.dev/annot.at). I couldn’t find any examples of Elixir CI workflows for Tangled so it took some experimenting.
+
+This uses the new `microvm` engine that was only [recently released](https://blog.tangled.org/spindle-microvm/), which enables us to run a PostgreSQL service in the workflow. By default it only listens on a unix socket, so we have to set some extra configuration there for it to match the standard Phoenix scaffold setup.
 
 ```yaml
 when:
@@ -64,8 +66,8 @@ dependencies:
   - beam29Packages.erlang
 ```
 
-The BEAM 29 packages I found here https://mynixos.com/nixpkgs/packages/beam29Packages.
+The BEAM 29 packages I found here https://mynixos.com/nixpkgs/packages/beam29Packages. This still doesn't give me an exact version, but it was close enough for me.
 
 I don’t have much experience with NixOS so it was a bit of trial and error to get here, but once I got the config right it runs perfect. Here’s an example run [https://tangled.org/jola.dev/annot.at/pipelines/28076/workflow/ci.yml](https://tangled.org/jola.dev/annot.at/pipelines/28076/workflow/ci.yml).
 
-Now to go figure out how to self-host a knot and a spindle. Don’t have to do that, you can use the servers Tangled run, but it’s more fun this way.
+Now to go figure out how to self-host [a knot](https://docs.tangled.org/knot-self-hosting-guide) and [a spindle](https://docs.tangled.org/spindles#self-hosting-guide). Don’t have to do that, you can use the servers Tangled offer, but I figure it’s more fun this way.

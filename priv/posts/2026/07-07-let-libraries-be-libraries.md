@@ -23,7 +23,7 @@ iex(1)> :application.info()[:running] |> Enum.filter(fn {_app, master} -> is_pid
  :sasl, :kernel]
 ```
 
-While running locally `mix` actually figures out which dependencies are applications and need to be started for you automatically, although if you go back far enough you had to specify that list yourself. The way `mix` knows whether to treat something like an application is this bit in the `mix.exs` of the app:
+While running locally `mix` actually figures out which dependencies are applications and need to be started for you automatically. The way `mix` knows whether to treat something like an application is this bit in the `mix.exs` of the app:
 
 ```elixir
   def application do
@@ -76,6 +76,6 @@ Each one starts its own supervision tree and runs completely independent of the 
 
 ## An appeal to the community
 
-I’m not saying a library can’t ever be an application, in fact one of my favorite libraries of all time, [Req](https://github.com/wojtekmach/req), runs as an application. It does that to be easier to use and quicker to set up, it starts up a `Finch` instance for you automatically, but [it also supports](https://req.hexdocs.pm/Req.Steps.html#run_finch/1) running separate `Finch` trees, giving you the best of both worlds. It runs as an application without falling into the usual traps.
+I’m not saying a library can’t ever be an application, in fact one of my favorite libraries of all time, [Req](https://github.com/wojtekmach/req), runs as an application. It does that to be easier to use and quicker to set up, it starts up a `Finch` instance for you automatically, but [it also supports](https://req.hexdocs.pm/Req.Steps.html#run_finch/1) running separate `Finch` trees, giving you the best of both worlds. It runs as an application without falling into the usual traps. There are reasons your library might need to start something, but it should be the exception and you can almost always solve it some other way.
 
 So when you’re tinkering on your next library, please consider using Finch and the other examples as references and offering it as a fully configurable drop in supervision tree that the user can add to their own tree, with their own options, under their own supervisor. Let your library be a _library_.

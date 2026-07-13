@@ -1,12 +1,12 @@
 %{
-  title: "How to stop Claude saying seam every 10 seconds",
+  title: "Banning the word seam",
   author: "Johanna Larsson",
   tags: ~w(claude llm parody),
   description: "Hack the text output of Claude Code to make life a little bit sillier."
 }
 ---
 
-Absolutely ripping your hair out reading Claude referring to everything as “honest load-bearing seams”? You’re not the only one. But what if I tell you there’s a way to take this increasing source of micro-aggression and make it *ridiculous*? I present to you, the `MessageDisplay` hook.
+Absolutely ripping your hair out reading Claude referring to everything as “honest takes” and "load-bearing seams"? You’re not the only one. But what if I tell you there’s a way to take this massive source of frustration and make it so *ridiculous* you can't but laugh at it? Or just simply fix Claude's vocabulary. I present to you, the `MessageDisplay` hook.
 
 First you need a little script with some replacements set up:
 
@@ -51,3 +51,5 @@ put that in `~/.claude/hooks/wordswap.sh` and make it executable with `chmod +x 
 Hooks load at startup, so you just need to start a new session to start your new life.
 
 <img src="/images/how-to-stop-claude.png" alt="A screenshot of Claude output showing the effect of the script." loading="lazy" decoding="async" style="margin:auto;padding-bottom:16px;padding-top:16px" />
+
+I'm sure you can come up with much better and more productive replacements than me. Have fun!

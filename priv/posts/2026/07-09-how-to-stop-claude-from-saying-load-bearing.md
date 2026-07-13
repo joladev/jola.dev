@@ -1,12 +1,12 @@
 %{
-  title: "Banning the word seam",
+  title: "How to stop Claude from saying load-bearing",
   author: "Johanna Larsson",
   tags: ~w(claude llm parody),
   description: "Hack the text output of Claude Code to make life a little bit sillier."
 }
 ---
 
-Absolutely ripping your hair out reading Claude referring to everything as “honest takes” and "load-bearing seams"? You’re not the only one. But what if I tell you there’s a way to take this massive source of frustration and make it so *ridiculous* you can't but laugh at it? Or just simply fix Claude's vocabulary. I present to you, the `MessageDisplay` hook.
+Absolutely ripping your hair out reading Claude referring to everything as “honest takes” and "load-bearing seams"? [You’re not the only one](https://github.com/anthropics/claude-code/issues/53454). But what if I tell you there’s a way to take this massive source of frustration and make it so *ridiculous* you can't but laugh at it? Or just simply fix Claude's vocabulary. I present to you, the `MessageDisplay` hook.
 
 First you need a little script with some replacements set up:
 
@@ -50,6 +50,8 @@ put that in `~/.claude/hooks/wordswap.sh` and make it executable with `chmod +x 
 
 Hooks load at startup, so you just need to start a new session to start your new life.
 
-<img src="/images/how-to-stop-claude.png" alt="A screenshot of Claude output showing the effect of the script." loading="lazy" decoding="async" style="margin:auto;padding-bottom:16px;padding-top:16px" />
+<div class="bleed">
+  <img src="/images/how-to-stop-claude.png" alt="A screenshot of Claude output showing the effect of the script." loading="lazy" decoding="async" style="margin-bottom:30px;margin-top:16px" />
+</div>
 
 I'm sure you can come up with much better and more productive replacements than me. Have fun!

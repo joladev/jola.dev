@@ -4,230 +4,270 @@
 @import "../../deps/lumis/priv/static/css/vague.css";
 
 @font-face {
-  font-family: 'Maple Mono';
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: swap;
-  src: url(/fonts/maple-mono.woff2) format('woff2');
+    font-family: "Maple Mono";
+    font-style: normal;
+    font-weight: 100 800;
+    font-display: swap;
+    src: url(/fonts/maple-mono.woff2) format("woff2");
 }
 
 @font-face {
-  font-family: 'Schibsted Grotesk';
-  font-style: normal;
-  font-weight: 400 900;
-  font-display: swap;
-  src: url(/fonts/schibsted-grotesk.woff2) format('woff2');
+    font-family: "Schibsted Grotesk";
+    font-style: normal;
+    font-weight: 400 900;
+    font-display: swap;
+    src: url(/fonts/schibsted-grotesk.woff2) format("woff2");
 }
 
 @font-face {
-  font-family: 'Hanken Grotesk';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url(/fonts/hanken-grotesk.woff2) format('woff2');
+    font-family: "Hanken Grotesk";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(/fonts/hanken-grotesk.woff2) format("woff2");
 }
 
 /* Theme Variables */
 @layer base {
-  :root {
-    /* Dark Theme (Default) */
-    --background: 10 10 10;         /* #0a0a0a */
-    --foreground: 250 250 250;      /* #fafafa */
-    --muted: 115 115 115;           /* #737373 */
-    --muted-foreground: 163 163 163; /* #a3a3a3 */
-    --border: 38 38 38;             /* #262626 */
-    --surface: 23 23 23;            /* #171717 */
-    --accent: 251 146 60;           /* #fb923c */
-  }
+    :root {
+        /* Dark Theme (Default) */
+        --background: 10 10 10; /* #0a0a0a */
+        --foreground: 250 250 250; /* #fafafa */
+        --muted: 115 115 115; /* #737373 */
+        --muted-foreground: 163 163 163; /* #a3a3a3 */
+        --border: 38 38 38; /* #262626 */
+        --surface: 23 23 23; /* #171717 */
+        --accent: 251 146 60; /* #fb923c */
+    }
 
-  * {
-    @apply border-border;
-  }
+    * {
+        @apply border-border;
+    }
 
-  body {
-    @apply bg-background text-foreground;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    body {
+        @apply bg-background text-foreground;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-  /* Typography defaults */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight font-heading;
-  }
+    /* Typography defaults */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-semibold tracking-tight font-heading;
+    }
 
-  /* Code blocks */
-  pre {
-    @apply bg-surface border border-border rounded-lg p-4 overflow-x-auto;
-  }
+    /* Code blocks */
+    pre {
+        @apply bg-surface border border-border rounded-lg p-4 overflow-x-auto;
+    }
 
-  code {
-    @apply bg-surface px-1.5 py-0.5 rounded text-sm font-mono;
-  }
+    code {
+        @apply bg-surface px-1.5 py-0.5 rounded text-sm font-mono;
+    }
 
-  pre code {
-    /* Heavier weight keeps Maple Mono crisp under the body's grayscale smoothing */
-    @apply bg-transparent font-medium;
-  }
+    pre code {
+        /* Heavier weight keeps Maple Mono crisp under the body's grayscale smoothing */
+        @apply bg-transparent font-medium;
+    }
 
-  /* Links */
-  a {
-    @apply text-foreground underline-offset-4 hover:opacity-80 transition-opacity;
-  }
+    /* Links */
+    a {
+        @apply text-foreground underline-offset-4 hover:opacity-80 transition-opacity;
+    }
 
-  /* Selection */
-  ::selection {
-    @apply bg-foreground/10;
-  }
+    /* Selection */
+    ::selection {
+        @apply bg-foreground/10;
+    }
 }
 
 /* Utilities */
 @layer utilities {
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 3s ease infinite;
-  }
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 3s ease infinite;
+    }
 
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 
-  /* Remove spinner from number inputs */
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+    /* Remove spinner from number inputs */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 }
 
 /* Mobile menu styles */
 @layer components {
-  .mobile-menu {
-    @apply fixed left-0 right-0 top-16 z-40 bg-background border-b border-border shadow-lg;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
-    max-height: calc(100vh - 4rem);
-    overflow-y: auto;
-  }
-
-  @media (min-width: 768px) {
     .mobile-menu {
-      display: none !important;
+        @apply fixed left-0 right-0 top-16 z-40 bg-background border-b border-border shadow-lg;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            transform 0.3s ease-out,
+            opacity 0.3s ease-out,
+            visibility 0.3s ease-out;
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
     }
-  }
 
-  .mobile-menu.open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
+    @media (min-width: 768px) {
+        .mobile-menu {
+            display: none !important;
+        }
+    }
 
-  /* Responsive video container */
-  .aspect-video {
-    @apply relative w-full;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  }
+    .mobile-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
 
-  .aspect-video > * {
-    @apply absolute inset-0 w-full h-full;
-  }
+    /* Responsive video container */
+    .aspect-video {
+        @apply relative w-full;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
 
-  /* Line clamp utility */
-  .line-clamp-3 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-  }
+    .aspect-video > * {
+        @apply absolute inset-0 w-full h-full;
+    }
+
+    /* Line clamp utility */
+    .line-clamp-3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
 }
 
 /* Code block copy button */
 .copy-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.375rem;
-  border-radius: 0.375rem;
-  color: #75715e;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.15s, color 0.15s, background-color 0.15s;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.375rem;
+    border-radius: 0.375rem;
+    color: #75715e;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition:
+        opacity 0.15s,
+        color 0.15s,
+        background-color 0.15s;
 }
 
 .code-wrapper {
-  position: relative;
+    position: relative;
 }
 
 .code-wrapper:hover .copy-btn {
-  opacity: 1;
+    opacity: 1;
 }
 
 .copy-btn:hover {
-  color: #f8f8f2;
-  background: rgba(255, 255, 255, 0.1);
+    color: #f8f8f2;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .copy-btn.copied {
-  color: #a6e22e;
-  opacity: 1;
+    color: #a6e22e;
+    opacity: 1;
 }
 
 .prose {
-  @apply text-foreground;
+    @apply text-foreground;
 }
-.prose h1, .prose h2, .prose h3, .prose h4 {
-  @apply text-foreground font-semibold;
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+    @apply text-foreground font-semibold;
 }
-.prose h1 { @apply text-3xl py-4; }
-.prose h2 { @apply text-2xl py-4; }
-.prose h3 { @apply text-xl py-4; }
+.prose h1 {
+    @apply text-3xl py-4;
+}
+.prose h2 {
+    @apply text-2xl py-4;
+}
+.prose h3 {
+    @apply text-xl py-4;
+}
 .prose p {
-  @apply text-foreground pb-4 text-lg;
+    @apply text-foreground pb-4 text-lg;
 }
 .prose strong {
-  @apply text-foreground font-semibold;
+    @apply text-foreground font-semibold;
 }
 .prose a {
-  @apply text-accent underline hover:opacity-80 transition-opacity;
+    @apply text-accent underline hover:opacity-80 transition-opacity;
 }
 .prose code {
-  @apply bg-surface px-1.5 py-0.5 rounded text-sm;
+    @apply bg-surface px-1.5 py-0.5 rounded text-sm;
 }
 .prose pre code {
-  background: transparent;
-  padding: 0;
+    background: transparent;
+    padding: 0;
 }
 .prose pre {
-  @apply bg-transparent px-4 py-4 border-y overflow-x-auto;
+    @apply bg-transparent px-4 py-4 border-y overflow-x-auto;
 }
 .prose .code-wrapper {
-  @apply mb-4;
-  margin-left: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
-  margin-right: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
+    @apply mb-4;
+    margin-left: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
+    margin-right: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
 }
 .prose blockquote {
-  @apply border-l-4 border-border pl-4 italic text-muted-foreground mb-4;
+    @apply border-l-4 border-border pl-4 italic text-muted-foreground mb-4;
 }
-.prose ul, .prose ol {
-  @apply text-foreground my-4 pb-4;
+.prose ul,
+.prose ol {
+    @apply text-foreground my-4 pb-4;
 }
-.prose ul { @apply list-disc; }
-.prose ol { @apply pl-6 list-decimal; }
+.prose ul {
+    @apply list-disc;
+}
+.prose ol {
+    @apply pl-6 list-decimal;
+}
 .prose li {
-  @apply my-2 pl-2;
+    @apply my-2 pl-2;
 }
 .prose li::marker {
-  @apply font-semibold;
+    @apply font-semibold;
 }
 .prose hr {
-  @apply border-border;
+    @apply border-border;
+}
+.prose .bleed {
+    margin-left: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
+    margin-right: max(-4rem, calc(-1 * (100vw - 100%) / 2 + 0.75rem));
+}
+.prose .bleed img {
+    display: block;
+    width: 100%;
+    height: auto;
 }

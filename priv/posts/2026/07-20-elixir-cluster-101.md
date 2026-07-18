@@ -1,7 +1,7 @@
 %{
   title: "Elixir Cluster 101",
   author: "Johanna Larsson",
-  tags: ~w(elixir hrw distributed),
+  tags: ~w(elixir cluster distributed),
   description: "A practical guide to clustering your nodes and tracking the cluster state for real use cases."
 }
 ---

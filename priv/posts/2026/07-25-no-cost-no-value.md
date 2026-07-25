@@ -10,7 +10,7 @@
 
 LLMs are incredible tools for generating code, and the frontier models can often build complete end to end apps with very little direction. We can have all kinds of conversations about whether the software they create is *good*, and what the definition of good is. But it is a fact that today software can be mass-produced by paying for tokens. You don’t really need to invest anything at all into it. You can just pay for a subscription, install the software, and start asking for things. LLMs make it trivial to build all kinds of apps, handle all kinds of tasks, do all kinds of work for you. They’re sold as something that removes *toil*. But we also lose something in the process.
 
-# The value of things
+## The value of things
 
 Things you create can have value in different ways. If you create something that is useful to other people, that save them time or bring them joy, then you create a form of value that’s extrinsically validated. This is the case for much of the software we use on a day to day basis, but also true for many of the things around us. Google’s search engine has value (although less and less so every day), so does your refrigerator and your sofa.
 
@@ -18,7 +18,7 @@ But things can also have value because of what they cost you to attain. Not for 
 
 We’re already seeing this. An incredible churn of vibe coded projects and libraries that are dead on arrival. There’s no investment behind them, no community. The person who generated the code has no reason to stick around, they’re just going to go generate the next thing. Github is turning into an endless pile of instantly abandoned code.
 
-# Do it the hard way
+## Do it the hard way
 
 **This means that you can choose to do the opposite**. You can choose to do it the hard way. You can choose to toil and in that toil *create value*. Read the original spec yourself. Type out every line of code in your project by hand. Spend a week writing intricate product specifications. Don’t give in to the temptation of sending the LLM off to do it for you. Don’t turn away from the toil. Choose to write your library by hand and spend weeks doing something that an LLM could do in an hour. Create things that have real value, at least to you, because that’s worth doing. Because you grow as a person doing that. Because it brings meaning.
 

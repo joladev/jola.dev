@@ -19,7 +19,7 @@ I would say things like “here’s some research Claude did” or “the agent 
 
 Looking back at it I find it fascinating. It’s like saying “oh I didn’t toast the bread, the toaster did”. Did I clean the floor? No, the vacuum did. Oh, I can’t take responsibility for this code, I just wrote the high level code, the compiler did all of the work. LLMs are just another tool that we can use to do things. But the tool isn’t responsible for what’s done. The computer can’t be held accountable. The police won’t arrest Claude for committing a crime, they’ll arrest the person using it. Because it’s a tool.
 
-Part of it definitely comes down to not feeling like you can take pride in or credit for the work that the agent did, because agents make it so very easy to give minimal input and get something that *looks like* effort out. There’s a little bit of shame that comes with that. Maybe it’s my Nordic upbringing, maybe it’s a universal thing.
+Part of it definitely comes down to [not feeling like you can take pride](https://beej.us/blog/data/ai-making/) in or credit for the work that the agent did, because agents make it so very easy to give minimal input and get something that *looks like* effort out. There’s a little bit of shame that comes with that. Maybe it’s my Nordic upbringing, maybe it’s a universal thing.
 
 But I also realized that I was pushing responsibility onto the computer too. I didn’t want to take responsibility for the code if it was wrong, because I didn’t really feel like it came from me. Even if I had read every line of code, that doesn’t mean I genuinely grokked it the way that I would’ve if I wrote it myself. I couldn’t claim to stand for everything in the document, because I didn’t write it. The sentences didn’t belong to me. 
 

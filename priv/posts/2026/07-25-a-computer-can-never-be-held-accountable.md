@@ -13,7 +13,7 @@
 > IBM training manual from 1979
 > 
 
-When LLMs were really hitting their stride I experimented with them, like many others, to see where they could help me. I wanted to see how I could leverage them at work and in my free time. I’ve learned a lot since then, but I especially remember something I started doing, and that I’ve seen other people do as well. Push responsibility onto the LLM.
+When LLMs were really hitting their stride I started experimenting with them, like many others, to see where they could help me. I wanted to see how I could leverage them at work and in my free time. I’ve learned a lot since then, but I especially remember something I started doing, and that I’ve seen other people do as well: push the responsibility onto the LLM.
 
 I would say things like “here’s some research Claude did” or “the agent added this function”. Also variations on: “disclaimer, this was written by Claude”, or “I didn’t find the solution, Claude did”.
 

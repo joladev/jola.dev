@@ -14,6 +14,8 @@ The goal of Latch is to provide an idiomatic Elixir implementation that deals wi
 
 ## Quickstart
 
+_For a complete Phoenix example integration of Latch, take a look at [the source code for annot.at](https://tangled.org/jola.dev/annot.at)._
+
 Add Latch to your project.
 
 ```elixir
@@ -51,12 +53,28 @@ children = [
 ]
 ```
 
-Set up a route to serve the CIMD (client ID metadata document) at `/oauth-client-metadata.json`.
+Set up routes to serve the CIMD (client ID metadata document) at `/oauth-client-metadata.json` and your callback route.
 
 ```elixir
-def client_metadata(conn, _params) do
-  json(conn, Latch.client_metadata(MyApp.Latch))
-end
+  get "/oauth-client-metadata.json", AuthController, :client_metadata
+  get "/auth/callback", AuthController, :callback
+```
+
+and implement your `AuthController` with:
+
+```elixir
+  def client_metadata(conn, _params) do
+    json(conn, Latch.client_metadata(MyApp.Latch))
+  end
+  
+  def callback(conn, params) do
+    case Latch.callback(AnnotAt.Latch, params) do
+      {:ok, %{did: did, handle: handle}} ->
+        # store the user in session
+  
+      ...
+    end
+  end
 ```
 
 Now the rest of it is fairly recognizable if you've done OAuth before. Call authorize when a user has passed their handle to log in, redirect them to the URL you get back, and then provide a callback URL to finish the flow.

@@ -24,7 +24,7 @@ def deps do
 end
 ```
 
-Create a Latch Store module for storing in-progress requests and access tokens. You can create your own Store implementation by implementing the `Latch.Store` behavior, for example here's an [Ecto backed one](https://tangled.org/jola.dev/annot.at/blob/main/lib/annot_at/latch_store.ex) in my [RSS<>atproto syncing app annot.at](https://annot.at).
+Create a Latch Store module for storing in-progress requests and access tokens. You can create your own Store implementation by implementing the `Latch.Store` behavior, for example here's an [Ecto backed one](https://tangled.org/jola.dev/annot.at/blob/main/lib/annot_at/latch_store.ex) from [annot.at](https://annot.at).
 
 ```elixir
 defmodule MyApp.LatchStore do

@@ -110,3 +110,5 @@ Here are some links:
 - Tangled [https://tangled.org/jola.dev/latch](https://github.com/joladev/latch)
 - hex.pm [https://hex.pm/packages/latch](https://hex.pm/packages/latch)
 - HexDocs [https://latch.hexdocs.pm/readme.html](https://latch.hexdocs.pm/readme.html)
+
+Let me know how you find it! Really excited to see more Elixir atproto apps!

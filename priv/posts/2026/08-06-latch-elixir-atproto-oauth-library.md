@@ -24,7 +24,7 @@ def deps do
 end
 ```
 
-Create a Latch Store module for storing in-progress requests and access tokens.
+Create a Latch Store module for storing in-progress requests and access tokens. You can create your own Store implementation by implementing the `Latch.Store` behavior, for example here's an [Ecto backed one](https://tangled.org/jola.dev/annot.at/blob/main/lib/annot_at/latch_store.ex) in my [RSS<>atproto syncing app annot.at](https://annot.at).
 
 ```elixir
 defmodule MyApp.LatchStore do
@@ -39,12 +39,14 @@ children = [
   {MyApp.LatchStore, []},
   {Latch,
     name: MyApp.Latch,
-    mode: :confidential,
+    mode: :confidential, # Latch also supports `:localhost` for local dev, and `:public` for browser based clients
     store: MyApp.LatchStore,
-    client_id_path: "/oauth-client-metadata.json",
-    redirect_uri_path: "/auth/callback",
-    base_url_fn: fn -> MyAppWeb.Endpoint.url() end,
+    client_id_path: "/oauth-client-metadata.json", # you can select any path here, but this is a good default
+    redirect_uri_path: "/auth/callback", # match your callback path
+    base_url_fn: &MyAppWeb.Endpoint/1,
     scope: "atproto",
+    # signing key is required for confidential apps, create with:
+    # `mix run -e '{_, jwk} = JOSE.JWK.to_map(JOSE.JWK.generate_key({:ec, "P-256"})); IO.puts(Jason.encode!(jwk))'`
     signing_key: System.fetch_env!("ATPROTO_CLIENT_PRIVATE_JWK")}
 ]
 ```

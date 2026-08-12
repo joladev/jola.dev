@@ -31,14 +31,26 @@
 @layer base {
     :root {
         /* Dark Theme (Default) */
-        --background: 10 10 10; /* #0a0a0a */
-        --foreground: 250 250 250; /* #fafafa */
-        --muted: 115 115 115; /* #737373 */
-        --muted-foreground: 163 163 163; /* #a3a3a3 */
-        --border: 38 38 38; /* #262626 */
-        --surface: 23 23 23; /* #171717 */
-        --accent: 251 146 60; /* #fb923c */
+        --background: 18 14 28; /* #12101c — plum-ink */
+        --foreground: 252 248 242; /* #fcf8f2 — warm white */
+        --muted: 104 96 120; /* #686078 */
+        --muted-foreground: 168 159 186; /* #a89fba */
+        --border: 41 33 58; /* #29213a */
+        --surface: 28 22 44; /* #1c162c */
+        --accent: 255 124 182; /* #ff7cb6 — coral pink */
     }
+
+    @media (prefers-color-scheme: light) {
+             :root {
+                 --background: 252 247 233; /* #fcf7e9 — cream */
+                 --foreground: 38 31 22; /* #261f16 — warm ink */
+                 --muted: 142 132 110; /* #8e846e */
+                 --muted-foreground: 92 84 68; /* #5c5444 */
+                 --border: 222 210 180; /* #ded2b4 */
+                 --surface: 245 238 220; /* #f5eedc */
+                 --accent: 235 92 152; /* #eb5c98 — Gleam pink */
+             }
+         }
 
     * {
         @apply border-border;

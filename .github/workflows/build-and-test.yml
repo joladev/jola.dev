@@ -25,8 +25,8 @@ jobs:
       # Specify the OTP and Elixir versions to use when building
       # and running the workflow steps.
       matrix:
-        otp: ['28.3.2']       # Define the OTP version [required]
-        elixir: ['1.19.5']    # Define the elixir version [required]
+        otp: ['29.0.5']       # Define the OTP version [required]
+        elixir: ['1.20.3']    # Define the elixir version [required]
     steps:
     # Step: Setup Elixir + Erlang image as the base.
     - name: Set up Elixir
@@ -93,4 +93,3 @@ jobs:
     # Step: Run Credo
     - name: Run Credo
       run: mix credo --strict
-

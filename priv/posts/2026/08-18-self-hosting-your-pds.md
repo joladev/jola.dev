@@ -21,7 +21,7 @@ There are plenty of instructions in the repo, but they’re a bit spread out, an
 There are a few things going on under the hood here that are worth highlighting:
 
 - The PDS holds the account repo, or in other words, all of your on-protocol data. This can be things like blog posts, Bluesky posts, standard reader reading history, book reviews, and much more. It also holds the blobs you upload, like images and videos.
-- Handles need a verification method, either through DNS or a web server that responds on `.well-known/atproto-did`. The PDS is built to handle this, but it requires getting the right DNS records and TLS certifications in place.
+- Handles need a verification method, either through DNS or a web server that responds on `.well-known/atproto-did`. The PDS is built to handle this, but it requires getting the right DNS records and TLS certificates in place.
 - As long as you make backups and [set up a rotation key](https://jola.dev/posts/taking-control-atproto-account), self-hosting your atproto account is fairly safe, you can recover from things like the PDS going down or accidentally deleting the database. So make backups.
 
 ## Getting started
@@ -70,7 +70,7 @@ services:
       PDS_HOSTNAME: pds.example.com
       PDS_USER_HANDLE_DOMAINS: example.com
       INVITE_CODE_REQUIRED: "true"
-      DATABASE_URL: postgres://tranquil_pds:${POSTRES_PASSWORD}@db:5432/pds
+      DATABASE_URL: postgres://tranquil_pds:${POSTGRES_PASSWORD}@db:5432/pds
       JWT_SECRET: ${JWT_SECRET}
       MASTER_KEY: ${MASTER_KEY}
       DPOP_SECRET: ${DPOP_SECRET}
@@ -102,7 +102,7 @@ volumes:
 
 You’ll want to replace the `example.com` domain name with your own, and you’re going to need to set up some secrets. Create a file called `.env` and fill it with these keys, running `openssl rand -base64 48` for each and filling in the value.
 
-```yaml
+```
 JWT_SECRET=<openssl rand -base64 48>
 MASTER_KEY=<openssl rand -base64 48>
 DPOP_SECRET=<openssl rand -base64 48>
@@ -123,7 +123,7 @@ Now go to your PDS and create your account, choosing password or passkey for aut
 
 Assuming everything has gone to plan, that should return your did, looking something like `did:plc:string`. And next, for the real test, try logging into a service that uses atproto OAuth, like [Bluesky](https://bsky.app/), [annot.at](http://annot.at), or [Standard Reader](https://standard-reader.app/). 
 
-Now create a bunch of accounts for all the things you need! Remember that you can still use 
+Now create a bunch of accounts for all the things you need! Get some cool custom domains and update your handles through the tranquil-pds dashboard. Live your best life.
 
 ## How you can tighten this up
 
@@ -141,10 +141,9 @@ The first thing you might want to consider to do is set up a verification flow. 
 And there’s a lot more you could do to improve on this set up. Check out the [cove.town repo](https://tangled.org/cove.town/cove.town) for a more complete reference. Some examples of things you could do:
 
 - Move the blob storage to object storage, either self-hosting something like [Garage](https://garagehq.deuxfleurs.fr/), or going for a managed solution like [Scaleway](https://scaleway.com/) or [Hetzner](https://hetzner.cloud/?ref=SjrsM8GhyYOl) (referral link for €20 credits).
-- Set up backups of your Postgres DB and the blob volume. You can also do manual backups of
+- Set up backups of your Postgres DB and the blob volume. You can also do manual backups of your accounts using tools like [goat](https://github.com/bluesky-social/goat).
 - Proper secret management, instead of maintaining a `.env` file you could look at some secret management tools, like [OpenBao](https://openbao.org/).
 - Instead of a plain compose, run a self-hosted PaaS like [Dokploy](https://dokploy.com/).
-- Use a Caddy DNS plugin integration to automatically create `_atproto` DNS records for additional verification.
 
 Additionally tranquil-pds supports advanced features like running multiple instances clustered, and the [maintainers are super friendly](https://tangled.org/tranquil.farm/tranquil-pds/pulls/240/round/2)!
 

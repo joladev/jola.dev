@@ -121,7 +121,7 @@ Now go to your PDS and create your account, choosing password or passkey for aut
 
 `curl https://you.example.com/.well-known/atproto-did`
 
-Assuming everything has gone to plan, that should return your did, looking something like `did:plc:string`. And next, for the real test, try logging into a service that uses atproto OAuth, like [Bluesky](https://bsky.app/), [annot.at](http://annot.at), or [Standard Reader](https://standard-reader.app/). 
+Assuming everything has gone to plan, that should return your did, looking something like `did:plc:string`. And next, for the real test, try logging into a service that uses atproto OAuth, like [Bluesky](https://bsky.app/), [annot.at](https://annot.at), or [Standard Reader](https://standard-reader.app/).
 
 Now create a bunch of accounts for all the things you need! Get some cool custom domains and update your handles through the tranquil-pds dashboard. Live your best life.
 

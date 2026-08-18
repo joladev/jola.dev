@@ -65,6 +65,7 @@ defmodule JolaDevWeb.Router do
 
     get "/llms.txt", LlmsController, :index
     get "/llms-full.txt", LlmsController, :full
+    get "/.well-known/atproto-did", WellKnownController, :atproto_did
     get "/.well-known/site.standard.publication", WellKnownController, :publication
   end
 

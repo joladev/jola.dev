@@ -14,6 +14,7 @@ defmodule JolaDev.Atproto do
   @publication_rkey "3mope7jyypk22"
   @url "https://jola.dev"
 
+  def atproto_did, do: @did
   def publication_uri, do: "at://#{@did}/site.standard.publication/#{@publication_rkey}"
   def publication_rkey, do: @publication_rkey
 

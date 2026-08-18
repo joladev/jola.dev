@@ -101,13 +101,13 @@ volumes:
   caddy_data:
 ```
 
-You’ll want to replace the `example.com` domain name with your own, and you’re going to need to set up some secrets. Create a file called `.env` and fill it with these keys, running `openssl rand -base64 48` for each and filling in the value.
+You’ll want to replace the `example.com` domain name with your own, and you’re going to need to set up some secrets. Create a file called `.env` and fill it with these keys, running `openssl rand -hex 32` for each and filling in the value.
 
 ```
-JWT_SECRET=<openssl rand -base64 48>
-MASTER_KEY=<openssl rand -base64 48>
-DPOP_SECRET=<openssl rand -base64 48>
-POSTGRES_PASSWORD=<openssl rand -base64 48>
+JWT_SECRET=<openssl rand -hex 32>
+MASTER_KEY=<openssl rand -hex 32>
+DPOP_SECRET=<openssl rand -hex 32>
+POSTGRES_PASSWORD=<openssl rand -hex 32>
 ```
 
 Ok, that should be everything now. Try to start it up!

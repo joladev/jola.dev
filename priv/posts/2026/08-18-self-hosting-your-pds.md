@@ -30,8 +30,9 @@ Before we get to the code, we need a few things.
 
 1. A domain that you can add records to. You’re going to need to set up an `A` or `CNAME` wildcard record pointing at your server. For example, if your domain is `example.com`, the record would be `*.example.com`. This is because the accounts will get handles like `alice.example.com`. Alternatively, if you’re happy to add each subdomain manually, you can skip the wildcard record and just create `pds.example.com`.
 2. A server with Docker or something similar installed. We’re going to use it to set up a compose. You can use alternatives like podman, but this guide will focus on Docker.
+3. An account on atcr.io, the atproto container registry. Log in using `docker login atcr.io` or `docker login atcr.io -u <HANDLE> --password-stdin`, using an app password.
 
-Armed with those two things, we’re ready to go.
+Armed with those things, we’re ready to go.
 
 ## TLS termination
 

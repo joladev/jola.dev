@@ -8,9 +8,11 @@
 
 Following the blog post on [how to self-host a PDS (Personal Data Server) for atproto](https://jola.dev/posts/self-hosting-your-pds), having your accounts live on your own server, while still being able to interact with apps like [Bluesky](https://bsky.app/) and [pckt.blog](https://pckt.blog), I wanted to write a little about how to do the same for [Tangled](https://tangled.org/).
 
+Caveat: the Tangled team are working on a new generation of components, including [knot2](https://tangled.org/tangled.org/core/tree/master/knot2), [mill](https://tangled.org/tangled.org/core/tree/1adde466290bdc74e2a18f23592a03975be11a92/spindle/mill), and the new appview based on [bobbin](https://blog.tangled.org/bobbin/). There will be some form of migration path, but it's all in active development.
+
 Tangled is basically Github on atproto. In other words, Tangled offers repo hosting, CI actions, and social coding features. Where they differ is that Tangled doesn’t have private repos yet (we’re all waiting with baited breath for [permissioned data](https://github.com/bluesky-social/proposals/tree/main/0016-permissioned-data) to land), and that Tangled allows you to self-host your infrastructure while still participating in the social features. If you’re hosting a [forgejo](https://forgejo.org/) or [gitea](https://about.gitea.com/) instance, or have been thinking about it, this is really the killer feature. The other self-hosted Github alternatives have the side-effect of “isolating” you, it’s harder to find your repo because there’s no shared location where you find all self-hosted instances, and to interact with your repo, creating issues or PRs, users have to create a new account for every single instance. With Tangled you can run your own knot and spindle, but users can find and interact with them on the shared appview.
 
-So let’s take a look at what it takes to self-host the two current Tangled components: knot and spindle. Note that these components are in active development, alpha status, and that this guide just lays out one way of running them, you’ll want to tweak things to make sense for you.
+So let’s take a look at what it takes to self-host the two current Tangled components: knot and spindle. Note that this guide just lays out one way of running them, you’ll want to tweak things to make sense for you.
 
 ## Knot, the repository server
 
@@ -26,7 +28,7 @@ knot.example.com {
 
 Unlike the PDS, there’s not that much to configure here. `KNOT_SERVER_OWNER` should be set to the DID of the atproto account you want to own the knot. That account can then grant access to other accounts. Nobody can use your knot without first being invited.
 
-The biggest thing to highlight here is the port you’re opening on the knot itself. The reverse proxy handles API requests, but the main job of the knot is reading and writing repositories, and that’s going to happen over SSH. The knot comes with a built-in simulated SSH server that only supports a very small number of operations, related to git. The example below puts that open port on `:2222`, but if you’ve already moved your SSH port on your server away from `:22`, or you use something like Tailscale SSH which doesn’t use that port, you can let the knot own `:22`.
+The biggest thing to highlight here is the port you’re opening on the knot itself. The reverse proxy handles API requests, but the main job of the knot is reading and writing repositories, and that’s going to happen over SSH. The knot comes with an embedded OpenSSH server that only supports a very small number of operations, related to git. The example below puts that open port on `:2222`, but if you’ve already moved your SSH port on your server away from `:22`, or you use something like Tailscale SSH which doesn’t use that port, you can let the knot own `:22`.
 
 ```elixir
 services:
@@ -129,7 +131,7 @@ There it is. A workflow on a self-hosted knot running on a self-hosted spindle. 
 
 ## Improvements
 
-Knots also support a hardened security mode, although the instructions are just for nix. The reason you might want to care about this is the know will execute `git` commands, and so any `git` vulnerability also becomes a *you* vulnerability. Since the knot is members only, that limits the surface area to who you add as members, but it’s good to be aware of.
+Knots also support a hardened security mode, although the instructions don't cover docker. The reason you might want to care about this is the know will execute `git` commands, and so any `git` vulnerability also becomes a *you* vulnerability. Since the knot is members only, that limits the surface area to who you add as members, but it’s good to be aware of.
 
 For the spindle I can’t really cover the configuration surface area, it’s massive. You’ve got two different workflow engines: `nixery` and `microvm`. You can pass an incredible number of different env vars to tweak its behavior and what it can do. I’d recommend you limit who has access and experiment until you’re comfortable it’s behaving the way you expect, because a misbehaving workflow runner can disrupt your server in any number of ways.
 

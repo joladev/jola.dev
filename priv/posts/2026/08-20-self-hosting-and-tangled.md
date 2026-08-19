@@ -133,9 +133,11 @@ There it is. A workflow on a self-hosted knot running on a self-hosted spindle. 
 
 Knots also support a hardened security mode, although the instructions don't cover docker. The reason you might want to care about this is the know will execute `git` commands, and so any `git` vulnerability also becomes a *you* vulnerability. Since the knot is members only, that limits the surface area to who you add as members, but it’s good to be aware of.
 
-For the spindle I can’t really cover the configuration surface area, it’s massive. You’ve got two different workflow engines: `nixery` and `microvm`. You can pass an incredible number of different env vars to tweak its behavior and what it can do. I’d recommend you limit who has access and experiment until you’re comfortable it’s behaving the way you expect, because a misbehaving workflow runner can disrupt your server in any number of ways.
+For the spindle I can’t really cover the configuration surface area, it’s massive. You’ve got two different workflow engines: `nixery` and `microvm`. `microvm` can be seen as an improvement on the older engine, but requires access to `/dev/kvm` which is often not available on VPSs. You can pass an incredible number of different env vars to tweak its behavior and what it can do. I’d recommend you limit who has access and experiment until you’re comfortable it’s behaving the way you expect, because a misbehaving workflow runner can disrupt your server in any number of ways.
 
 The docs have lots of [examples of workflow definitions,](https://docs.tangled.org/spindles#spindles) for inspiration, or why not take a look at my previous blog post on how to run a [standard Elixir Phoenix workflow](https://jola.dev/posts/ci-workflows-on-tangled) on Tangled.
+
+And as always, make sure to set up backups! You'll want to set that up for all of the volumes here to avoid risking losing data. Tangled mirror your knots, but don't rely on that, have backups!
 
 ## Conclusion
 

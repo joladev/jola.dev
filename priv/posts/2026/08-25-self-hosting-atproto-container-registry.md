@@ -1,10 +1,12 @@
 %{
   title: "Self-hosting an atproto container registry",
   author: "Johanna Larsson",
-  tags: ~w(atproto self-hosting pds),
+  tags: ~w(atproto self-hosting hold container registry),
   description: "How to get the atcr.io hold component up and running for atproto container registry fun."
 }
 ---
+
+This is a part of a series of blog posts on self-hosting atproto components. The previous ones are [Self-hosting your PDS] and [Self-hosting and Tangled](https://jola.dev/posts/self-hosting-your-pds).
 
 [atcr.io](http://atcr.io) is a container registry on [atproto](https://atproto.com/), it’s a place where you can push your Docker and other container images to, and then fetch them run them in just about any place, from a local [Docker Compose,](https://docs.docker.com/compose/) to hosted services like [Railway](https://railway.com/), or self-hosted PaaSs like [Dokploy](https://dokploy.com/).
 
@@ -29,14 +31,14 @@ s3.example.com {
 ```bash
 GARAGE_RPC_SECRET=<openssl rand -hex 32>
 AWS_ACCESS_KEY_ID=<fill in later in the guide>
-AWS_SECRET_ACCESS_KEY<fill in later in the guide>
+AWS_SECRET_ACCESS_KEY=<fill in later in the guide>
 ```
 
 Ok, next up, storage. While the manifests live on atproto, the layers themselves are heavy and the hold offloads them to object storage. This means we need an S3 compatible server set up before we can get to the hold. You could use a paid service here, like [Scaleway](https://www.scaleway.com/en/) or [Hetzner](https://hetzner.cloud/?ref=SjrsM8GhyYOl) (referral link for €20 credits), but if we have a server with space and resources to spare, why not use it. In the wake of the minio drama [Garage](https://garagehq.deuxfleurs.fr/) has established itself as a great alternative.
 
 So we set up our Garage config `garage.toml`.
 
-```bash
+```toml
 metadata_dir = "/var/lib/garage/meta"
 data_dir = "/var/lib/garage/data"
 db_engine = "sqlite"
@@ -116,8 +118,6 @@ docker compose up -d garage                                    # 1. storage firs
 docker exec $(docker ps -qf name=garage) /garage -c /etc/garage.toml bucket create atcr-blobs
 docker exec $(docker ps -qf name=garage) /garage -c /etc/garage.toml key create hold-key
 docker exec $(docker ps -qf name=garage) /garage -c /etc/garage.toml bucket allow --read --write atcr-blobs --key hold-key
-# 2. key output → .env
-docker compose up -d
 ```
 
 Okay, take the access key ID and the secret and add them to the `.env` file you set up earlier. And then you can start the rest
@@ -136,9 +136,9 @@ Once you’ve got it selected, try a `docker login atcr.io` and a `docker push a
 
 As usual, you’ll want to set up backups. You’re hosting the data, you don’t want to lose it.
 
-There are a bunch of interesting variations on this set up that you can try out. For example, hold also supports specifying a PLC DID, instead of defaulting the a web DID. With a web DID you can’t move your hold to a new domain, something to keep in mind. Also there’s a lot you can configure on the garage side, including setting up a CDN like the excellent [bunny.net](https://bunny.net/?ref=f0l8865b7g) to speed things up. 
+There are a bunch of interesting variations on this set up that you can try out. For example, hold also supports specifying a PLC DID, instead of defaulting the a web DID. With a web DID you can’t move your hold to a new domain, something to keep in mind. If you do specify a PLC DID, unless you also provide a `HOLD_DATABASE_ROTATION_KEY`, it will print the rotation key in logs on first startup. Grab it or lose it. Also there’s a lot you can configure on the garage side, including setting up a CDN like the excellent [bunny.net](https://bunny.net/?ref=f0l8865b7g) to speed things up. 
 
-It’s a fairly low lift to add, signing up to [bunny.net](https://bunny.net/?ref=f0l8865b7g) and creating a pull zone. Leave all the default settings in place and grab the subdomain they give you, or set up your own one. Then update the `hold-config.yml` to add `pull_zone`:
+It’s a fairly low lift to add, signing up to [bunny.net](https://bunny.net/?ref=f0l8865b7g) and creating a pull zone. Leave all the default settings in place and grab the subdomain they give you, or set up your own one. Then update the `config-hold.yml` to add `pull_zone`:
 
 ```bash
 storage:

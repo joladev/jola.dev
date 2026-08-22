@@ -8,7 +8,7 @@
 
 This is a part of a series of blog posts on self-hosting atproto components. The previous ones are [Self-hosting your PDS] and [Self-hosting and Tangled](https://jola.dev/posts/self-hosting-your-pds).
 
-[atcr.io](http://atcr.io) is a container registry on [atproto](https://atproto.com/), it’s a place where you can push your Docker and other container images to, and then fetch them run them in just about any place, from a local [Docker Compose,](https://docs.docker.com/compose/) to hosted services like [Railway](https://railway.com/), or self-hosted PaaSs like [Dokploy](https://dokploy.com/).
+[atcr.io](http://atcr.io) is a container registry on [atproto](https://atproto.com/), it’s a place where you can push your Docker and other container images to, and then fetch them and run them in just about any place, from a local [Docker Compose,](https://docs.docker.com/compose/) to hosted services like [Railway](https://railway.com/), or self-hosted PaaSs like [Dokploy](https://dokploy.com/).
 
 While [atcr.io](http://atcr.io) offers a free managed registry server, you can also run your own, called the `hold`. So we will!
 

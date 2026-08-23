@@ -15,7 +15,7 @@ I recently wrote about setting up [knot and spindle](https://jola.dev/posts/self
 Okay, I hit the first challenge right off the bat. The Containerfile provided by the Tangled repo pins an `amd64` arch runner image that I can’t use, so I stripped that out to clone and build the image locally. The docker image contains the migration script, so that’s why I’m building it locally first.
 
 ```bash
-git clone --depth 1 <https://tangled.org/tangled.org/core> /tmp/tangled-core
+git clone --depth 1 https://tangled.org/tangled.org/core /tmp/tangled-core
 sed -i 's|gcr.io/distroless/cc-debian13:latest@sha256:[a-f0-9]*|gcr.io/distroless/cc-debian13:latest|' /tmp/tangled-core/knot2/Containerfile
 docker build -f /tmp/tangled-core/knot2/Containerfile -t knot2:local /tmp/tangled-core
 docker image inspect knot2:local --format '{{.Os}}/{{.Architecture}}'
@@ -47,7 +47,7 @@ sudo -E docker run --rm --user 0:0 \
   --source-db /old-db/knotserver.db \
   --env-file /old.env \
   --host-key /old-keys/ssh_host_ed25519_key \
-  --plc-url <https://plc.directory> \
+  --plc-url https://plc.directory \
   --target /target \
   --dry-run
 ```
@@ -100,7 +100,7 @@ sudo -E docker run --rm --user 0:0 \
   --source-db /old-db/knotserver.db \
   --env-file /old.env \
   --host-key /old-keys/ssh_host_ed25519_key \
-  --plc-url <https://plc.directory> \
+  --plc-url https://plc.directory \
   --target /target
 ```
 
@@ -176,8 +176,6 @@ services:
       - ./data:/data
 ```
 
-Check the generated config.toml matches `sudo cat data/config.toml | head -20`. It should!
-
 Now we’re ready to go:
 
 ```bash
@@ -209,4 +207,4 @@ Once you’re comfortable that the migration went well, and you’ve got backups
 
 ## Closing notes
 
-Big thank you to the Tangled team and @oyster.cafe for providing great documentation and a clean migration path. The new knot looks really slick. One of the big new things is that it doesn’t actually delegate to git under the hood, it comes with a full Rust git implementation instead. So, hopefully fewer CVEs 🤞
+Big thank you to the Tangled team and @oyster.cafe for providing great documentation and a clean migration path. The new knot looks really slick. One of the big new things is that it doesn’t actually delegate to git under the hood, it comes with a [full Rust git implementation](https://github.com/GitoxideLabs/gitoxide) instead. So, hopefully fewer CVEs 🤞

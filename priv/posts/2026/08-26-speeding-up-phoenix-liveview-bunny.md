@@ -53,6 +53,13 @@ We’re going to add a single line here, `static_url`.
     ...
 ```
 
+With that configuration set, we now have to also ensure that all assets are getting full URLs, rather than relative paths, so go through your `root.html.heex` and any other files that include asset URLs, and wrap them in `url`. You want your `app.js` and `app.css` references to look something like this.
+
+```html
+<link phx-track-static rel="stylesheet" href={url(~p"/assets/css/app.css")} />
+<script phx-track-static type="module" src={url(~p"/assets/js/app.js")}>
+```
+
 This means all of your static assets, like `app.js` and `app.css` will be served from `cdn.yourapp.com` instead of from your main host. These assets links get automatically rewritten, no extra work required, assuming they’re wrapped in `url`. So `~p"/images/logo.svg"`  does not get rewritten, but `url(~p"/images/logo.svg")` does.
 
 Okay, that’s the Phoenix side work done. Let’s move on to bunny.net.

@@ -1,5 +1,5 @@
 %{
-  title: "Speeding up a Phoenix LiveView web app with bunny.net",
+  title: "Speeding up a Phoenix LiveView web app with a CDN",
   author: "Johanna Larsson",
   tags: ~w(phoenix liveview elixir cdn bunny.net),
   description: "Serve your assets on a CDN sub-domain to speed up a Phoenix LiveView web app. All the payoff, none of the effort."

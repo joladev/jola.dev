@@ -10,6 +10,8 @@ I’ve written before about using [bunny.net](https://bunny.net/?ref=f0l8865b7g)
 
 For your average Phoenix LiveView web app this won’t work so well though. You’re very likely to have dynamic content, user sessions, and websockets. After some experimentation I found a really high impact low effort approach to using [bunny.net](https://bunny.net/?ref=f0l8865b7g) for this use case, so here’s a little write up.
 
+Note that there are other CDNs out there too and you should be able to use them just fine with this guide!
+
 ## A CDN that doesn’t get in your way
 
 Looking over your average Phoenix LiveView web app, the stuff you want to cache is likely being managed by the Plug.Static and Phoenix `assets` pipeline already. `mix assets.deploy` already builds your CSS and JS, as well as managing images, attaching unique hashes on each build. Since every new version produces a new hash, it means we can basically cache assets forever. The way this is hooked up, by default, is you’ve got `static_paths` defined in your Web module, like:

@@ -8,11 +8,9 @@
 
 Continuing the series on distributed Elixir, let’s talk about how to safely run a single instance of a process in a cluster. Well, as safe as we can make it. **There's also an incredible cluster related murder mystery story if you continue reading!**
 
-But first, if you haven’t read [Chris Keathley’s](https://keathley.io/) [The dangers of the Single Global Process](https://keathley.io/blog/sgp.html) you should probably do that before you continue. If you’re into that kind of reading, also take a look at [To spawn, or not to spawn?](https://www.theerlangelist.com/article/spawn_or_not) by Saša Jurić. I’ll just let those articles explain how to think about trying to run a single global process, and the risks that brings.
+But first, if you haven’t read [Chris Keathley’s](https://keathley.io/) [The dangers of the Single Global Process](https://keathley.io/blog/sgp.html) you should probably do that before you continue, to tackle the caveats of trying to run a single global process. If you’re into that kind of reading, also take a look at [To spawn, or not to spawn?](https://www.theerlangelist.com/article/spawn_or_not) by Saša Jurić. I’ll just let those articles explain how to think about trying to run a single global process, and the risks that that brings.
 
-There are times when a single global process is genuinely the best path forward though, or to be perfectly honest, where it’s the *lesser evil*. As long as you’re aware of the trade offs you’re making, no reason why you can’t make them. Running a single global process in a single node environment is straightforward enough, but things get more interesting in the context of a cluster.
-
-So let’s talk about how to do this safely, because doing this can fail in incredibly confusing and frustrating ways, including some interesting ones that I’ve had the fortunate/misfortune to experience in production!
+There are times when a single global process is genuinely the best path forward though, or to be perfectly honest, where it’s the *lesser evil*. As long as you’re aware of the trade offs you’re making, there's no reason why you can’t make them. Running a single global process in a single node environment is straightforward enough, but things get more interesting in the context of a cluster. So let’s talk about how to do this safely, because doing this can fail in incredibly confusing and frustrating ways, including some interesting ones that I’ve had the fortunate/misfortune to experience in production!
 
 ## Globally unique processes in a cluster
 
@@ -50,8 +48,6 @@ end
 
 Now just like you can do `send(Global, message)` to send a message to a process that has been registered under the name `Global` you can equally send a message to the globally registered `Global` with `send({:global, Global}, message)`. What happens under the hood here is that OTP maintains a global process registry, just like it does the local registry, with information about where to find the process. When registered globally, this works across the cluster, and any member of the cluster can now talk to our process! By wrapping `name` in the `:global` tuple our local process has now gone *global*.
 
-Now let’s talk about how to use it in the real world.
-
 ## Putting it in production
 
 We’ve talked about the basics of how this works, but there are some practicalities to deal with too. If you have a cluster of three nodes, what happens when they all try to start `Global`. What happens to the ones that lose? Only one node can start it.
@@ -71,7 +67,7 @@ The elders of OTP have thought of this, of course, and `GenServer.start_link(__M
   end
 ```
 
-This brings in two new concepts. The first is that we try to start but if someone gets there before us, we accept getting benched, but we bide our time. We set up a link on the winner, which is on a different node but that doesn’t stop OTP, and silently continue. And then at some point, if the winner crashes or shuts down for whatever reason, we get the `:DOWN` message and promptly exit, triggering the supervisor to restart us, and we get another shot at the limelight!
+This brings in two new concepts. The first is that we try to start but if someone gets there before us, we accept getting benched, but we bide our time. We set up a link on the winner, which is on a different node but that doesn’t stop OTP, and silently continue. And then at some point, if the winner crashes or shuts down for whatever reason, we exit too thanks to the link, triggering the supervisor to restart us, and we get another shot at the limelight!
 
 This actually works really well, and it’s a really elegant pattern that leans heavily on the design of OTP. Everything just works, links, down messages, cross cluster messaging. It’s beautiful!
 

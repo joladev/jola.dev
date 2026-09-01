@@ -6,7 +6,9 @@
 }
 ---
 
-Continuing the series on distributed Elixir, let’s talk about how to safely run a single instance of a process in a cluster. Well, as safe as we can make it. If you haven’t read [Chris Keathley’s](https://keathley.io/) [The dangers of the Single Global Process](https://keathley.io/blog/sgp.html) you should probably do that before you continue. If you’re into that kind of reading, also take a look at [To spawn, or not to spawn?](https://www.theerlangelist.com/article/spawn_or_not) by Saša Jurić. I’ll just let those articles explain how to think about trying to run a single global process, and the risks that brings.
+Continuing the series on distributed Elixir, let’s talk about how to safely run a single instance of a process in a cluster. Well, as safe as we can make it. **There's also an incredible cluster related murder mystery story if you continue reading!**
+
+But first, if you haven’t read [Chris Keathley’s](https://keathley.io/) [The dangers of the Single Global Process](https://keathley.io/blog/sgp.html) you should probably do that before you continue. If you’re into that kind of reading, also take a look at [To spawn, or not to spawn?](https://www.theerlangelist.com/article/spawn_or_not) by Saša Jurić. I’ll just let those articles explain how to think about trying to run a single global process, and the risks that brings.
 
 There are times when a single global process is genuinely the best path forward though, or to be perfectly honest, where it’s the *lesser evil*. As long as you’re aware of the trade offs you’re making, no reason why you can’t make them. Running a single global process in a single node environment is straightforward enough, but things get more interesting in the context of a cluster.
 
@@ -87,13 +89,13 @@ Still, whenever I had spare time I investigated this issue because, let’s face
 Kernel pid terminated (application_controller) ({application_terminated,swoosh,shutdown})
 ```
 
-Now if you were around back then, you might know what it was! An incredible set of very rare conditions happening in concert and resulting in an application dying. Because this was so much figuring out, let me take a stab at explaining it.
+Now if you were around back then, you might know what it was! An incredible set of very rare conditions happening in concert and resulting in an application dying. Let me take a stab at explaining it.
 
-[Swoosh](https://github.com/swoosh/swoosh) is an email library that has an adapter that’s just intended for local dev. It runs an in memory process that holds the emails. To support clusters, it actually used the pattern I showed above to attempting to claim the global name and falling back to monitoring. And, unfortunately, the test adapter ran by default, even in prod.
+[Swoosh](https://github.com/swoosh/swoosh) is an email library, included in the new Phoenix project scaffolding, that has an adapter that’s just intended for local dev. It runs an in memory process that holds the emails. To support clusters, it actually used the pattern I showed above to attempting to claim the global name and falling back to monitoring. And, unfortunately, the test adapter ran by default, even in prod.
 
-So what was happening was that the node owning the swoosh process died, sending a `:DOWN` message to every single other node alive. They would all scramble to register the new global name. Sometimes, the winner would be another node that was shutting down as part of the deployment, sending another `:DOWN` message to every other node. When the stars aligned, the nodes winning the right to register the global name kept being part of the nodes shutting down, triggering `:DOWN` message after `:DOWN` message, each one resulting in a `{:exit, :normal}` returned to the supervisor. 
+So what was happening was that the node owning the swoosh process shut down, sending a `:DOWN` message to every single other node alive. Each one has a linked process that exits in response, and then they would all scramble to register the new global name. Sometimes, the winner would be another node that was shutting down as part of the deployment, sending another `:DOWN` message to every other node. When the stars aligned, the nodes winning the right to register the global name kept being part of the nodes shutting down, triggering `:DOWN` message after `:DOWN` message, each one resulting in an abnormal exit returned to the supervisor. 
 
-Which supervisor you ask? Well, the Swoosh application supervisor. And that’s very relevant, because of one of the built in behaviors of OTP. You see, the wise elders recognized that it would be very bad if a process kept crashing and getting restarted forever. So they put a default limit of 3 times in a 5 second interval. If a process crashes more than 3 times in a 5 second interval, the *supervisor crashes*. Which is Swoosh. So Swoosh crashes. Which takes down the whole node. Because of rolling deploys!
+Which supervisor you ask? Well, the Swoosh application supervisor. And that’s very relevant, because of one of the built in behaviors of OTP. You see, the wise elders recognized that it would be very bad if a process kept crashing and getting restarted forever. So they put a default limit of 3 times in a 5 second interval. If a process crashes more than 3 times in a 5 second interval, the *supervisor crashes*. Which is Swoosh. So Swoosh itself crashes, which takes down the whole node. Because of rolling deploys!
 
 You can read the [original bug report here](https://github.com/swoosh/swoosh/issues/716), which mentions the fix I applied, turning off the local adapter, but that also brought a much cooler solution: adding a separate manager process to handle the starting/restarting.
 

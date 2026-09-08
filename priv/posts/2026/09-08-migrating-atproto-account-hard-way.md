@@ -10,7 +10,7 @@ When I set up my main Bluesky account, [@jola.dev](https://bsky.app/profile/jola
 
 The way it’s designed, your PDS doesn’t have to be Bluesky infrastructure for you to be able to post on Bluesky. It’s a decentralized design and you can run your own server. So obviously you should! The other day my specific PDS was down for a couple of hours, and I kept thinking about how cool it would be if it was _my own_ fault my PDS was down instead of someone else's.
 
-I’ve previously written about [cove.town](http://cove.town) and [setting up a PDS](https://jola.dev/posts/self-hosting-your-pds), and I’ve wanted to move my main account to it, but I have been dragging my feet. A big part of why was just a lack of confidence in the migration process itself. Turns out that was unfounded! Ps you should [set a rotation key on your account if you haven't](https://jola.dev/posts/taking-control-atproto-account), it's just a good idea.
+I’ve previously written about [cove.town](http://cove.town) and [setting up a PDS](https://jola.dev/posts/self-hosting-your-pds) using the excellent [tranquil-pds](https://tangled.org/tranquil.farm/tranquil-pds), and I’ve wanted to move my main account to it, but I have been dragging my feet. A big part of why was just a general worry that the migration process would be difficult or risky. Turns out that was unfounded! Ps you should [set a rotation key on your account if you haven't](https://jola.dev/posts/taking-control-atproto-account), it's just a good idea.
 
 ## How to prepare for migration
 

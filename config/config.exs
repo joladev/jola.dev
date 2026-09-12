@@ -48,6 +48,8 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :phoenix, :logger, false
+
 config :jola_dev, :og_image_dev_mode, false
 
 config :mdex_native, syntax_highlighter: :lumis

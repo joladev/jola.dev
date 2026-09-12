@@ -58,6 +58,8 @@ defmodule JolaDevWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
+  plug JolaDevWeb.Plugs.RequestLogger
+
   plug Sentry.PlugContext
 
   plug Plug.MethodOverride

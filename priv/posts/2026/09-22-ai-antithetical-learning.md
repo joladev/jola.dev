@@ -2,7 +2,7 @@
   title: "AI is antithetical to learning",
   author: "Johanna Larsson",
   tags: ~w(ai llm learning),
-  description: "LLM agents can help you write a lot of code, but they also take away opportunities to learn and grow."
+  description: "LLM agents can write a lot of code for you very fast, but they also take away opportunities to learn and grow."
 }
 ---
 

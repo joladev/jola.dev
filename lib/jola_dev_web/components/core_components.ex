@@ -825,4 +825,12 @@ defmodule JolaDevWeb.CoreComponents do
     <div id="vote-on-bubbles" data-url={@url} class="mt-2" />
     """
   end
+
+  attr :url, :string, required: true
+
+  def shelf_vote(assigns) do
+    ~H"""
+    <div id="vote-on-shelf" data-url={@url} class="mt-2" />
+    """
+  end
 end

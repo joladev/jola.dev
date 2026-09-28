@@ -68,14 +68,39 @@ function initializeBubblesVotes() {
     fetch(`https://bubbles.town/api/vote-count?url=${encodeURIComponent(url)}`)
       .then(r => r.json())
       .then(d => {
-        if (!d.id) return
+        if (!d.id) {
+          el.remove()
+          return
+        }
         el.innerHTML = `
         <a href="https://bubbles.town/entry/${d.id}" class="underline" style="color: #4ecdc4" target="_blank">
-          Vote on Bubbles ▲<span class="bubbles-count text-foreground">${d.count ? d.count : ''}</span>
+          Vote on Bubbles ▲<span class="bubbles-count text-foreground pl-1">${d.count ? d.count : ''}</span>
         </a>
         `
       })
-      .catch(() => { });
+      .catch(() => el.remove());
+  });
+}
+
+function initializeShelfVotes() {
+  document.querySelectorAll('#vote-on-shelf').forEach(el => {
+    const url = el.getAttribute('data-url');
+    fetch(`https://shelf.cafe/xrpc/getItems?url=${encodeURIComponent(url)}`)
+      .then(r => r.json())
+      .then(d => {
+        const items = d?.data?.items ?? []
+        if (!items.length) {
+          el.remove()
+          return
+        }
+        const top = items.reduce((a, b) => (b.vote_count > a.vote_count ? b : a))
+        el.innerHTML = `
+        <a href="${top.shelf_url}" class="underline" style="color: #b8623f" target="_blank">
+          Vote on Shelf ▲<span class="text-foreground pl-1">${top.vote_count ? top.vote_count : ''}</span>
+        </a>
+        `
+      })
+      .catch(() => el.remove());
   });
 }
 
@@ -83,4 +108,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeMobileMenu();
   initializeCodeCopy();
   initializeBubblesVotes()
+  initializeShelfVotes()
 });

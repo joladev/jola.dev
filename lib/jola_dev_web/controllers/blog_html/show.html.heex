@@ -26,7 +26,10 @@
         {raw(@post.body)}
       </div>
 
-      <.bubbles_vote url={Phoenix.Controller.current_url(@conn)} />
+      <div class="flex gap-4">
+        <.shelf_vote url={Phoenix.Controller.current_url(@conn)} />
+        <.bubbles_vote url={Phoenix.Controller.current_url(@conn)} />
+      </div>
 
       <.author author={@post.author} />
 

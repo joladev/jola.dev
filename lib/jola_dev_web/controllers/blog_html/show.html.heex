@@ -13,6 +13,9 @@
             <.icon name="hero-clock" class="w-4 h-4" />
             <span>{JolaDevWeb.BlogHelpers.estimate_reading_time(@post.body)} min read</span>
           </div>
+          <div class="flex items-center gap-1.5">
+            <.shelf_vote url={Phoenix.Controller.current_url(@conn)} />
+          </div>
         </div>
 
         <div :if={@post.tags != []} class="flex flex-wrap gap-2 mt-4">
@@ -26,7 +29,7 @@
         {raw(@post.body)}
       </div>
 
-      <div class="flex gap-4">
+      <div class="flex gap-4 mt-2">
         <.shelf_vote url={Phoenix.Controller.current_url(@conn)} />
         <.bubbles_vote url={Phoenix.Controller.current_url(@conn)} />
       </div>

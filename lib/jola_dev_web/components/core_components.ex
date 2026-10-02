@@ -822,7 +822,7 @@ defmodule JolaDevWeb.CoreComponents do
 
   def bubbles_vote(assigns) do
     ~H"""
-    <div id="vote-on-bubbles" data-url={@url} class="mt-2" />
+    <div id="vote-on-bubbles" data-url={@url} />
     """
   end
 
@@ -830,7 +830,7 @@ defmodule JolaDevWeb.CoreComponents do
 
   def shelf_vote(assigns) do
     ~H"""
-    <div id="vote-on-shelf" data-url={@url} class="mt-2" />
+    <div id="vote-on-shelf" data-url={@url} />
     """
   end
 end

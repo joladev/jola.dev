@@ -14,11 +14,11 @@ After much procrastination I finally took the plunge a month ago and it turns ou
 
 There are different approaches to this, but I’ve only tried the one: migrating on an iPhone. You can also do it using android or using the desktop apps, but I haven’t tried those!
 
-Step 1 is setting up your Bitwarden account. You can do this for free, you don’t need to pay to do the migration, although to get access to the TOTP features you will need to set up a subscription. Once you have your account, get the iPhone app and log in.
+**Step 1** is setting up your Bitwarden account. You can do this for free, you don’t need to pay to do the migration, although to get access to the TOTP features you will need to set up a subscription. Once you have your account, get the iPhone app and log in.
 
-Next, go to the 1Password app on your phone and click on the top left, go to Settings, go down to Advanced, and click “Start Export”. Going through the export wizard it should detect the Bitwarden app and offer it as an export destination. Once done, you’ll have a copy of your data in Bitwarden.
+**Step 2**, go to the 1Password app on your phone and click on the top left, go to Settings, go down to Advanced, and click “Start Export”. Going through the export wizard it should detect the Bitwarden app and offer it as an export destination. Once done, you’ll have a copy of your data in Bitwarden.
 
-Installing the Bitwarden app on your computer and logging in should sync everything over. You’re done!
+Installing the Bitwarden app on your computer and logging in should sync everything over. **You’re done!**
 
 ## Some notes on migration
 

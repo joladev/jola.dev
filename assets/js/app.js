@@ -90,7 +90,7 @@ function initializeShelfVotes() {
       .then(d => {
         const items = d?.data?.items ?? [];
         if (!items.length) {
-          el.innerHTML = `<a href="https://shelf.cafe/items/new?url=${encodeURIComponent(url)}" target="_blank" rel="noopener noreferrer" style="color:#b8623f;text-decoration:none">▲ post on shelf</a>`;
+          el.innerHTML = `<a href="https://shelf.cafe/items/new?url=${encodeURIComponent(url)}" target="_blank" rel="noopener noreferrer" style="color:#b8623f;text-decoration:none">▲ post on shelf.cafe</a>`;
           return;
         }
         const item = el.getAttribute('data-link') === 'newest'

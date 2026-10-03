@@ -83,22 +83,23 @@ function initializeBubblesVotes() {
 }
 
 function initializeShelfVotes() {
-  document.querySelectorAll('#vote-on-shelf').forEach(el => {
-    const url = el.getAttribute('data-url');
+  document.querySelectorAll('.vote-on-shelf').forEach(el => {
+    const url = el.getAttribute('data-url') || location.href.split('#')[0];
     fetch(`https://shelf.cafe/xrpc/getItems?url=${encodeURIComponent(url)}`)
       .then(r => r.json())
       .then(d => {
-        const items = d?.data?.items ?? []
+        const items = d?.data?.items ?? [];
         if (!items.length) {
-          el.remove()
-          return
+          el.innerHTML = `<a href="https://shelf.cafe/items/new?url=${encodeURIComponent(url)}" target="_blank" rel="noopener noreferrer" style="color:#b8623f;text-decoration:none">▲ post on shelf</a>`;
+          return;
         }
-        const top = items.reduce((a, b) => (b.vote_count > a.vote_count ? b : a))
+        const item = el.getAttribute('data-link') === 'newest'
+          ? items[0]
+          : items.reduce((a, b) => (b.vote_count > a.vote_count ? b : a));
         el.innerHTML = `
-        <a href="${top.shelf_url}" class="underline" style="color: #b8623f" target="_blank">
-          Vote on Shelf ▲<span class="text-foreground pl-1">${top.vote_count ? top.vote_count : ''}</span>
-        </a>
-        `
+        <a href="${item.shelf_url}" target="_blank" rel="noopener noreferrer" style="color:#888;text-decoration:none">
+          ${item.vote_count || ''} <span style="color:#b8623f">▲</span> on shelf.cafe
+        </a>`;
       })
       .catch(() => el.remove());
   });

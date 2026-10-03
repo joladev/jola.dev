@@ -830,7 +830,7 @@ defmodule JolaDevWeb.CoreComponents do
 
   def shelf_vote(assigns) do
     ~H"""
-    <div id="vote-on-shelf" data-url={@url} />
+    <div class="vote-on-shelf" data-url={@url} />
     """
   end
 end

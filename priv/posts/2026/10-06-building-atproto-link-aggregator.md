@@ -16,9 +16,9 @@ And that got me thinking about what the same thing would look like on [atproto](
 
 I had been meaning to build more of a “proper” atproto app, one with its own lexicon and AppView, ingesting content from a jetstream, all the cool stuff. So I did! [shelf.cafe](http://shelf.cafe) is live and kicking, and there’s already 14K+ links posted. There’s so much to share about how this works, so I’m just gonna start with the purpose: **shelf is an experiment in building an atproto link aggregator and creating a community around it**. I’m trying to take a little bit of the best of each world. Like Bubbles, Shelf has a list of feeds that it follows (more on that later) and automatically posts content from. But unlike Bubbles, Shelf supports making individual submissions as well. Otherwise it works a bit like you’d expect. You can comment and upvote, and there’s a front page that shows the highest voted content, with decay applied to keep it fresh.
 
-I’ve also cared a lot about performance and being mindful of people’s data limits. The front page loads in about 250ms for me, although your experience may vary based on cache status, location, and more. Rendering the front page only requires ~170kB of data transfer on an uncached load, less after the first page load. This is a mostly server-side rendered app, on purpose. Everything on [shelf.cafe](http://shelf.cafe) is designed to handle many orders of magnitude more load than its actually receiving, and it should be pretty snappy even on a mobile phone with a poor connection.
+I’ve also cared a lot about performance and being mindful of people’s data limits. The front page loads in about 250ms for me, although your experience may vary based on cache status, location, and more. Rendering the front page only requires ~170kB of data transfer on an uncached load, less after the first page load. This is a mostly server-side rendered app, on purpose. Everything on [shelf.cafe](http://shelf.cafe) is designed to handle a lot more load than its actually receiving (I can't help myself), but more importantly, it should be pretty snappy even on a mobile phone with a poor connection.
 
-Note that [shelf.cafe](http://shelf.cafe) is not the first atproto link aggregator, there are already projects like [https://frontpage.fyi/](https://frontpage.fyi/). However, that one seems mostly abandoned and the front page rarely changes. Which I imagine is how most attempts at link aggregators end up. Shelf might end up in the same place, but I have thought about this a bit about how to get around this.
+Note that [shelf.cafe](http://shelf.cafe) is not the first atproto link aggregator, there are already projects like [https://frontpage.fyi/](https://frontpage.fyi/). However, its front page rarely changes. Which I imagine is how most attempts at link aggregators end up. Shelf might end up in the same place, but I have given some thought to how I might be able to get around this.
 
 ## Bootstrapping a link sharing community
 
@@ -87,6 +87,8 @@ function initializeShelfVotes() {
       .catch(() => el.remove());
   });
 }
+
+initializeShelfVotes();
 ```
 
 You’re welcome to do whatever you want with this snippet, make it yours! And the endpoint returns other info too that you may want to display in some way, here’s an example response:
@@ -125,7 +127,7 @@ This means you can make your own app and render your own front page, including a
 
 This also means that I could drop Shelf’s database and then recreate it by pulling down all the atproto records from the protocol. Of course I’d have to rebuild the backlink index as well, and fetch all the labels. But I would be able to recreate the AppView if required.
 
-Backlinks are a neat topic by the way, and I want to dig deeper into that in a future post that focuses on the technical aspects of Shelf. But in short, I use a Jetstream subscriber filtered on Bluesky posts that match URLs that have been submitted, and for backfills I use [Constellation](https://constellation.microcosm.blue/) by the excellent [@bad-example.org](https://northsky.app/profile/bad-example.com). The result is that you can see all the conversations across Bluesky when you click on a link on Shelf.
+Backlinks are a neat topic by the way, and I want to dig deeper into that in a future post that focuses on the technical aspects of Shelf. But in short, I use a Jetstream subscriber filtered on Bluesky posts that match URLs that have been submitted, and for backfills I use [Constellation](https://constellation.microcosm.blue/) by the excellent [@bad-example.com](https://northsky.app/profile/bad-example.com). The result is that you can see all the conversations across Bluesky when you click on a link on Shelf.
 
 Another cool effect from this is that you don’t actually need to use the website to submit something to it, and you can set up integrations to automatically post your content. As a little proof of concept, let’s look at what posting an item would look like using the [goat](https://github.com/bluesky-social/goat) command line tool. To follow the steps after this you need to first log into an atproto account using `goat account login`.
 

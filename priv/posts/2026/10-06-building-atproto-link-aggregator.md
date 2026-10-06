@@ -14,7 +14,7 @@ And that got me thinking about what the same thing would look like on [atproto](
 
 ## shelf.cafe
 
-I had been meaning to build more of a “proper” atproto app, one with its own lexicon and AppView, ingesting content from a jetstream, all the cool stuff. So I did! [shelf.cafe](http://shelf.cafe) is live and kicking, and there’s already 14K+ links posted. There’s so much to share about how this works, so I’m just gonna start with the purpose: **shelf is an experiment in building an atproto link aggregator**. I’m trying to take a little bit of the best of each world. Like Bubbles, Shelf has a list of feeds that it follows and automatically posts content from. But unlike Bubbles, Shelf supports making individual submissions as well. Otherwise it works a bit like you’d expect. You can comment and upvote, and there’s a front page that shows the highest voted content, with decay applied to keep it fresh.
+I had been meaning to build more of a “proper” atproto app, one with its own lexicon and AppView, ingesting content from a jetstream, all the cool stuff. So I did! [shelf.cafe](http://shelf.cafe) is live and kicking, and there’s already 14K+ links posted. There’s so much to share about how this works, so I’m just gonna start with the purpose: **shelf is an experiment in building an atproto link aggregator and creating a community around it**. I’m trying to take a little bit of the best of each world. Like Bubbles, Shelf has a list of feeds that it follows (more on that later) and automatically posts content from. But unlike Bubbles, Shelf supports making individual submissions as well. Otherwise it works a bit like you’d expect. You can comment and upvote, and there’s a front page that shows the highest voted content, with decay applied to keep it fresh.
 
 I’ve also cared a lot about performance and being mindful of people’s data limits. The front page loads in about 250ms for me, although your experience may vary based on cache status, location, and more. Rendering the front page only requires ~170kB of data transfer on an uncached load, less after the first page load. This is a mostly server-side rendered app, on purpose. Everything on [shelf.cafe](http://shelf.cafe) is designed to handle many orders of magnitude more load than its actually receiving, and it should be pretty snappy even on a mobile phone with a poor connection.
 
@@ -22,7 +22,7 @@ Note that [shelf.cafe](http://shelf.cafe) is not the first atproto link aggregat
 
 ## Bootstrapping a link sharing community
 
-When trying to build a link aggregator from scratch, the hardest part is getting content and engagement. Taking inspiration from Bubbles and following existing feeds and automatically posting new content gives us the first, we can build up lots of interesting content, but the latter is harder. Half the reason we use link aggregators is to read the comments, but there won’t be any comments until there’s a community. The classic chicken or egg problem.
+When trying to build a link aggregator from scratch, the hardest part is getting content and engagement. Taking inspiration from Bubbles and following existing feeds and automatically posting new content gives us the former, we can build up lots of interesting content, but the latter is harder. Half the reason we use link aggregators is to read the comments, but there won’t be any comments until there’s a community. The classic chicken or egg problem.
 
 What I came up with to tackle this is that I built a backlink index. I process all the posts on Bluesky, live as they happen, and record every instance of someone mentioning a URL that had been submitted to Shelf. So if I post a link to this blog post on Bluesky, that post and any threads relating to it are automatically rendered in Shelf in the comment section! It’s obviously not a replacement for a community of engaged and caring people, but it does give you something to read!
 
@@ -37,6 +37,14 @@ And for the algorithm, I wanted to keep it simple.
 `Score = Votes ^ 0.8 / (Age + 2) ^ 1.8`
 
 Or in plainer language, the ranking of an item is based on the number of votes, where each vote is less powerful than the last, divided by the age of the item, where the impact of the age increases over time. This is a fairly standard ranking algorithm when you want the content of the front page to refresh every day, but still means items with more votes can stick around for longer.
+
+## The blog list
+
+shelf.cafe, like Bubbles, has a list of blogs that it follows. I actually started with the Bubbles list, which is public at [https://bubbles.town/blogs.opml](https://bubbles.town/blogs.opml), but after setting it all up I kind of realized that I hadn't thought this through. The `/new` page had lots of posts on it, but the kind of content that I wanted to see on the front page was getting drowned out with automated posts, weekly notes, and daily meditations. Nothing wrong with any of it, but if I want shelf.cafe to stand out I have to do something at least a little bit different.
+
+I'm still working on a new curated list of blogs. It's already looking a lot better, but there's more to be done. The goal is not to filter it down to just topics I'm interested in, but to give more space for longer form posts and write ups. Once I've got it into a good place I'm gonna add a `/blogs.opml` endpoint that matches the Bubbles one. If you want to submit your blog for inclusion let me know, but I haven't written up proper criteria yet.
+
+Although I also see a potential future where Shelf does not auto-post from followed blogs.
 
 ## Vote on Shelf widget
 

@@ -2,7 +2,7 @@
   title: "Making your own atproto backlink index",
   author: "Johanna Larsson",
   tags: ~w(elixir atproto backlink bloomfilter jetstream shelf.cafe),
-  description: "I built an atproto backlink index using Latch and Kite, and I sped it up with some neat bloom filter and erlang atomics action."
+  description: "I built an atproto backlink index using Latch for primitives and Kite for the jetstream, and I sped it up with some neat bloom filter and erlang atomics action."
 }
 ---
 

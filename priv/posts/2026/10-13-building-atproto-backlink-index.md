@@ -14,7 +14,7 @@ The Bluesky team, in collaboration with the community, have and are developing s
 
 The jetstream servers support anyone anonymously subscribing to a websocket and immediately getting records and updates happening, all of the ones happening on the protocol right now. The basic design is that the user’s PDS owns the data and updates to it. The PDS exposes a firehose endpoint and requests known relays crawl it. The relays subscribe to all the PDSs and echo the updates happening on the PDSs. This is how atproto achieves federation of a decentralized protocol. You could crawl every PDS out there yourself, but that would not be very efficient.
 
-The jetstream is like the relay, but it produces JSON instead of CAR archives and stuff, making it much more accessible and easy to get up and running with, with the tradeoff that you can’t cryptographically verify each. You have to trust the jetstream, which seems reasonable enough for this use case, although it would be interesting to run your own.
+The jetstream is like the relay, but it produces JSON instead of CAR archives and stuff, making it much more accessible and easy to get up and running with, with the tradeoff that you can’t cryptographically verify each record. You instead have to trust the jetstream, which seems reasonable enough for this use case, although it would be interesting to run your own.
 
 ## Creating a Bluesky post backlink indexer with Kite
 

@@ -68,7 +68,7 @@ defmodule JolaDev.MixProject do
       {:bandit, "~> 1.5"},
       {:nimble_publisher, "~> 2.0"},
       {:recon, "~> 2.5"},
-      {:sentry, "~> 13.0"},
+      {:sentry, "~> 14.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:image, "~> 0.69"},
       {:logger_json, "~> 7.0"},

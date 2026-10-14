@@ -20,13 +20,13 @@ Traditionally the only thing that kinda identifies a static site blog post is th
 
 Why do you need to store it or make it deterministic? Because your blog post has to contain the tag `<link rel="site.standard.document" href="at://did:plc:you/site.standard.document/tidrkey" />` to prove the connection between the record and the page.
 
-[This has been an issue for a while on the lexicon repo.](https://tangled.org/standard.site/lexicons/issues/7)
+[This has been an issue for a while on the lexicon repo.](https://tangled.org/standard.site/lexicons/issues/7) To me the answer seems clear here, we should remove the type restriction on record keys for documents and let people use what they want, including things like post slugs. This would significantly simplify setups for syncing "traditional" static blogs to the protocol.
 
 ## Link vs meta
 
-Speaking of that link proving the connection between the record and page, this is another example of the problem the Bluesky team hit on with the IETF standardization process of at-uris. [They’re not valid URLs](https://bnewbold.leaflet.pub/3mph4hzvbdc2v). And the `href` attribute must have a URL.
+Speaking of that link proving the connection between the record and page, this is an example of the problem the Bluesky team hit on with the IETF standardization process of at-uris. [They’re not valid URLs](https://bnewbold.leaflet.pub/3mph4hzvbdc2v). And the `href` attribute must have a URL. I don't think this was commonly known when standard.site was drafted up, and so the specification, as I mentioned above, requires a `link` tag for verification reasons.
 
-Bluesky does use the `link` tag to validate [standard.site](http://standard.site) documents, so for now you’ll want to have one, but we should find an approach that doesn’t conflict with the existing standards. [@chrisshank.com](https://northsky.app/profile/chrisshank.com) [proposed](https://discourse.atmosphere.community/t/mapping-web-pages-to-canonical-at-records/904) a [standard](https://tangled.org/chrisshank.com/at-tags/) for linking HTML pages to atproto records in a generic way that seems to fit the bill. The IETF conversation will probably take a while to to conclude, but to me this seems like a very reasonable approach to moving us forward, that should at least be discussed as an alternative for proving the connection between the record and the page.
+And Bluesky follows that spec and uses this `link` tag to validate [standard.site](http://standard.site) documents, so for now you’ll want to have one, but we should find an approach that doesn’t conflict with the existing standards. [@chrisshank.com](https://northsky.app/profile/chrisshank.com) [proposed](https://discourse.atmosphere.community/t/mapping-web-pages-to-canonical-at-records/904) a [standard](https://tangled.org/chrisshank.com/at-tags/) for linking HTML pages to atproto records in a generic way that seems to fit the bill. The IETF conversation will probably take a while to to conclude, but to me this seems like a very reasonable approach to moving us forward, that should at least be discussed as an alternative for proving the connection between the record and the page.
 
 ## Open union for content, but no standard format
 
@@ -46,7 +46,7 @@ But constellation only works for data it can interact with. If the `content` fie
 
 There are a lot of trade-offs here and it’s not a simple question of just doing x, but I think this kind of discoverability should be a goal of standard.site.
 
-## The conflict at the core of it
+## The conflict at the core of the lexicon
 
 People have blogs for lots of reasons. Some blog as a past-time, where it really doesn’t matter if anyone reads it. Others blog to take part in a “small-web” community. Many of the most prolific bloggers do it because they directly profit, through revenue, or indirectly profit through community support, sponsorships, or just establishing their name in the community.
 

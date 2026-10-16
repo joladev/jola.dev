@@ -54,7 +54,7 @@ defmodule JolaDev.MixProject do
        depth: 1},
       {:lucide,
        github: "lucide-icons/lucide",
-       tag: "1.54.0",
+       tag: "1.56.0",
        sparse: "icons",
        app: false,
        compile: false,

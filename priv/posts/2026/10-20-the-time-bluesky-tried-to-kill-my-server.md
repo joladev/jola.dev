@@ -101,7 +101,7 @@ Then Tranquil starts sending the commits one by one. As we know, in my case the 
 
 Even with that fix, this is an expensive endpoint. In fact, even without massive commits you can easily peg the CPU at 100% for Tranquil PDS server with a command like:
 
-```go
+```bash
 wrk -t4 -c100 -d300s \
      -H 'Connection: Upgrade' \
      -H 'Upgrade: websocket' \

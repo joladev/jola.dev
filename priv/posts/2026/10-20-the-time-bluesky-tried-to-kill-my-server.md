@@ -79,13 +79,15 @@ A few takeaways here, the first one is that the relay would behave better if it 
 
 Which brings us to the next question, how big can a record really be? Digging into the spec I see that for writing a record the spec doesn’t actually require anything specific at all, apart from a loose recommendation to avoid making records larger than 1MiB in their CBOR representation. But the relay wasn’t choking on the record, it was choking on the commit. Turns out, commits do have strict limits, and they’re *lower* than the recommended limit for records! A single commit record CBOR bytes should not surpass 1MB. Which is less than 1MiB, for [those who like me can’t remember which one is which](https://northsky.app/profile/jola.dev/post/3my553en5pk2t). Additionally, the combined size of the records in a commit should not be higher than 2MB.
 
-So what does indigo-relay do with commits that have a blocks content larger than 1MB? Not what you’d expect! If the size is specifically between 2MB and 2MiB, it silently drops the commit and progresses the cursor. If it’s larger than 2MiB, it rejects the commit. Which also kills the connection. And immediately restarts with no backoff. Well, you know the rest.
+So what does indigo-relay do with commits that have a blocks content larger than 1MB? Not what you’d expect! If the size is specifically between 2MB and 2MiB, [it silently drops the commit and progresses the cursor](https://github.com/bluesky-social/indigo/blob/main/cmd/relay/relay/verify.go#L23-L42). If [it’s larger than 2MiB, it rejects the commit](https://github.com/bluesky-social/indigo/blob/main/api/atproto/cbor_gen.go#L839-L849). Which also kills the connection. And immediately restarts with no backoff. Well, you know the rest.
+
+_Yes, this means that creating a >2MiB (CBOR representation) record on any un-upgraded Tranquil instance will enrage the relay gods and they will bring hellfire down upon the server._
 
 ### Betrayed by my own PDS
 
 Which brings us to the question of how I ended up with a 10MB record on my PDS. The first part was just a bug in [shelf.cafe](http://shelf.cafe) that failed to truncate some text. Boring, let’s move on. The second part is more interesting, the tranquil part.
 
-Because in fact tranquil doesn’t impose any limits at all on record size. Which is reasonable, right? The spec doesn’t actually require anything at all on *that side* of things. This means you could make a 1GB record if you wanted to. I wouldn’t recommend it though, for the obvious reasons.
+Because in fact Tranquil doesn’t impose any limits at all on record size. Which is reasonable, right? The spec doesn’t actually require anything at all on *that side* of things. This means you could make a 1GB record if you wanted to. I wouldn’t recommend it though, for the obvious reasons.
 
 The spec does have strict opinions on commit sizes though, 1MB bytes worth of blocks per record, and 2MB total. Tranquil enforces neither. It does catch the separate spec requirement of a maximum of 200 operations on a batch! But to summarize, Tranquil doesn’t validate the record size or the combined record size, in the commit. Rather it didn’t: since v0.7.0 Tranquil now validates both! Here’s the [PR that introduced validation when writing large records](https://tangled.org/tranquil.farm/tranquil-pds/pulls/315), and [here’s the one that validates large commits](https://tangled.org/tranquil.farm/tranquil-pds/pulls/316).
 

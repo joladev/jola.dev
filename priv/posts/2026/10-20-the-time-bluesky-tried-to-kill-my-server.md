@@ -6,7 +6,7 @@
 }
 ---
 
-Ok, now that have your attention, it was actually more like “the time that the relays running indigo-relay, a codebase maintained by people from Bluesky, tried to kill my PDS”. Because only some of them are actually operated by Bluesky, there are lots of independent ones running the same codebase!
+Ok, now that have your attention, it was actually more like “the time that the relays running indigo-relay, a codebase maintained Bluesky, tried to kill my PDS”. Because only some of them are actually operated by Bluesky, there are lots of independent ones running the same codebase!
 
 ## The story
 
@@ -75,7 +75,7 @@ I was sending a 10MB commit across the connection, so the consumer was dropping 
 
 It has backoff for failures to connect to the server, but not for the connection dropping after.
 
-A few takeaways here, the first one is that the relay would behave better if it did implement backoff for these errors. But the second one is that if they did, I wouldn’t have spotted the issue as easily as this. It’s likely my alerts wouldn’t have gone off. And even with backoff the consumer is stuck and can’t progress, and the rest of the network would stop seeing updates from my account.
+A few takeaways here, the first one is that the relay would behave better if it did implement backoff for these errors ([issue reported here](https://github.com/bluesky-social/indigo/issues/1514)). But the second one is that if they did, I wouldn’t have spotted the issue as easily as this. It’s likely my alerts wouldn’t have gone off. And even with backoff the consumer is stuck and can’t progress, and the rest of the network would stop seeing updates from my account.
 
 Which brings us to the next question, how big can a record really be? Digging into the spec I see that for writing a record the spec doesn’t actually require anything specific at all, apart from a loose recommendation to avoid making records larger than 1MiB in their CBOR representation. But the relay wasn’t choking on the record, it was choking on the commit. Turns out, commits do have strict limits, and they’re *lower* than the recommended limit for records! A single commit record CBOR bytes should not surpass 1MB. Which is less than 1MiB, for [those who like me can’t remember which one is which](https://northsky.app/profile/jola.dev/post/3my553en5pk2t). Additionally, the combined size of the records in a commit should not be higher than 2MB.
 

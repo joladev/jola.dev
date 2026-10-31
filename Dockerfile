@@ -11,14 +11,14 @@
 #   - https://pkgs.org/ - resource for finding needed packages
 #   - Ex: hexpm/elixir:1.16.0-erlang-26.2.1-debian-bullseye-20231009-slim
 #
-ARG ELIXIR_VERSION=1.20.4
+ARG ELIXIR_VERSION=1.20.5
 ARG OTP_VERSION=29.1.2
-ARG DEBIAN_VERSION=trixie-20261020-slim
+ARG DEBIAN_VERSION=trixie-20261027-slim
 
-ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
+ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}@sha256:2731db9ddf9a1fdebcc3d876770f5ac7f0b3a00b1fd41728fae1d19a011a20c6"
+ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}@sha256:f6b08b09a05725f9431502d3b5714f5c4576e82c1a84fa1debe0c24a7e0c3ec4"
 
-FROM ${BUILDER_IMAGE} as builder
+FROM ${BUILDER_IMAGE} AS builder
 
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git nodejs npm fontconfig \
@@ -81,9 +81,9 @@ RUN apt-get update -y && \
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 
 WORKDIR "/app"
 RUN chown nobody /app
@@ -91,7 +91,7 @@ RUN chown nobody /app
 # set runner ENV
 ENV MIX_ENV="prod"
 
-ENV PORT 8080
+ENV PORT=8080
 
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/jola_dev ./

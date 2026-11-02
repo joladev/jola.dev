@@ -35,7 +35,7 @@ So I'm not gonna go through all the components, but here are the highlights:
 
 ### PDS
 
-You need a PDS to deal with accounts, record storage, identity, auth, all that good stuff. As a maintainer of the excellent Tranquil PDS project, that was an obvious choice. It also happens to be what the real Tangled runs too! When you log in this is the thing that's asking you for your password. This is also where all your records get stored.
+You need a PDS to deal with accounts, record storage, identity, auth, all that good stuff. As a maintainer of the excellent Tranquil PDS project, that was an obvious choice. It also happens to be what the real Tangled runs too for organization accounts! When you log in this is the thing that's asking you for your password. This is also where all your records get stored.
 
 ### PLC
 

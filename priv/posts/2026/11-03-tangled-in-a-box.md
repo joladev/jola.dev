@@ -16,7 +16,7 @@ Tangled in a box is a proof of concept of the Tangled stack, packaged for runnin
 
 To get set up, clone [https://tangled.org/jola.dev/tangledinabox](https://tangled.org/jola.dev/tangledinabox) and run:
 
-```
+```bash
 docker compose up -d
 ./trust.sh
 ```

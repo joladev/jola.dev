@@ -12,7 +12,9 @@ There are lots of places in modern apps where you want to be able to discover an
 
 The first, and still the most common, way is Bluesky's actor search. It's a public XRPC query called `app.bsky.actor.searchActorsTypeahead` and is accessible through the Bluesky public API domain, behind a CDN, which basically means you're free to use it as much as you want (within reason). It's a great thing to exist for the community and is a quick and easy building block for making your own atproto app. Try it out yourself!
 
-`curl https://public.api.bsky.app/xrpc/app.bsky.actor.searchActorsTypeahead?q=jola.dev&limit=1 | jq`
+```bash
+curl https://public.api.bsky.app/xrpc/app.bsky.actor.searchActorsTypeahead?q=jola.dev&limit=1 | jq
+```
 
 you should get something like
 
@@ -41,7 +43,9 @@ Going through the public codebase, it's pretty complex! It has a lot of componen
 
 Another example of atproto account typeahead, that takes a different approach, is Tangled's `org.tangled.actor.searchActorsTypeahead` XRPC endpoint. Here's a sample query:
 
-`curl 'https://api.tangled.org/xrpc/org.tangled.actor.searchActorsTypeahead?q=jola&limit=1' | jq`
+```bash
+curl 'https://api.tangled.org/xrpc/org.tangled.actor.searchActorsTypeahead?q=jola&limit=1' | jq
+```
 
 and I get
 

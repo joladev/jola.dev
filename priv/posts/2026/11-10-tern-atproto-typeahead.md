@@ -1,8 +1,8 @@
 %{
-  title: "Incredibly fast atproto account typeahead search",
+  title: "Building an atproto account typeahead search service",
   author: "Johanna Larsson",
   tags: ~w(atproto tern rust tantivy fjall),
-  description: "Tern is a single binary atproto account typeahead, covering both display names and handles"
+  description: "Tern is a single binary atproto account typeahead, covering both display names and handles, with near instant updates."
 }
 ---
 

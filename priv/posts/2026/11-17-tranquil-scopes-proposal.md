@@ -6,6 +6,8 @@
 }
 ---
 
+Note: this is a proposal I've written for Tranquil PDS, you can also read it in the issue I posted on the repo [here](https://tangled.org/tranquil.farm/tranquil-pds/issues/690). I thought it was an interesting deep dive into code design, so I'm publishing it here too for a wider audience.
+
 _tl;dr let's replace the scope parsing logic, which lives across several files and different paths, with a type `Scope` that by construction can only be valid_
 
 Atproto OAuth comes with a specification for scopes, and strict rules on what is valid and not, documented [here](https://atproto.com/specs/permission). Tranquil acts both as an OAuth client and as an authorization server. As an OAuth client Tranquil requests a set of scopes for the user's session when they log into the dashboard. As an authorization server, it validates the requested scopes and creates the OAuth session, handing over access token and refresh token.

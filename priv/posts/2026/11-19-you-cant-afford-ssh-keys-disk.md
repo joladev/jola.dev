@@ -27,7 +27,7 @@ Ok, let's go through the steps. First, make sure your private keys are in Bitwar
 2. On the Private Key header in the edit form, at the very far right of the asterisks hiding the value, there's an upload icon, click it.
 3. Your private key has been imported. Give it a good name and save.
 
-Once you're done with that, you can now move on to the next step, which is enabling the Bitwarden SSH agent. Go to Preferences, App settings (all accounts), and find the checkbox for "Enable SSH agent". You'll also get the option of choosing how often it prompts you for permission, when something wants to use the key. I went for whenever the vault is locked, which I have set to every 4 hours, balancing security with convenience.
+Once you're done with that, you can now move on to the next step, which is enabling the Bitwarden SSH agent. Note that these instructions are for the direct install, if you installed it through the App Store I think the [path is different](https://community.bitwarden.com/t/ssh-agent-in-macos-not-working/82609/8). Go to Preferences, App settings (all accounts), and find the checkbox for "Enable SSH agent". You'll also get the option of choosing how often it prompts you for permission, when something wants to use the key. I went for whenever the vault is locked, which I have set to every 4 hours, balancing security with convenience.
 
 Next, add to your `~/.ssh/config` file:
 

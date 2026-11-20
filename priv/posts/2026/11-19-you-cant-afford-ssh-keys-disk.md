@@ -14,7 +14,7 @@ That brings us to my personal computer. I've been trying to do the same kind of 
 
 ## A better approach to SSH keys
 
-I was keeping copies of my private keys in my password manager, for safe-keeping, but I was still using the version on disk, loaded into memory with `ssh-add`. After reading articles like [I deleted all my SSH keys](https://shelf.cafe/items/did:plc:bvraa6gajy4tfr3eh2sisdkr/3mzzdhgqno2fu), I finally decided to take the next step and get them off disk.
+I was keeping copies of my private keys in my password manager, for safe-keeping, but I was still using the version on disk, loaded into memory with `ssh-add`. To just make this absolutely clear, this means that the private keys are vulnerable to be exiltrated by malicious code scanning my disk. After reading articles like [I deleted all my SSH keys](https://shelf.cafe/items/did:plc:bvraa6gajy4tfr3eh2sisdkr/3mzzdhgqno2fu), I finally decided to take the next step and get them off disk.
 
 I knew that for this to work for me, it had to be easy to use and the disruption had to be minimal, and so although things like the OSX Secure Enclave sounds incredibly cool, I needed something with better ergonomics. I already had Bitwarden set up, with the keys in it, and so that's the approach I ended up taking, and it has worked great for me.
 

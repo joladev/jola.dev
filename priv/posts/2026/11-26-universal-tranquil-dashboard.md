@@ -16,7 +16,7 @@ This is a pure frontend application. There is no backend and no tracking. Your s
 
 It was while working on the big [Tranquil PDS atproto scopes rewrite](https://jola.dev/posts/tranquil-scopes-proposal) that it first really dawned on me that the Tranquil account dashboard is just a plain public OAuth application. It comes packaged with Tranquil, but it has no special accesses or handling. It’s just a regular client. The Bluesky reference PDS doesn’t do this, it uses a separate session system for the dashboard.
 
-At first blush, it seems a bit weird not to make a sensitive account dashboard a special case. Tranquil exposes management endpoints like changing a password to OAuth sessions. It protects these endpoints with atproto scopes, previously a blanket (non-standard) `account:*?action=manage`, and more recently with specific (non-standard) attributes like `account:password?action=manage`. It’s just OAuth. That may not be ultimately very intuitive for end users.
+At first blush, it seems a bit weird not to make a sensitive account dashboard a special case. Tranquil exposes management endpoints like changing a password to OAuth sessions. It protects these endpoints with atproto scopes, previously a blanket (non-standard) `account:*?action=manage`, and more recently with specific (non-standard) attributes like `account:password?action=manage`. It’s just OAuth. [That may not be ultimately very intuitive for end users.](https://bsky.app/profile/jola.dev/post/3n2jdm3fuak2g)
 
 But… it actually opens incredible doors…
 
